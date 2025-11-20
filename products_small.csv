@@ -1,0 +1,501 @@
+image,sleeve,lower,socks_label,hat_label,neckwear_label,wrist_label,ring_label,waist_label,neckline_label,cardigan_label,covers_navel_label,upper_fabric,lower_fabric,outer_fabric,warmth_score,impermeability,comfort,upper_pattern,lower_pattern,outer_pattern,categories
+WOMEN-Rompers_Jumpsuits-id_00000886-02_3_back.jpg,sleeveless,three-point,NA,no,yes,yes,NA,no,NA,NA,NA,knitted,knitted,NA,3,0,0,graphic,graphic,NA,
+WOMEN-Jackets_Coats-id_00000706-02_3_back.jpg,long-sleeve,NA,NA,yes,NA,no,yes,hidden,NA,NA,NA,NA,cotton,leather,8,2,0,NA,lattice,pure color,
+WOMEN-Jackets_Coats-id_00002332-01_1_front.jpg,long-sleeve,NA,NA,no,yes,yes,yes,no,V-shape,yes,yes,cotton,chiffon,knitted,10,1,3,graphic,graphic,pure color,
+MEN-Jackets_Vests-id_00005097-05_4_full.jpg,long-sleeve,long,no,no,no,no,no,hidden,round,yes,yes,cotton,denim,cotton,9,1,3,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Tees_Tanks-id_00000676-02_2_side.jpg,sleeveless,three-point,NA,no,yes,yes,no,hidden,round,no,yes,chiffon,denim,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00007503-03_1_front.jpg,short-sleeve,three-point,NA,yes,no,yes,yes,hidden,round,no,yes,cotton,denim,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00000879-01_3_back.jpg,long-sleeve,NA,NA,no,no,no,no,NA,NA,NA,NA,chiffon,cotton,NA,6,0,0,pure color,pure color,NA,
+MEN-Sweatshirts_Hoodies-id_00005897-01_2_side.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,NA,NA,yes,NA,cotton,cotton,6,1,1,NA,pure color,other,
+WOMEN-Blouses_Shirts-id_00002789-04_4_full.jpg,long-sleeve,long,no,no,yes,yes,NA,no,V-shape,yes,yes,chiffon,denim,cotton,9,1,3,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Dresses-id_00004017-02_3_back.jpg,sleeveless,long,no,no,yes,yes,yes,no,NA,NA,yes,chiffon,chiffon,NA,3,0,1,pure color,pure color,NA,"dress,footwear"
+MEN-Tees_Tanks-id_00004966-01_3_back.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,NA,NA,NA,cotton,cotton,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00005433-07_3_back.jpg,sleeveless,three-point,NA,no,no,no,yes,no,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Rompers_Jumpsuits-id_00002815-03_2_side.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,round,no,yes,cotton,cotton,NA,3,0,3,graphic,graphic,NA,
+WOMEN-Rompers_Jumpsuits-id_00001718-04_7_additional.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,suspenders,no,yes,cotton,cotton,NA,3,0,1,graphic,graphic,NA,
+WOMEN-Tees_Tanks-id_00004012-06_2_side.jpg,sleeveless,three-point,NA,no,yes,no,yes,no,suspenders,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Sweaters-id_00004579-04_1_front.jpg,long-sleeve,NA,NA,no,yes,no,yes,hidden,round,no,yes,cotton,denim,NA,6,0,3,pure color,other,NA,
+WOMEN-Tees_Tanks-id_00004349-03_1_front.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,4,0,5,other,pure color,NA,
+WOMEN-Shorts-id_00001625-04_1_front.jpg,long-sleeve,three-point,NA,no,no,yes,yes,no,round,no,no,knitted,cotton,NA,6,0,2,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00004827-01_7_additional.jpg,short-sleeve,three-point,NA,no,no,no,yes,hidden,round,no,yes,cotton,denim,NA,4,0,5,striped,pure color,NA,
+WOMEN-Sweaters-id_00006814-05_1_front.jpg,long-sleeve,NA,NA,no,yes,yes,yes,hidden,round,no,yes,knitted,cotton,NA,6,0,3,pure color,graphic,NA,
+WOMEN-Blouses_Shirts-id_00002558-03_2_side.jpg,sleeveless,three-point,NA,no,yes,yes,NA,hidden,suspenders,no,yes,cotton,cotton,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Dresses-id_00007219-02_2_side.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,round,no,yes,cotton,cotton,NA,3,0,3,graphic,graphic,NA,
+WOMEN-Skirts-id_00005109-02_7_additional.jpg,sleeveless,three-point,leggings,NA,NA,no,yes,no,round,no,no,cotton,cotton,NA,3,0,2,pure color,lattice,NA,
+WOMEN-Rompers_Jumpsuits-id_00000441-02_4_full.jpg,sleeveless,three-point,no,no,yes,no,yes,no,suspenders,no,yes,cotton,cotton,NA,3,0,1,graphic,graphic,NA,footwear
+WOMEN-Blouses_Shirts-id_00000311-01_2_side.jpg,sleeveless,medium-short,NA,NA,no,yes,yes,no,suspenders,no,yes,cotton,cotton,NA,3,0,1,floral,floral,NA,
+WOMEN-Tees_Tanks-id_00006887-02_1_front.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,suspenders,no,no,cotton,denim,NA,3,0,0,other,pure color,NA,
+WOMEN-Blouses_Shirts-id_00002270-02_2_side.jpg,sleeveless,NA,NA,no,yes,no,yes,hidden,NA,NA,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004164-03_2_side.jpg,sleeveless,NA,NA,no,no,yes,yes,hidden,round,no,yes,chiffon,denim,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004923-05_3_back.jpg,short-sleeve,NA,NA,no,yes,yes,no,no,NA,NA,NA,chiffon,denim,NA,4,0,2,graphic,pure color,NA,
+WOMEN-Dresses-id_00003332-08_7_additional.jpg,sleeveless,NA,NA,no,yes,NA,NA,no,NA,NA,yes,cotton,cotton,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005942-02_3_back.jpg,short-sleeve,NA,NA,no,yes,yes,yes,hidden,NA,NA,NA,chiffon,denim,NA,4,0,2,graphic,pure color,NA,
+WOMEN-Graphic_Tees-id_00004529-02_2_side.jpg,sleeveless,NA,NA,no,yes,yes,yes,no,NA,no,no,cotton,cotton,NA,3,0,0,graphic,graphic,NA,
+WOMEN-Blouses_Shirts-id_00003968-02_1_front.jpg,sleeveless,NA,NA,no,yes,no,yes,hidden,suspenders,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Jackets_Coats-id_00004171-03_2_side.jpg,long-sleeve,long,no,yes,NA,no,yes,hidden,round,yes,yes,knitted,leather,cotton,9,1,3,pure color,pure color,pure color,"outer,dress,pants,footwear"
+WOMEN-Jackets_Coats-id_00006467-02_1_front.jpg,long-sleeve,three-point,no,no,NA,no,yes,hidden,NA,yes,yes,cotton,cotton,cotton,9,1,1,pure color,pure color,other,"outer,dress,footwear"
+WOMEN-Sweaters-id_00001244-02_3_back.jpg,long-sleeve,NA,NA,NA,NA,NA,NA,hidden,NA,NA,NA,NA,cotton,knitted,8,1,0,NA,pure color,graphic,
+WOMEN-Shorts-id_00000625-03_2_side.jpg,long-sleeve,three-point,NA,NA,no,no,yes,no,round,no,yes,cotton,denim,NA,6,0,3,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00007452-04_2_side.jpg,medium-sleeve,medium-short,NA,no,no,yes,yes,hidden,NA,no,yes,cotton,cotton,NA,5,0,3,pure color,floral,NA,
+MEN-Tees_Tanks-id_00001021-04_4_full.jpg,short-sleeve,long,no,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,4,0,5,color block,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00004448-02_4_full.jpg,medium-sleeve,long,no,no,yes,yes,yes,hidden,round,no,yes,cotton,denim,NA,5,0,5,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00003155-01_1_front.jpg,long-sleeve,NA,NA,no,no,no,yes,hidden,round,no,yes,cotton,denim,NA,6,0,3,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00000331-01_2_side.jpg,short-sleeve,three-point,NA,no,no,no,yes,hidden,round,no,yes,cotton,denim,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00007483-04_1_front.jpg,short-sleeve,NA,NA,yes,no,yes,yes,clothing,standing,no,no,cotton,denim,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Shorts-id_00004282-02_4_full.jpg,sleeveless,three-point,socks,no,no,yes,yes,no,suspenders,no,no,cotton,denim,NA,3,0,0,graphic,other,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00001530-02_7_additional.jpg,sleeveless,NA,NA,no,no,no,NA,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Sweaters-id_00004680-03_1_front.jpg,medium-sleeve,three-point,NA,no,yes,yes,yes,no,round,yes,no,cotton,denim,knitted,10,1,4,pure color,pure color,graphic,
+WOMEN-Tees_Tanks-id_00000330-04_7_additional.jpg,short-sleeve,medium-short,no,no,no,no,yes,no,NA,NA,NA,cotton,denim,NA,4,0,2,pure color,pure color,NA,"dress,pants,footwear"
+WOMEN-Blouses_Shirts-id_00003626-03_4_full.jpg,sleeveless,three-point,no,no,no,no,yes,hidden,round,no,yes,cotton,cotton,NA,3,0,3,graphic,pure color,NA,"top,skirt,footwear"
+WOMEN-Dresses-id_00002286-05_3_back.jpg,sleeveless,medium-short,NA,no,yes,no,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00005332-07_3_back.jpg,short-sleeve,NA,NA,no,no,no,yes,hidden,NA,NA,NA,cotton,denim,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00003082-06_3_back.jpg,long-sleeve,NA,NA,no,NA,no,yes,hidden,NA,NA,NA,chiffon,cotton,NA,6,0,0,pure color,pure color,NA,
+MEN-Tees_Tanks-id_00007073-09_2_side.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,4,0,5,pure color,pure color,NA,
+MEN-Sweaters-id_00001509-02_1_front.jpg,long-sleeve,NA,NA,no,no,no,NA,hidden,lapel,no,yes,cotton,cotton,NA,6,0,1,color block,pure color,NA,
+WOMEN-Tees_Tanks-id_00002144-05_3_back.jpg,long-sleeve,NA,NA,no,NA,no,yes,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Rompers_Jumpsuits-id_00006386-01_3_back.jpg,long-sleeve,three-point,NA,no,no,yes,yes,no,NA,NA,NA,cotton,cotton,NA,6,0,0,graphic,graphic,NA,
+WOMEN-Tees_Tanks-id_00004231-04_7_additional.jpg,short-sleeve,three-point,NA,no,yes,yes,yes,hidden,round,no,yes,knitted,denim,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00001194-05_2_side.jpg,sleeveless,NA,NA,yes,no,no,NA,hidden,V-shape,no,yes,cotton,denim,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00002792-07_3_back.jpg,short-sleeve,three-point,NA,no,no,yes,yes,no,NA,NA,NA,cotton,leather,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00006474-02_7_additional.jpg,short-sleeve,three-point,NA,no,NA,no,yes,hidden,NA,NA,NA,chiffon,denim,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005642-02_1_front.jpg,sleeveless,NA,NA,no,no,yes,yes,hidden,round,no,yes,chiffon,denim,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Graphic_Tees-id_00002129-01_2_side.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,NA,NA,yes,cotton,denim,NA,4,0,3,graphic,pure color,NA,
+MEN-Tees_Tanks-id_00005349-02_4_full.jpg,long-sleeve,long,no,no,no,yes,NA,hidden,lapel,no,yes,cotton,cotton,NA,6,0,1,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Cardigans-id_00003492-04_7_additional.jpg,long-sleeve,long,no,no,yes,no,yes,belt,round,yes,yes,cotton,denim,knitted,10,1,3,pure color,pure color,pure color,"top,outer,pants,footwear"
+MEN-Tees_Tanks-id_00002341-01_1_front.jpg,sleeveless,NA,NA,yes,no,no,no,hidden,round,no,yes,cotton,cotton,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00003881-02_4_full.jpg,sleeveless,three-point,no,no,yes,yes,no,no,NA,no,no,cotton,denim,NA,3,0,0,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00002799-03_3_back.jpg,long-sleeve,three-point,socks,yes,NA,no,yes,hidden,lapel,NA,NA,cotton,chiffon,NA,6,0,0,lattice,graphic,NA,
+WOMEN-Shorts-id_00002156-04_2_side.jpg,NA,three-point,no,NA,NA,yes,yes,no,NA,no,no,cotton,cotton,NA,4,0,0,graphic,graphic,NA,
+WOMEN-Rompers_Jumpsuits-id_00005437-01_1_front.jpg,long-sleeve,long,no,no,no,no,yes,no,V-shape,no,yes,chiffon,chiffon,NA,6,0,3,pure color,pure color,NA,footwear
+WOMEN-Dresses-id_00005281-02_2_side.jpg,sleeveless,three-point,NA,no,NA,no,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00007721-35_3_back.jpg,sleeveless,NA,NA,no,no,no,no,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00002318-01_3_back.jpg,sleeveless,NA,NA,no,NA,no,NA,hidden,NA,no,yes,cotton,cotton,NA,3,0,1,striped,pure color,NA,
+WOMEN-Dresses-id_00005372-02_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,round,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Cardigans-id_00000284-02_3_back.jpg,sleeveless,three-quarter,no,yes,NA,no,no,hidden,NA,NA,NA,cotton,denim,knitted,5,1,0,pure color,pure color,graphic,
+WOMEN-Blouses_Shirts-id_00004266-01_1_front.jpg,short-sleeve,three-point,NA,no,no,yes,yes,no,round,no,yes,cotton,leather,NA,4,0,5,striped,pure color,NA,
+WOMEN-Blouses_Shirts-id_00003802-05_4_full.jpg,long-sleeve,long,no,yes,no,no,yes,no,round,no,no,cotton,denim,NA,6,0,2,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00005460-03_4_full.jpg,sleeveless,long,no,no,yes,yes,yes,hidden,suspenders,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00001925-29_3_back.jpg,sleeveless,three-point,NA,no,no,no,NA,hidden,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004274-05_2_side.jpg,sleeveless,NA,NA,no,no,yes,yes,hidden,suspenders,no,yes,chiffon,denim,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Shorts-id_00003305-10_4_full.jpg,medium-sleeve,three-point,no,no,no,yes,no,no,lapel,no,yes,cotton,cotton,NA,5,0,3,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Leggings-id_00002622-01_1_front.jpg,short-sleeve,long,no,no,no,yes,yes,clothing,round,no,yes,cotton,denim,NA,4,0,5,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00002991-02_3_back.jpg,long-sleeve,NA,NA,no,no,yes,yes,hidden,NA,NA,NA,chiffon,denim,NA,6,0,0,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00003018-01_3_back.jpg,short-sleeve,NA,NA,no,no,yes,yes,hidden,NA,NA,NA,chiffon,cotton,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Shorts-id_00003514-04_4_full.jpg,long-sleeve,three-point,no,no,no,yes,yes,no,round,yes,no,cotton,cotton,furry,10,0,2,pure color,floral,pure color,"top,outer,pants,footwear"
+WOMEN-Blouses_Shirts-id_00000906-01_3_back.jpg,medium-sleeve,three-point,NA,no,yes,yes,yes,hidden,NA,NA,NA,cotton,denim,NA,5,0,2,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00006831-01_3_back.jpg,long-sleeve,NA,NA,no,no,no,NA,NA,NA,NA,NA,chiffon,cotton,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00007205-06_1_front.jpg,sleeveless,NA,NA,no,yes,yes,yes,hidden,round,no,yes,cotton,denim,NA,3,0,3,graphic,pure color,NA,
+MEN-Tees_Tanks-id_00005188-01_4_full.jpg,long-sleeve,long,no,NA,no,yes,no,belt,round,yes,yes,cotton,cotton,NA,9,0,3,pure color,pure color,NA,"top,outer,pants,footwear"
+WOMEN-Tees_Tanks-id_00001071-15_1_front.jpg,sleeveless,three-point,NA,no,no,no,yes,no,round,no,no,cotton,denim,NA,3,0,2,pure color,striped,NA,
+WOMEN-Tees_Tanks-id_00005318-02_4_full.jpg,sleeveless,long,no,no,no,yes,yes,clothing,round,no,no,cotton,denim,NA,3,0,2,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00005837-07_2_side.jpg,short-sleeve,NA,NA,yes,no,no,yes,hidden,NA,no,yes,cotton,cotton,NA,4,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00001906-02_3_back.jpg,short-sleeve,NA,NA,no,NA,yes,no,hidden,NA,NA,NA,cotton,denim,NA,4,0,2,pure color,pure color,NA,
+MEN-Tees_Tanks-id_00000166-02_2_side.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Sweaters-id_00006483-10_3_back.jpg,long-sleeve,three-point,leggings,no,NA,no,NA,hidden,NA,NA,NA,cotton,cotton,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004035-03_3_back.jpg,long-sleeve,NA,NA,no,yes,no,yes,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Graphic_Tees-id_00001185-01_1_front.jpg,short-sleeve,NA,NA,no,no,no,yes,hidden,round,no,yes,cotton,denim,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00007712-03_7_additional.jpg,long-sleeve,NA,NA,yes,yes,yes,yes,no,round,no,yes,cotton,denim,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Dresses-id_00003255-01_4_full.jpg,sleeveless,three-point,no,no,no,no,yes,no,NA,NA,yes,chiffon,chiffon,NA,3,0,1,floral,floral,NA,"dress,footwear"
+WOMEN-Tees_Tanks-id_00006581-11_3_back.jpg,sleeveless,NA,NA,no,no,no,no,hidden,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00002585-01_1_front.jpg,medium-sleeve,NA,NA,no,no,no,yes,no,round,no,yes,cotton,cotton,NA,5,0,5,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00004593-04_3_back.jpg,long-sleeve,three-point,NA,no,no,no,no,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00004906-02_1_front.jpg,sleeveless,three-quarter,no,no,yes,yes,no,no,round,no,yes,chiffon,chiffon,NA,3,0,3,pure color,pure color,NA,"dress,footwear"
+WOMEN-Cardigans-id_00001383-03_7_additional.jpg,long-sleeve,NA,NA,no,yes,no,yes,hidden,round,yes,yes,cotton,denim,knitted,10,1,3,pure color,pure color,graphic,
+WOMEN-Dresses-id_00000250-03_3_back.jpg,long-sleeve,three-point,NA,yes,yes,no,yes,no,NA,NA,NA,cotton,cotton,NA,6,0,0,graphic,graphic,NA,
+MEN-Tees_Tanks-id_00006585-04_7_additional.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Dresses-id_00006024-02_7_additional.jpg,sleeveless,three-point,NA,NA,no,yes,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,graphic,graphic,NA,
+WOMEN-Tees_Tanks-id_00004970-03_2_side.jpg,sleeveless,three-point,NA,no,yes,yes,yes,hidden,round,no,yes,cotton,denim,NA,3,0,3,graphic,pure color,NA,
+MEN-Sweatshirts_Hoodies-id_00002315-02_1_front.jpg,long-sleeve,NA,NA,no,no,no,NA,hidden,lapel,yes,yes,cotton,denim,cotton,9,1,1,lattice,pure color,pure color,
+WOMEN-Graphic_Tees-id_00003199-02_2_side.jpg,short-sleeve,NA,NA,no,yes,no,yes,hidden,NA,no,yes,cotton,cotton,NA,4,0,3,graphic,graphic,NA,
+MEN-Tees_Tanks-id_00004115-04_1_front.jpg,sleeveless,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,3,0,3,color block,pure color,NA,
+WOMEN-Dresses-id_00000819-04_1_front.jpg,sleeveless,long,no,no,no,yes,yes,no,round,no,yes,chiffon,chiffon,NA,3,0,3,pure color,pure color,NA,"dress,footwear"
+WOMEN-Cardigans-id_00003097-05_3_back.jpg,long-sleeve,three-point,NA,no,NA,no,no,hidden,NA,NA,NA,knitted,knitted,NA,6,0,0,graphic,graphic,NA,
+WOMEN-Tees_Tanks-id_00007687-04_2_side.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,4,0,5,striped,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004189-05_1_front.jpg,sleeveless,three-point,NA,no,yes,yes,yes,hidden,suspenders,no,yes,chiffon,cotton,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Dresses-id_00003516-05_7_additional.jpg,sleeveless,NA,NA,no,yes,NA,NA,no,round,no,yes,cotton,NA,NA,3,0,3,other,NA,NA,
+WOMEN-Blouses_Shirts-id_00006623-01_4_full.jpg,sleeveless,long,no,no,no,NA,NA,hidden,round,no,yes,chiffon,denim,NA,3,0,3,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00002308-04_3_back.jpg,long-sleeve,NA,NA,no,no,no,yes,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,graphic,pure color,NA,
+MEN-Sweaters-id_00001509-03_4_full.jpg,long-sleeve,NA,NA,no,no,no,no,hidden,lapel,no,yes,cotton,cotton,NA,6,0,1,color block,pure color,NA,
+WOMEN-Tees_Tanks-id_00002415-15_7_additional.jpg,sleeveless,NA,NA,no,NA,no,yes,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005306-06_2_side.jpg,long-sleeve,three-point,leggings,yes,yes,yes,yes,hidden,round,no,yes,chiffon,denim,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00002882-01_1_front.jpg,sleeveless,NA,NA,NA,no,yes,yes,no,suspenders,no,no,cotton,denim,NA,3,0,0,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00003523-11_1_front.jpg,short-sleeve,three-point,NA,no,no,no,yes,no,V-shape,no,yes,cotton,denim,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Pants-id_00000338-02_3_back.jpg,long-sleeve,long,NA,NA,NA,yes,no,no,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004300-05_7_additional.jpg,short-sleeve,long,no,no,no,no,yes,no,round,no,yes,cotton,denim,NA,4,0,5,pure color,pure color,NA,"top,pants,footwear"
+MEN-Tees_Tanks-id_00003249-01_2_side.jpg,short-sleeve,NA,NA,no,NA,no,no,hidden,NA,no,yes,cotton,cotton,NA,4,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00007452-04_1_front.jpg,medium-sleeve,three-point,NA,no,no,yes,yes,hidden,round,no,yes,cotton,cotton,NA,5,0,5,pure color,floral,NA,
+MEN-Denim-id_00000089-15_4_full.jpg,short-sleeve,long,no,NA,no,yes,no,hidden,lapel,no,yes,cotton,cotton,NA,4,0,3,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00004285-02_7_additional.jpg,long-sleeve,three-point,NA,no,NA,no,yes,hidden,lapel,NA,NA,cotton,cotton,NA,6,0,0,graphic,pure color,NA,
+WOMEN-Dresses-id_00007794-02_2_side.jpg,sleeveless,long,no,no,yes,yes,no,no,NA,no,yes,cotton,cotton,NA,3,0,1,graphic,graphic,NA,"dress,footwear"
+WOMEN-Blouses_Shirts-id_00006464-02_7_additional.jpg,long-sleeve,long,no,no,yes,no,yes,hidden,V-shape,no,yes,chiffon,denim,NA,6,0,3,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Dresses-id_00006332-02_2_side.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,NA,no,yes,cotton,cotton,NA,3,0,1,graphic,graphic,NA,
+WOMEN-Dresses-id_00007540-02_2_side.jpg,sleeveless,long,NA,no,no,yes,yes,no,NA,NA,yes,chiffon,chiffon,NA,3,0,1,pure color,pure color,NA,"dress,footwear"
+WOMEN-Tees_Tanks-id_00001512-10_1_front.jpg,sleeveless,NA,NA,no,no,NA,NA,no,round,no,no,cotton,denim,NA,3,0,2,pure color,pure color,NA,
+WOMEN-Sweaters-id_00006049-02_1_front.jpg,short-sleeve,three-point,NA,no,no,yes,yes,hidden,round,no,yes,cotton,cotton,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Sweaters-id_00004647-04_4_full.jpg,long-sleeve,long,no,no,no,no,yes,hidden,round,no,yes,cotton,denim,NA,6,0,3,pure color,other,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00002949-01_4_full.jpg,long-sleeve,long,no,no,no,no,yes,hidden,round,yes,yes,chiffon,cotton,knitted,10,1,3,graphic,pure color,pure color,"top,outer,pants,footwear"
+MEN-Tees_Tanks-id_00006208-09_2_side.jpg,sleeveless,NA,NA,yes,yes,yes,no,hidden,round,no,yes,cotton,denim,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Dresses-id_00006760-05_2_side.jpg,sleeveless,long,no,no,yes,no,no,no,V-shape,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,"dress,footwear"
+MEN-Jackets_Vests-id_00002446-04_2_side.jpg,long-sleeve,NA,NA,no,no,no,no,hidden,NA,no,yes,cotton,denim,cotton,6,1,1,pure color,pure color,pure color,
+WOMEN-Tees_Tanks-id_00000809-01_1_front.jpg,sleeveless,NA,NA,no,yes,yes,NA,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00000172-03_7_additional.jpg,sleeveless,three-point,NA,NA,yes,yes,yes,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,graphic,pure color,NA,
+WOMEN-Dresses-id_00000378-07_1_front.jpg,long-sleeve,three-point,NA,yes,yes,yes,yes,no,round,no,yes,cotton,cotton,NA,6,0,3,graphic,graphic,NA,
+WOMEN-Rompers_Jumpsuits-id_00003139-03_4_full.jpg,long-sleeve,three-point,no,no,yes,no,yes,no,round,no,yes,chiffon,chiffon,NA,6,0,3,pure color,pure color,NA,footwear
+WOMEN-Jackets_Coats-id_00004946-02_1_front.jpg,long-sleeve,long,no,no,NA,no,yes,no,round,no,yes,cotton,denim,cotton,6,1,3,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Tees_Tanks-id_00005168-05_2_side.jpg,sleeveless,NA,NA,yes,no,no,yes,no,suspenders,no,no,knitted,leather,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00002590-02_1_front.jpg,long-sleeve,three-point,no,yes,no,no,no,no,round,yes,yes,cotton,cotton,knitted,10,1,3,floral,floral,pure color,"outer,dress,footwear"
+WOMEN-Sweaters-id_00002715-01_2_side.jpg,long-sleeve,three-point,leggings,no,no,no,no,hidden,NA,NA,NA,cotton,cotton,knitted,8,1,0,pure color,striped,striped,
+WOMEN-Tees_Tanks-id_00003590-01_1_front.jpg,long-sleeve,NA,NA,no,NA,no,yes,hidden,NA,NA,yes,cotton,denim,NA,6,0,1,pure color,pure color,NA,
+MEN-Sweatshirts_Hoodies-id_00000006-01_2_side.jpg,medium-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,5,0,5,pure color,pure color,NA,
+WOMEN-Dresses-id_00007848-09_2_side.jpg,NA,NA,NA,NA,NA,no,yes,belt,NA,no,yes,chiffon,chiffon,NA,4,0,1,pure color,pure color,NA,
+MEN-Pants-id_00006039-07_2_side.jpg,not-long-sleeve,long,no,NA,NA,no,no,hidden,NA,no,yes,cotton,cotton,NA,4,0,1,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00001633-04_2_side.jpg,sleeveless,NA,NA,no,no,yes,yes,no,suspenders,no,yes,chiffon,denim,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004876-02_2_side.jpg,sleeveless,NA,NA,no,yes,yes,no,hidden,NA,NA,yes,cotton,cotton,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00004042-04_7_additional.jpg,sleeveless,three-point,NA,no,no,yes,yes,hidden,round,no,yes,cotton,denim,NA,3,0,3,pure color,pure color,NA,
+MEN-Tees_Tanks-id_00003249-07_2_side.jpg,short-sleeve,NA,NA,no,NA,no,no,hidden,NA,no,yes,cotton,cotton,NA,4,0,3,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004255-06_7_additional.jpg,short-sleeve,three-point,no,no,yes,no,no,no,round,no,yes,chiffon,cotton,cotton,4,1,5,pure color,graphic,pure color,"top,outer,skirt,footwear"
+WOMEN-Dresses-id_00006168-08_3_back.jpg,sleeveless,three-point,leggings,yes,no,yes,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,color block,pure color,NA,
+WOMEN-Tees_Tanks-id_00004835-06_2_side.jpg,sleeveless,NA,NA,no,no,yes,yes,no,NA,no,yes,cotton,leather,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00002260-01_1_front.jpg,sleeveless,NA,NA,no,no,NA,NA,no,NA,NA,NA,cotton,denim,NA,3,0,0,color block,pure color,NA,
+WOMEN-Tees_Tanks-id_00002257-01_1_front.jpg,medium-sleeve,three-point,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,5,0,5,color block,pure color,NA,
+WOMEN-Tees_Tanks-id_00002867-07_1_front.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,V-shape,no,no,cotton,denim,NA,3,0,2,pure color,pure color,NA,
+MEN-Sweaters-id_00001509-03_3_back.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,lapel,NA,NA,cotton,cotton,NA,6,0,0,color block,pure color,NA,
+WOMEN-Blouses_Shirts-id_00000890-03_1_front.jpg,sleeveless,three-point,NA,no,yes,yes,yes,hidden,round,no,yes,cotton,denim,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00006381-02_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,round,no,no,cotton,denim,NA,3,0,2,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00005683-03_3_back.jpg,short-sleeve,NA,NA,no,yes,yes,NA,hidden,NA,NA,NA,cotton,denim,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Jackets_Coats-id_00000058-02_2_side.jpg,long-sleeve,three-point,NA,no,no,no,yes,hidden,round,no,yes,cotton,cotton,cotton,6,1,3,pure color,pure color,pure color,
+WOMEN-Tees_Tanks-id_00001559-02_7_additional.jpg,sleeveless,NA,NA,no,yes,yes,yes,no,NA,NA,NA,knitted,denim,NA,3,0,0,graphic,pure color,NA,
+WOMEN-Jackets_Coats-id_00004155-02_1_front.jpg,medium-sleeve,three-point,NA,no,yes,yes,yes,no,V-shape,yes,no,cotton,denim,denim,9,2,4,pure color,pure color,pure color,
+WOMEN-Blouses_Shirts-id_00007038-04_2_side.jpg,short-sleeve,three-point,NA,no,NA,no,yes,hidden,NA,NA,NA,chiffon,leather,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00001801-04_3_back.jpg,sleeveless,NA,NA,no,no,no,NA,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Rompers_Jumpsuits-id_00003191-04_1_front.jpg,short-sleeve,three-point,NA,no,yes,yes,yes,belt,round,no,yes,cotton,cotton,NA,4,0,5,pure color,pure color,NA,
+MEN-Shorts-id_00005745-02_4_full.jpg,short-sleeve,medium-short,no,no,no,no,NA,hidden,round,no,yes,cotton,cotton,NA,4,0,5,pure color,graphic,NA,"top,pants,footwear"
+WOMEN-Shorts-id_00001594-01_1_front.jpg,sleeveless,three-point,NA,yes,no,no,yes,no,V-shape,no,no,cotton,cotton,leather,5,2,2,pure color,graphic,pure color,
+WOMEN-Skirts-id_00001558-02_1_front.jpg,long-sleeve,three-point,no,no,no,no,no,no,round,no,no,cotton,cotton,NA,6,0,2,pure color,pure color,NA,"top,skirt,footwear"
+MEN-Tees_Tanks-id_00005982-01_3_back.jpg,short-sleeve,NA,NA,yes,no,yes,no,hidden,NA,NA,NA,cotton,cotton,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Sweaters-id_00004141-04_3_back.jpg,long-sleeve,three-point,NA,no,NA,NA,no,hidden,NA,NA,NA,NA,cotton,knitted,8,1,0,NA,floral,pure color,
+WOMEN-Tees_Tanks-id_00000968-06_2_side.jpg,short-sleeve,NA,NA,no,no,NA,NA,hidden,round,no,yes,cotton,denim,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Pants-id_00001647-03_1_front.jpg,long-sleeve,long,no,yes,no,no,NA,no,V-shape,yes,no,cotton,cotton,knitted,10,1,2,pure color,pure color,lattice,"top,outer,pants,footwear"
+WOMEN-Jackets_Coats-id_00006582-03_1_front.jpg,long-sleeve,long,no,no,no,no,no,no,round,yes,no,cotton,denim,cotton,9,1,2,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Rompers_Jumpsuits-id_00000828-02_3_back.jpg,sleeveless,long,no,no,yes,yes,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,footwear
+MEN-Tees_Tanks-id_00001222-03_2_side.jpg,sleeveless,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,3,0,3,pure color,pure color,NA,
+MEN-Tees_Tanks-id_00007301-12_1_front.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Jackets_Coats-id_00003880-03_4_full.jpg,short-sleeve,long,no,no,no,yes,yes,belt,round,no,yes,cotton,denim,cotton,4,1,5,graphic,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Skirts-id_00006074-02_2_side.jpg,long-sleeve,three-point,socks,NA,NA,no,no,no,NA,no,yes,cotton,denim,NA,6,0,1,striped,pure color,NA,
+WOMEN-Tees_Tanks-id_00005364-05_1_front.jpg,long-sleeve,NA,NA,no,yes,no,yes,clothing,round,no,no,cotton,denim,NA,6,0,2,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00003790-05_4_full.jpg,sleeveless,three-point,no,no,no,no,yes,no,round,no,yes,cotton,denim,NA,3,0,3,pure color,other,NA,"top,pants,footwear"
+WOMEN-Dresses-id_00001029-01_1_front.jpg,long-sleeve,three-point,NA,no,no,no,no,no,V-shape,no,yes,chiffon,chiffon,NA,6,0,3,graphic,graphic,NA,
+WOMEN-Dresses-id_00006888-05_3_back.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,striped,striped,NA,
+WOMEN-Tees_Tanks-id_00005479-07_3_back.jpg,long-sleeve,NA,NA,no,no,no,yes,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+MEN-Sweaters-id_00001584-03_2_side.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,lapel,no,yes,cotton,denim,NA,4,0,3,graphic,pure color,NA,
+WOMEN-Dresses-id_00007016-07_3_back.jpg,sleeveless,three-point,NA,no,yes,yes,yes,belt,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00002274-01_2_side.jpg,medium-sleeve,NA,NA,no,no,yes,NA,hidden,round,no,yes,cotton,cotton,NA,5,0,5,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00000136-01_1_front.jpg,short-sleeve,NA,NA,yes,no,no,yes,hidden,round,no,yes,cotton,cotton,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005860-02_1_front.jpg,long-sleeve,NA,NA,yes,yes,yes,yes,hidden,round,no,yes,chiffon,denim,NA,6,0,3,graphic,pure color,NA,
+WOMEN-Shorts-id_00006461-01_4_full.jpg,sleeveless,three-point,no,no,yes,no,yes,no,round,no,no,cotton,cotton,NA,3,0,2,pure color,graphic,NA,"top,skirt,footwear"
+WOMEN-Graphic_Tees-id_00006048-01_1_front.jpg,sleeveless,three-point,no,yes,no,yes,yes,no,round,no,yes,cotton,cotton,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Dresses-id_00001740-09_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00000087-02_4_full.jpg,sleeveless,three-point,no,no,no,yes,yes,no,V-shape,no,yes,chiffon,chiffon,NA,3,0,3,pure color,pure color,NA,"dress,footwear"
+WOMEN-Dresses-id_00005835-02_3_back.jpg,sleeveless,long,no,no,no,no,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,graphic,graphic,NA,"dress,footwear"
+WOMEN-Tees_Tanks-id_00003710-02_7_additional.jpg,sleeveless,NA,NA,no,no,no,no,no,NA,NA,NA,cotton,denim,NA,3,0,0,striped,pure color,NA,
+WOMEN-Sweatshirts_Hoodies-id_00001116-03_7_additional.jpg,long-sleeve,NA,NA,no,NA,yes,NA,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00001091-01_2_side.jpg,sleeveless,NA,NA,no,no,yes,NA,no,lapel,NA,NA,cotton,denim,NA,3,0,0,graphic,pure color,NA,
+MEN-Tees_Tanks-id_00002239-02_1_front.jpg,sleeveless,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Dresses-id_00000422-02_3_back.jpg,long-sleeve,three-point,NA,no,no,no,no,no,NA,NA,NA,cotton,cotton,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00002177-04_2_side.jpg,sleeveless,three-point,NA,NA,no,no,no,no,round,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Dresses-id_00004025-01_4_full.jpg,long-sleeve,three-point,no,no,no,no,yes,no,round,no,yes,cotton,cotton,NA,6,0,3,pure color,pure color,NA,"dress,footwear"
+WOMEN-Dresses-id_00004315-02_2_side.jpg,long-sleeve,three-point,NA,yes,no,yes,yes,no,round,no,yes,chiffon,chiffon,NA,6,0,3,graphic,graphic,NA,
+WOMEN-Cardigans-id_00001991-01_3_back.jpg,long-sleeve,NA,NA,no,NA,no,yes,hidden,NA,NA,NA,cotton,cotton,knitted,8,1,0,striped,pure color,striped,
+WOMEN-Blouses_Shirts-id_00000984-02_1_front.jpg,long-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,6,0,3,graphic,pure color,NA,
+MEN-Jackets_Vests-id_00003311-01_3_back.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,NA,NA,NA,leather,denim,leather,8,2,0,pure color,pure color,pure color,
+MEN-Tees_Tanks-id_00000463-04_1_front.jpg,sleeveless,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,3,0,3,color block,pure color,NA,
+WOMEN-Dresses-id_00000173-02_7_additional.jpg,sleeveless,NA,NA,no,no,no,NA,no,round,no,yes,cotton,cotton,NA,3,0,3,graphic,graphic,NA,
+WOMEN-Dresses-id_00001439-04_2_side.jpg,NA,three-point,NA,no,yes,yes,yes,no,NA,NA,yes,chiffon,chiffon,NA,4,0,1,pure color,pure color,NA,
+MEN-Shorts-id_00004440-01_7_additional.jpg,long-sleeve,medium-short,no,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,6,0,3,graphic,graphic,NA,"top,pants,footwear"
+WOMEN-Dresses-id_00005686-02_3_back.jpg,short-sleeve,three-point,NA,no,no,yes,yes,no,NA,NA,NA,cotton,cotton,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Sweaters-id_00001615-04_2_side.jpg,long-sleeve,three-point,leggings,no,yes,no,yes,hidden,round,no,yes,knitted,denim,NA,6,0,3,striped,pure color,NA,
+WOMEN-Tees_Tanks-id_00003385-01_7_additional.jpg,long-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,6,0,3,striped,pure color,NA,
+WOMEN-Blouses_Shirts-id_00007634-02_7_additional.jpg,sleeveless,NA,NA,no,yes,yes,yes,hidden,NA,NA,NA,chiffon,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Skirts-id_00005944-02_3_back.jpg,sleeveless,three-point,NA,no,yes,no,no,no,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,graphic,NA,
+WOMEN-Dresses-id_00001572-03_2_side.jpg,sleeveless,three-point,NA,no,no,no,no,no,NA,NA,yes,cotton,cotton,NA,3,0,1,graphic,graphic,NA,
+WOMEN-Blouses_Shirts-id_00002061-02_1_front.jpg,sleeveless,three-point,NA,no,no,yes,no,hidden,suspenders,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00004330-04_4_full.jpg,long-sleeve,long,no,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,6,0,3,pure color,pure color,NA,"top,pants,footwear"
+MEN-Tees_Tanks-id_00004735-01_3_back.jpg,short-sleeve,NA,NA,yes,no,no,no,hidden,NA,NA,NA,cotton,denim,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Rompers_Jumpsuits-id_00000820-05_1_front.jpg,sleeveless,long,no,no,no,yes,no,no,round,no,yes,cotton,cotton,NA,3,0,3,floral,floral,NA,footwear
+WOMEN-Tees_Tanks-id_00007568-03_7_additional.jpg,sleeveless,three-point,NA,no,yes,yes,yes,hidden,round,no,yes,cotton,denim,NA,3,0,3,striped,pure color,NA,
+WOMEN-Dresses-id_00004227-02_2_side.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,NA,no,yes,cotton,cotton,NA,3,0,1,graphic,pure color,NA,
+MEN-Tees_Tanks-id_00000854-01_1_front.jpg,sleeveless,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,3,0,3,pure color,striped,NA,
+WOMEN-Blouses_Shirts-id_00007011-07_3_back.jpg,sleeveless,three-point,NA,no,NA,yes,no,hidden,NA,NA,NA,chiffon,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00000102-03_3_back.jpg,sleeveless,NA,NA,yes,NA,no,yes,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,striped,pure color,NA,
+WOMEN-Tees_Tanks-id_00002561-06_1_front.jpg,medium-sleeve,NA,NA,no,no,no,no,no,round,no,yes,cotton,denim,NA,5,0,5,striped,pure color,NA,
+WOMEN-Tees_Tanks-id_00007961-05_3_back.jpg,sleeveless,NA,NA,no,yes,yes,NA,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00005512-06_3_back.jpg,long-sleeve,three-point,NA,yes,NA,no,yes,no,NA,NA,NA,cotton,cotton,NA,6,0,0,graphic,graphic,NA,
+WOMEN-Graphic_Tees-id_00002364-02_3_back.jpg,short-sleeve,NA,NA,NA,no,no,yes,hidden,NA,NA,NA,cotton,cotton,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004593-08_1_front.jpg,long-sleeve,three-point,NA,no,no,yes,no,hidden,round,no,yes,cotton,denim,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00005618-02_2_side.jpg,long-sleeve,NA,NA,no,no,no,yes,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+MEN-Sweaters-id_00001509-03_2_side.jpg,long-sleeve,NA,NA,no,no,no,no,hidden,lapel,no,yes,cotton,cotton,NA,6,0,1,color block,pure color,NA,
+WOMEN-Shorts-id_00000923-01_1_front.jpg,short-sleeve,three-point,NA,no,no,no,no,no,round,no,yes,cotton,denim,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004415-01_4_full.jpg,short-sleeve,long,no,no,no,yes,yes,hidden,round,no,yes,cotton,denim,NA,4,0,5,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Rompers_Jumpsuits-id_00004557-02_2_side.jpg,long-sleeve,three-point,no,no,yes,no,yes,belt,V-shape,no,yes,cotton,cotton,NA,6,0,3,pure color,pure color,NA,footwear
+WOMEN-Tees_Tanks-id_00006863-57_1_front.jpg,sleeveless,NA,NA,no,no,no,no,no,suspenders,no,yes,cotton,denim,NA,3,0,1,other,pure color,NA,
+WOMEN-Cardigans-id_00002121-11_1_front.jpg,not-long-sleeve,NA,NA,no,no,yes,no,hidden,suspenders,no,yes,cotton,cotton,cotton,4,1,1,pure color,pure color,pure color,
+MEN-Tees_Tanks-id_00001602-04_1_front.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,4,0,5,striped,pure color,NA,
+WOMEN-Blouses_Shirts-id_00007385-01_1_front.jpg,sleeveless,three-point,NA,no,no,no,no,no,lapel,no,no,cotton,denim,NA,3,0,0,lattice,pure color,NA,
+WOMEN-Blouses_Shirts-id_00002955-02_3_back.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,lapel,NA,NA,cotton,cotton,NA,6,0,0,lattice,pure color,NA,
+WOMEN-Tees_Tanks-id_00001801-09_4_full.jpg,sleeveless,long,no,no,no,no,NA,no,suspenders,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00005658-01_7_additional.jpg,long-sleeve,NA,NA,yes,no,no,yes,no,standing,no,yes,cotton,denim,NA,6,0,1,graphic,pure color,NA,
+WOMEN-Graphic_Tees-id_00004993-02_1_front.jpg,sleeveless,NA,NA,no,yes,yes,no,hidden,round,no,yes,cotton,denim,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00000149-06_2_side.jpg,long-sleeve,NA,NA,yes,yes,NA,yes,hidden,round,no,yes,knitted,denim,NA,6,0,3,graphic,pure color,NA,
+WOMEN-Dresses-id_00004396-02_3_back.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,striped,NA,
+WOMEN-Shorts-id_00006604-02_4_full.jpg,short-sleeve,three-point,no,no,no,no,no,no,round,no,yes,cotton,denim,NA,4,0,5,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Dresses-id_00003960-02_7_additional.jpg,long-sleeve,three-point,NA,no,no,no,yes,no,NA,NA,yes,cotton,cotton,NA,6,0,1,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004689-05_3_back.jpg,sleeveless,NA,NA,no,no,no,NA,no,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00007773-02_7_additional.jpg,short-sleeve,three-point,NA,no,yes,yes,no,hidden,NA,NA,NA,chiffon,denim,NA,4,0,2,floral,pure color,NA,
+WOMEN-Tees_Tanks-id_00005602-03_1_front.jpg,sleeveless,NA,NA,no,no,yes,no,hidden,round,no,yes,cotton,denim,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004364-05_3_back.jpg,sleeveless,NA,NA,no,no,no,no,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00006543-01_7_additional.jpg,sleeveless,three-point,NA,no,no,no,no,no,NA,NA,NA,cotton,cotton,NA,3,0,0,graphic,graphic,NA,
+WOMEN-Blouses_Shirts-id_00006308-01_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,hidden,round,no,yes,knitted,denim,NA,3,0,3,pure color,pure color,NA,
+MEN-Jackets_Vests-id_00005528-08_2_side.jpg,long-sleeve,NA,NA,no,no,no,no,no,NA,no,yes,cotton,denim,cotton,6,1,1,pure color,pure color,pure color,
+WOMEN-Sweatshirts_Hoodies-id_00003559-01_7_additional.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,NA,NA,NA,knitted,denim,NA,6,0,0,graphic,pure color,NA,
+WOMEN-Dresses-id_00007803-01_3_back.jpg,sleeveless,long,no,no,yes,no,NA,no,NA,NA,NA,cotton,cotton,NA,3,0,0,graphic,graphic,NA,"dress,footwear"
+WOMEN-Jackets_Coats-id_00000708-03_7_additional.jpg,long-sleeve,long,no,no,no,yes,NA,no,round,yes,yes,cotton,cotton,denim,10,2,3,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Rompers_Jumpsuits-id_00005251-02_1_front.jpg,long-sleeve,long,no,no,yes,yes,yes,no,lapel,no,yes,cotton,cotton,NA,6,0,1,pure color,pure color,NA,footwear
+WOMEN-Jackets_Coats-id_00006935-01_3_back.jpg,long-sleeve,three-point,NA,no,no,no,yes,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00002162-60_4_full.jpg,sleeveless,long,no,no,no,no,yes,no,suspenders,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00006214-01_2_side.jpg,sleeveless,NA,NA,no,NA,yes,yes,hidden,NA,NA,NA,chiffon,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Sweaters-id_00007801-01_2_side.jpg,long-sleeve,NA,NA,no,no,no,no,hidden,V-shape,no,yes,knitted,denim,NA,6,0,3,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00006943-12_2_side.jpg,sleeveless,three-point,NA,no,no,no,yes,no,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Sweaters-id_00003875-02_1_front.jpg,long-sleeve,three-point,NA,no,no,yes,yes,belt,round,no,yes,knitted,denim,NA,6,0,3,graphic,pure color,NA,
+WOMEN-Sweatshirts_Hoodies-id_00003660-08_3_back.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,NA,NA,NA,NA,denim,cotton,6,1,0,NA,pure color,pure color,
+WOMEN-Jackets_Coats-id_00005628-02_3_back.jpg,long-sleeve,NA,NA,no,yes,no,no,hidden,NA,NA,NA,NA,cotton,cotton,6,1,0,NA,pure color,pure color,
+MEN-Tees_Tanks-id_00004698-05_7_additional.jpg,sleeveless,long,no,no,no,no,yes,hidden,NA,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Rompers_Jumpsuits-id_00000180-04_7_additional.jpg,short-sleeve,three-point,NA,no,yes,yes,yes,no,V-shape,no,yes,chiffon,chiffon,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005535-05_3_back.jpg,sleeveless,NA,NA,no,no,yes,yes,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,graphic,pure color,NA,
+WOMEN-Jackets_Coats-id_00005502-04_4_full.jpg,long-sleeve,long,no,yes,no,no,yes,belt,round,yes,yes,chiffon,cotton,furry,10,0,3,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Jackets_Coats-id_00005294-01_3_back.jpg,long-sleeve,NA,NA,yes,NA,NA,NA,hidden,lapel,NA,NA,NA,cotton,leather,8,2,0,NA,pure color,pure color,
+WOMEN-Jackets_Coats-id_00000474-03_7_additional.jpg,sleeveless,three-point,NA,no,yes,yes,yes,NA,NA,yes,no,cotton,denim,knitted,8,1,0,pure color,pure color,pure color,
+WOMEN-Tees_Tanks-id_00004689-06_2_side.jpg,sleeveless,NA,NA,no,no,NA,NA,no,suspenders,no,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00003059-06_7_additional.jpg,long-sleeve,three-point,NA,no,no,no,yes,belt,V-shape,no,yes,chiffon,chiffon,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Dresses-id_00003289-02_2_side.jpg,sleeveless,three-point,NA,no,no,no,no,no,round,no,yes,cotton,cotton,NA,3,0,3,graphic,graphic,NA,
+WOMEN-Graphic_Tees-id_00002137-01_2_side.jpg,short-sleeve,three-point,NA,no,no,no,yes,no,NA,no,yes,cotton,leather,NA,4,0,3,graphic,color block,NA,
+WOMEN-Graphic_Tees-id_00004741-01_1_front.jpg,sleeveless,three-point,NA,no,yes,no,yes,no,round,no,yes,cotton,denim,NA,3,0,3,graphic,graphic,NA,
+WOMEN-Graphic_Tees-id_00004901-01_4_full.jpg,sleeveless,long,no,yes,yes,no,NA,hidden,round,no,yes,cotton,denim,NA,3,0,3,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00001790-01_3_back.jpg,sleeveless,NA,NA,no,no,yes,NA,hidden,NA,NA,NA,chiffon,denim,NA,3,0,0,graphic,pure color,NA,
+WOMEN-Sweaters-id_00000900-03_2_side.jpg,long-sleeve,NA,NA,no,no,no,yes,hidden,round,no,yes,knitted,leather,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00003405-06_3_back.jpg,sleeveless,three-point,NA,no,no,yes,yes,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00001492-04_4_full.jpg,long-sleeve,three-point,no,yes,no,no,yes,no,round,no,yes,cotton,cotton,NA,6,0,3,graphic,pure color,NA,"top,skirt,footwear"
+WOMEN-Tees_Tanks-id_00005536-05_4_full.jpg,short-sleeve,long,no,no,no,no,no,hidden,NA,NA,NA,cotton,denim,NA,4,0,2,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00003917-35_2_side.jpg,sleeveless,three-point,NA,no,NA,no,no,hidden,NA,NA,yes,cotton,cotton,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Jackets_Coats-id_00006817-02_7_additional.jpg,long-sleeve,NA,NA,no,NA,no,yes,belt,lapel,NA,NA,cotton,cotton,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004593-16_2_side.jpg,long-sleeve,three-point,NA,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,6,0,3,pure color,pure color,NA,
+MEN-Pants-id_00006039-07_7_additional.jpg,short-sleeve,NA,no,yes,no,no,no,hidden,lapel,no,yes,cotton,cotton,NA,4,0,3,pure color,pure color,NA,"top,pants,footwear"
+MEN-Jackets_Vests-id_00005047-01_4_full.jpg,long-sleeve,three-quarter,no,yes,no,no,no,hidden,round,yes,yes,denim,denim,denim,10,2,3,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Blouses_Shirts-id_00006638-02_4_full.jpg,long-sleeve,long,no,no,no,no,no,hidden,V-shape,no,yes,chiffon,denim,NA,6,0,3,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Graphic_Tees-id_00001566-01_7_additional.jpg,sleeveless,NA,NA,no,no,no,NA,no,NA,NA,NA,cotton,denim,NA,3,0,0,graphic,pure color,NA,
+WOMEN-Dresses-id_00004544-02_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,round,no,yes,chiffon,chiffon,NA,3,0,3,color block,lattice,NA,
+WOMEN-Dresses-id_00007747-02_1_front.jpg,sleeveless,long,no,no,yes,yes,yes,no,square,no,yes,cotton,cotton,NA,3,0,1,graphic,graphic,NA,"dress,footwear"
+WOMEN-Tees_Tanks-id_00006602-09_1_front.jpg,sleeveless,NA,NA,no,no,no,no,no,suspenders,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00001969-01_4_full.jpg,long-sleeve,long,no,no,no,no,no,hidden,round,no,yes,cotton,denim,NA,6,0,3,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Rompers_Jumpsuits-id_00007591-07_3_back.jpg,sleeveless,three-point,NA,no,no,yes,yes,belt,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Jackets_Coats-id_00001582-03_4_full.jpg,long-sleeve,long,no,no,yes,no,yes,no,round,yes,yes,cotton,denim,cotton,9,1,3,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Dresses-id_00000178-02_3_back.jpg,long-sleeve,NA,NA,no,NA,no,no,belt,NA,NA,NA,cotton,cotton,NA,6,0,0,striped,striped,NA,
+WOMEN-Blouses_Shirts-id_00000231-02_2_side.jpg,sleeveless,NA,NA,no,yes,no,yes,hidden,V-shape,NA,yes,cotton,denim,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Jackets_Coats-id_00003858-06_2_side.jpg,long-sleeve,NA,NA,no,no,no,yes,hidden,standing,yes,yes,cotton,denim,cotton,9,1,1,pure color,pure color,pure color,
+WOMEN-Sweaters-id_00007015-09_7_additional.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,NA,NA,NA,knitted,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00003701-05_1_front.jpg,sleeveless,medium-short,NA,no,no,no,yes,no,NA,no,yes,cotton,cotton,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005626-03_1_front.jpg,long-sleeve,NA,NA,no,yes,no,yes,no,round,no,no,knitted,denim,NA,6,0,2,graphic,pure color,NA,
+WOMEN-Skirts-id_00004719-11_1_front.jpg,long-sleeve,three-point,NA,no,no,no,yes,no,standing,no,no,cotton,cotton,NA,6,0,0,pure color,other,NA,
+MEN-Jackets_Vests-id_00005943-01_1_front.jpg,long-sleeve,NA,NA,yes,no,no,no,hidden,lapel,yes,yes,cotton,denim,cotton,9,1,1,pure color,pure color,pure color,
+WOMEN-Blouses_Shirts-id_00002004-04_3_back.jpg,short-sleeve,NA,NA,NA,yes,no,yes,hidden,NA,NA,NA,chiffon,denim,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004923-05_2_side.jpg,short-sleeve,NA,NA,no,yes,yes,yes,no,NA,no,no,chiffon,denim,NA,4,0,2,graphic,pure color,NA,
+WOMEN-Dresses-id_00000141-01_3_back.jpg,sleeveless,three-point,NA,no,yes,no,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,graphic,graphic,NA,
+WOMEN-Dresses-id_00002442-01_1_front.jpg,sleeveless,long,no,no,yes,no,yes,no,suspenders,no,yes,chiffon,chiffon,NA,3,0,1,pure color,pure color,NA,"dress,footwear"
+WOMEN-Jackets_Coats-id_00005367-03_2_side.jpg,long-sleeve,NA,NA,no,NA,no,yes,hidden,standing,no,yes,NA,cotton,cotton,6,1,1,NA,lattice,pure color,
+MEN-Tees_Tanks-id_00000511-02_3_back.jpg,sleeveless,NA,NA,yes,no,no,no,hidden,NA,NA,NA,cotton,cotton,NA,3,0,0,color block,pure color,NA,
+WOMEN-Dresses-id_00004181-02_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,round,no,yes,cotton,cotton,NA,3,0,3,graphic,graphic,NA,
+WOMEN-Dresses-id_00005350-03_1_front.jpg,short-sleeve,three-point,NA,no,no,no,yes,no,lapel,no,yes,chiffon,chiffon,NA,4,0,3,graphic,graphic,NA,
+MEN-Tees_Tanks-id_00004424-04_1_front.jpg,short-sleeve,NA,NA,no,no,no,NA,hidden,round,no,yes,cotton,leather,NA,4,0,5,color block,pure color,NA,
+WOMEN-Blouses_Shirts-id_00007740-03_2_side.jpg,long-sleeve,three-point,NA,no,no,no,yes,hidden,NA,NA,yes,chiffon,chiffon,NA,6,0,1,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00003687-12_4_full.jpg,sleeveless,long,no,no,no,no,no,hidden,suspenders,no,yes,cotton,cotton,NA,3,0,1,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Dresses-id_00002081-01_2_side.jpg,short-sleeve,three-point,NA,no,no,no,yes,no,round,no,yes,cotton,cotton,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004616-03_2_side.jpg,short-sleeve,three-point,NA,no,yes,no,no,belt,round,no,no,cotton,denim,NA,4,0,4,pure color,pure color,NA,
+WOMEN-Dresses-id_00007677-01_7_additional.jpg,medium-sleeve,three-point,no,no,no,yes,yes,no,round,no,yes,cotton,cotton,NA,5,0,5,graphic,graphic,NA,"dress,footwear"
+WOMEN-Tees_Tanks-id_00007191-05_3_back.jpg,short-sleeve,NA,NA,no,no,NA,NA,no,NA,NA,NA,cotton,denim,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004571-01_7_additional.jpg,long-sleeve,long,no,no,yes,no,yes,no,round,yes,no,cotton,denim,cotton,9,1,2,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Dresses-id_00002863-02_1_front.jpg,short-sleeve,three-point,leggings,yes,no,yes,yes,no,V-shape,no,yes,cotton,cotton,NA,4,0,5,floral,floral,NA,"outer,dress,leggings,footwear"
+WOMEN-Dresses-id_00003392-01_4_full.jpg,sleeveless,three-point,no,no,yes,yes,yes,no,suspenders,no,yes,cotton,cotton,NA,3,0,1,pure color,pure color,NA,"top,dress,footwear"
+WOMEN-Jackets_Coats-id_00005059-01_3_back.jpg,long-sleeve,three-point,NA,no,NA,yes,yes,hidden,NA,NA,NA,NA,cotton,leather,8,2,0,NA,pure color,pure color,
+WOMEN-Blouses_Shirts-id_00004642-01_1_front.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,suspenders,yes,no,denim,cotton,cotton,6,1,0,pure color,graphic,floral,
+MEN-Tees_Tanks-id_00000822-01_3_back.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,NA,NA,NA,cotton,cotton,NA,4,0,2,other,pure color,NA,
+WOMEN-Blouses_Shirts-id_00000067-02_2_side.jpg,sleeveless,NA,NA,no,yes,NA,NA,no,NA,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Jackets_Coats-id_00001705-06_7_additional.jpg,long-sleeve,NA,NA,no,yes,no,yes,no,round,yes,yes,cotton,cotton,cotton,9,1,3,pure color,pure color,pure color,
+WOMEN-Blouses_Shirts-id_00006389-06_4_full.jpg,long-sleeve,three-point,no,no,no,NA,yes,no,round,no,yes,chiffon,cotton,NA,6,0,3,pure color,striped,NA,"top,skirt,footwear"
+WOMEN-Shorts-id_00000812-04_4_full.jpg,long-sleeve,three-point,no,no,no,no,yes,no,round,no,yes,cotton,denim,NA,6,0,3,pure color,pure color,NA,"top,pants,footwear"
+MEN-Sweatshirts_Hoodies-id_00007040-01_4_full.jpg,long-sleeve,long,no,no,no,no,NA,hidden,round,no,yes,cotton,denim,NA,6,0,3,striped,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00001025-03_1_front.jpg,long-sleeve,three-point,NA,no,yes,no,no,hidden,round,no,yes,cotton,cotton,NA,6,0,3,graphic,floral,NA,
+WOMEN-Blouses_Shirts-id_00005039-07_3_back.jpg,sleeveless,NA,NA,no,no,no,yes,hidden,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00007823-02_2_side.jpg,medium-sleeve,three-point,NA,no,no,yes,yes,hidden,round,no,yes,cotton,chiffon,NA,5,0,5,pure color,pure color,NA,
+WOMEN-Sweaters-id_00004169-03_2_side.jpg,long-sleeve,NA,NA,yes,yes,no,yes,hidden,NA,no,yes,knitted,cotton,NA,6,0,1,pure color,lattice,NA,
+WOMEN-Rompers_Jumpsuits-id_00005175-01_1_front.jpg,long-sleeve,long,no,no,yes,no,yes,no,lapel,no,yes,denim,denim,NA,6,0,1,pure color,pure color,NA,footwear
+WOMEN-Tees_Tanks-id_00004934-02_7_additional.jpg,sleeveless,NA,NA,no,no,no,yes,no,V-shape,no,no,cotton,denim,NA,3,0,2,pure color,pure color,NA,
+WOMEN-Sweaters-id_00006955-01_3_back.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,NA,NA,NA,knitted,leather,NA,6,0,0,color block,pure color,NA,
+MEN-Sweaters-id_00004638-08_1_front.jpg,medium-sleeve,NA,NA,NA,no,yes,no,hidden,lapel,no,yes,cotton,cotton,NA,5,0,3,pure color,pure color,NA,
+WOMEN-Jackets_Coats-id_00006258-02_7_additional.jpg,long-sleeve,NA,NA,no,no,no,yes,hidden,round,yes,yes,chiffon,leather,furry,10,0,3,pure color,pure color,pure color,
+WOMEN-Graphic_Tees-id_00003024-01_2_side.jpg,sleeveless,NA,NA,yes,no,yes,NA,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,graphic,pure color,NA,
+MEN-Tees_Tanks-id_00001121-05_4_full.jpg,sleeveless,long,no,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00006035-02_1_front.jpg,short-sleeve,NA,NA,no,no,no,NA,hidden,round,no,yes,cotton,denim,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00006592-05_7_additional.jpg,long-sleeve,long,no,no,yes,no,yes,hidden,round,no,yes,cotton,leather,NA,6,0,3,pure color,pure color,NA,"top,outer,pants,footwear"
+WOMEN-Sweaters-id_00002853-05_1_front.jpg,long-sleeve,NA,NA,yes,yes,no,yes,no,round,no,yes,knitted,cotton,NA,6,0,3,graphic,floral,NA,
+WOMEN-Blouses_Shirts-id_00002550-02_1_front.jpg,short-sleeve,NA,NA,no,yes,no,NA,no,NA,no,no,cotton,denim,NA,4,0,2,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004923-03_4_full.jpg,short-sleeve,long,NA,no,yes,yes,yes,no,round,yes,no,chiffon,denim,knitted,9,1,4,graphic,pure color,graphic,"top,outer,pants,footwear"
+WOMEN-Dresses-id_00001439-04_1_front.jpg,NA,three-point,NA,no,yes,yes,yes,no,NA,no,yes,chiffon,chiffon,NA,4,0,1,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00001312-03_1_front.jpg,sleeveless,three-point,NA,no,yes,yes,yes,hidden,round,no,yes,cotton,denim,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Dresses-id_00006402-01_7_additional.jpg,short-sleeve,three-point,NA,NA,NA,no,no,no,NA,NA,yes,cotton,cotton,NA,4,0,3,striped,striped,NA,
+WOMEN-Blouses_Shirts-id_00004234-02_3_back.jpg,long-sleeve,NA,NA,no,NA,yes,no,hidden,NA,NA,NA,cotton,leather,cotton,6,1,0,pure color,pure color,pure color,
+MEN-Tees_Tanks-id_00001571-09_2_side.jpg,short-sleeve,NA,NA,yes,no,no,no,hidden,V-shape,no,yes,cotton,cotton,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00001587-03_2_side.jpg,sleeveless,three-point,NA,no,yes,no,yes,no,suspenders,no,no,cotton,denim,NA,3,0,0,floral,pure color,NA,
+WOMEN-Tees_Tanks-id_00007670-04_2_side.jpg,short-sleeve,three-point,NA,yes,no,no,no,no,NA,no,no,cotton,leather,NA,4,0,2,striped,pure color,NA,
+WOMEN-Cardigans-id_00002169-02_7_additional.jpg,long-sleeve,long,no,no,yes,yes,yes,hidden,round,yes,yes,cotton,denim,knitted,10,1,3,other,pure color,graphic,"top,outer,pants,footwear"
+WOMEN-Tees_Tanks-id_00003538-04_3_back.jpg,long-sleeve,NA,NA,no,no,no,yes,hidden,lapel,NA,NA,cotton,cotton,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00001303-02_2_side.jpg,sleeveless,three-point,NA,no,yes,no,yes,no,V-shape,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00005231-36_3_back.jpg,short-sleeve,three-point,NA,no,yes,yes,no,hidden,NA,NA,NA,cotton,denim,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Sweaters-id_00003728-01_4_full.jpg,sleeveless,long,no,no,yes,yes,NA,belt,round,no,no,knitted,denim,NA,3,0,2,graphic,other,NA,"top,pants,footwear"
+WOMEN-Rompers_Jumpsuits-id_00002301-03_3_back.jpg,sleeveless,three-point,NA,yes,no,yes,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Rompers_Jumpsuits-id_00005508-02_4_full.jpg,sleeveless,three-point,no,no,yes,no,yes,no,suspenders,no,yes,cotton,cotton,NA,3,0,1,pure color,graphic,NA,"top,pants,footwear"
+WOMEN-Dresses-id_00003582-05_4_full.jpg,sleeveless,three-point,socks,no,no,yes,yes,no,suspenders,no,yes,chiffon,chiffon,NA,3,0,1,pure color,pure color,NA,"dress,footwear"
+WOMEN-Blouses_Shirts-id_00007356-04_3_back.jpg,long-sleeve,long,no,no,NA,yes,yes,hidden,NA,NA,NA,chiffon,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00001812-02_2_side.jpg,sleeveless,NA,NA,no,yes,yes,yes,no,V-shape,no,yes,furry,furry,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00007793-02_1_front.jpg,short-sleeve,three-point,NA,no,no,no,yes,hidden,round,no,yes,cotton,leather,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00001454-03_1_front.jpg,sleeveless,NA,NA,no,no,yes,yes,hidden,suspenders,no,yes,chiffon,denim,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Graphic_Tees-id_00002066-01_1_front.jpg,short-sleeve,NA,NA,no,no,yes,yes,hidden,round,no,yes,cotton,cotton,NA,4,0,5,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00007708-03_4_full.jpg,medium-sleeve,long,no,no,no,no,yes,no,round,no,yes,cotton,denim,NA,5,0,5,color block,pure color,NA,"top,pants,footwear"
+WOMEN-Blouses_Shirts-id_00002634-01_7_additional.jpg,sleeveless,three-point,no,no,yes,yes,yes,no,suspenders,no,no,cotton,denim,NA,3,0,0,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00002574-03_7_additional.jpg,sleeveless,NA,NA,no,no,no,NA,no,NA,NA,NA,knitted,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00002772-01_1_front.jpg,sleeveless,three-point,NA,no,yes,no,yes,hidden,round,no,yes,chiffon,denim,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Dresses-id_00002797-06_2_side.jpg,sleeveless,long,no,no,NA,no,yes,belt,NA,no,yes,chiffon,chiffon,NA,3,0,1,pure color,pure color,NA,"dress,footwear"
+WOMEN-Jackets_Coats-id_00001140-01_7_additional.jpg,long-sleeve,medium-short,socks,yes,no,no,yes,hidden,round,yes,yes,cotton,cotton,cotton,9,1,3,pure color,pure color,graphic,"top,outer,pants,footwear"
+WOMEN-Blouses_Shirts-id_00007033-04_3_back.jpg,long-sleeve,three-point,NA,NA,NA,no,no,hidden,NA,NA,NA,chiffon,chiffon,NA,6,0,0,graphic,pure color,NA,
+WOMEN-Cardigans-id_00004316-01_7_additional.jpg,medium-sleeve,NA,NA,yes,yes,yes,yes,hidden,NA,NA,NA,knitted,chiffon,NA,5,0,2,graphic,graphic,NA,
+WOMEN-Rompers_Jumpsuits-id_00003561-02_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,V-shape,no,yes,cotton,cotton,NA,3,0,3,graphic,pure color,NA,
+WOMEN-Cardigans-id_00001052-07_2_side.jpg,long-sleeve,NA,NA,yes,no,yes,yes,hidden,round,yes,NA,cotton,denim,cotton,9,1,2,pure color,pure color,pure color,
+WOMEN-Blouses_Shirts-id_00004067-01_2_side.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,lapel,no,yes,cotton,denim,NA,6,0,1,lattice,pure color,NA,
+MEN-Shirts_Polos-id_00001540-03_4_full.jpg,short-sleeve,medium-short,no,yes,no,no,no,no,lapel,no,yes,cotton,cotton,NA,4,0,3,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Sweaters-id_00001385-04_3_back.jpg,long-sleeve,long,no,no,no,no,yes,no,NA,NA,NA,NA,NA,knitted,8,1,0,NA,NA,pure color,
+WOMEN-Blouses_Shirts-id_00004608-05_2_side.jpg,long-sleeve,NA,NA,no,no,no,yes,no,lapel,no,yes,chiffon,cotton,NA,6,0,1,pure color,pure color,NA,
+MEN-Tees_Tanks-id_00003476-07_3_back.jpg,medium-sleeve,NA,NA,no,no,no,no,hidden,NA,NA,NA,cotton,cotton,NA,5,0,2,striped,pure color,NA,
+WOMEN-Blouses_Shirts-id_00000090-03_2_side.jpg,sleeveless,NA,NA,no,yes,NA,NA,no,NA,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+MEN-Shirts_Polos-id_00004958-02_7_additional.jpg,long-sleeve,medium-short,NA,NA,no,no,no,hidden,lapel,no,yes,cotton,cotton,NA,6,0,1,color block,pure color,NA,
+WOMEN-Skirts-id_00005519-03_4_full.jpg,sleeveless,long,no,no,yes,yes,yes,no,round,no,no,cotton,chiffon,NA,3,0,2,pure color,pure color,NA,"top,skirt,footwear"
+WOMEN-Blouses_Shirts-id_00003053-02_1_front.jpg,short-sleeve,three-point,NA,no,no,yes,no,hidden,NA,no,yes,cotton,denim,NA,4,0,3,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004948-03_1_front.jpg,medium-sleeve,three-point,no,no,yes,no,yes,hidden,V-shape,no,yes,chiffon,cotton,NA,5,0,5,graphic,graphic,NA,"top,pants,footwear"
+MEN-Pants-id_00006697-01_4_full.jpg,short-sleeve,long,no,yes,no,no,NA,hidden,round,no,yes,cotton,cotton,NA,4,0,5,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00004971-06_1_front.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,V-shape,no,yes,cotton,denim,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00007074-02_1_front.jpg,long-sleeve,three-point,NA,no,no,no,yes,hidden,round,no,yes,cotton,denim,NA,6,0,3,striped,pure color,NA,
+WOMEN-Dresses-id_00003890-02_1_front.jpg,sleeveless,three-quarter,no,no,no,no,yes,no,suspenders,no,yes,cotton,cotton,NA,3,0,1,pure color,pure color,NA,"dress,footwear"
+WOMEN-Dresses-id_00006201-05_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,round,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005873-02_2_side.jpg,short-sleeve,NA,NA,no,no,yes,yes,hidden,NA,NA,yes,chiffon,denim,NA,4,0,3,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00001663-01_3_back.jpg,sleeveless,NA,NA,no,yes,yes,yes,no,NA,NA,NA,cotton,denim,NA,3,0,0,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00001252-09_2_side.jpg,sleeveless,NA,NA,no,no,yes,yes,no,round,no,no,cotton,denim,NA,3,0,2,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00001424-04_2_side.jpg,short-sleeve,NA,NA,no,no,yes,yes,hidden,NA,NA,yes,cotton,cotton,NA,4,0,3,other,pure color,NA,
+WOMEN-Graphic_Tees-id_00004149-01_3_back.jpg,sleeveless,NA,NA,no,yes,yes,NA,hidden,NA,NA,NA,cotton,leather,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005466-03_2_side.jpg,sleeveless,NA,NA,no,no,yes,yes,hidden,NA,NA,yes,chiffon,leather,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Shorts-id_00000326-01_1_front.jpg,long-sleeve,three-point,no,no,no,yes,yes,no,standing,yes,no,cotton,denim,cotton,9,1,0,pure color,pure color,pure color,"top,outer,pants,footwear"
+WOMEN-Tees_Tanks-id_00001938-01_7_additional.jpg,long-sleeve,three-point,no,no,no,no,yes,hidden,round,no,yes,cotton,cotton,NA,6,0,3,pure color,pure color,NA,"dress,footwear"
+WOMEN-Tees_Tanks-id_00003523-48_4_full.jpg,short-sleeve,three-point,no,no,no,no,yes,no,V-shape,no,yes,cotton,denim,NA,4,0,5,pure color,other,NA,"top,pants,footwear"
+MEN-Sweatshirts_Hoodies-id_00000051-01_1_front.jpg,long-sleeve,NA,NA,no,no,no,NA,hidden,round,no,yes,cotton,denim,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00007137-01_2_side.jpg,medium-sleeve,three-point,NA,no,NA,no,no,hidden,NA,NA,NA,cotton,denim,NA,5,0,2,pure color,pure color,NA,
+WOMEN-Dresses-id_00005984-02_4_full.jpg,sleeveless,three-point,socks,no,no,no,no,no,round,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,"dress,footwear"
+WOMEN-Denim-id_00002285-02_1_front.jpg,long-sleeve,long,no,no,yes,yes,yes,no,V-shape,yes,yes,cotton,denim,cotton,9,1,3,pure color,pure color,lattice,"top,outer,pants,footwear"
+WOMEN-Tees_Tanks-id_00004654-02_4_full.jpg,sleeveless,three-point,no,no,no,yes,yes,hidden,suspenders,no,yes,cotton,denim,NA,3,0,1,floral,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00000370-05_2_side.jpg,long-sleeve,NA,NA,no,no,yes,yes,hidden,round,no,yes,cotton,denim,NA,6,0,3,color block,pure color,NA,
+WOMEN-Dresses-id_00002656-02_1_front.jpg,sleeveless,three-point,NA,no,no,yes,no,no,NA,NA,NA,cotton,cotton,NA,3,0,0,floral,floral,NA,
+WOMEN-Blouses_Shirts-id_00002616-06_4_full.jpg,sleeveless,three-point,no,no,yes,yes,yes,hidden,suspenders,no,yes,chiffon,denim,NA,3,0,1,floral,pure color,NA,"top,pants,footwear"
+WOMEN-Rompers_Jumpsuits-id_00007767-07_7_additional.jpg,short-sleeve,three-point,NA,no,no,no,yes,no,NA,NA,NA,cotton,cotton,NA,4,0,2,pure color,pure color,NA,
+MEN-Tees_Tanks-id_00003425-04_2_side.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,4,0,5,striped,pure color,NA,
+WOMEN-Blouses_Shirts-id_00007364-01_3_back.jpg,long-sleeve,NA,NA,no,NA,NA,NA,hidden,lapel,NA,NA,denim,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00003396-04_3_back.jpg,sleeveless,NA,NA,no,yes,yes,yes,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005233-01_3_back.jpg,long-sleeve,NA,NA,no,no,no,no,hidden,lapel,NA,NA,cotton,denim,NA,6,0,0,lattice,pure color,NA,
+WOMEN-Tees_Tanks-id_00001801-09_1_front.jpg,sleeveless,NA,NA,no,no,no,no,no,suspenders,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Sweaters-id_00004473-01_2_side.jpg,long-sleeve,three-point,leggings,yes,yes,yes,yes,belt,round,no,yes,cotton,leather,knitted,8,1,3,pure color,pure color,graphic,
+WOMEN-Dresses-id_00007508-03_1_front.jpg,medium-sleeve,three-point,NA,no,no,no,no,belt,round,no,yes,cotton,cotton,NA,5,0,5,striped,striped,NA,
+WOMEN-Blouses_Shirts-id_00005637-02_2_side.jpg,short-sleeve,NA,NA,no,no,yes,no,hidden,round,no,yes,chiffon,chiffon,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00007616-02_1_front.jpg,short-sleeve,NA,NA,yes,no,no,no,no,round,no,yes,cotton,denim,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Shorts-id_00001646-02_1_front.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,suspenders,no,no,cotton,denim,NA,3,0,0,pure color,other,NA,
+MEN-Sweatshirts_Hoodies-id_00004332-04_7_additional.jpg,long-sleeve,NA,NA,no,no,no,NA,hidden,round,no,yes,cotton,cotton,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00003889-02_1_front.jpg,sleeveless,NA,NA,no,yes,yes,NA,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,graphic,pure color,NA,
+WOMEN-Shorts-id_00000885-01_1_front.jpg,long-sleeve,three-point,NA,no,no,no,yes,no,round,yes,no,cotton,cotton,leather,10,2,2,pure color,graphic,pure color,
+WOMEN-Tees_Tanks-id_00002969-10_2_side.jpg,sleeveless,three-point,NA,no,no,no,yes,no,NA,no,no,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004096-06_2_side.jpg,sleeveless,three-point,NA,no,no,no,yes,no,round,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Jackets_Coats-id_00007608-03_2_side.jpg,long-sleeve,three-point,NA,no,NA,no,yes,hidden,NA,yes,yes,cotton,leather,NA,9,0,1,pure color,lattice,NA,
+WOMEN-Jackets_Coats-id_00007480-01_4_full.jpg,long-sleeve,long,no,no,yes,no,yes,belt,V-shape,yes,yes,cotton,leather,cotton,9,1,3,pure color,pure color,other,"top,outer,pants,footwear"
+WOMEN-Jackets_Coats-id_00005645-02_7_additional.jpg,long-sleeve,medium-short,no,no,no,no,NA,hidden,round,no,yes,cotton,chiffon,NA,6,0,3,pure color,pure color,NA,"outer,skirt,footwear"
+WOMEN-Tees_Tanks-id_00003493-07_2_side.jpg,long-sleeve,NA,NA,yes,yes,no,yes,hidden,round,no,yes,cotton,other,NA,6,0,3,pure color,other,NA,
+WOMEN-Dresses-id_00004187-01_3_back.jpg,long-sleeve,three-point,NA,no,NA,no,no,no,NA,NA,NA,cotton,cotton,NA,6,0,0,graphic,graphic,NA,
+WOMEN-Tees_Tanks-id_00000032-03_1_front.jpg,short-sleeve,three-point,NA,no,no,yes,yes,no,round,no,no,cotton,denim,NA,4,0,4,graphic,pure color,NA,
+WOMEN-Jackets_Coats-id_00003011-02_1_front.jpg,long-sleeve,three-point,NA,no,no,yes,yes,no,round,yes,no,cotton,cotton,cotton,9,1,2,pure color,pure color,pure color,
+WOMEN-Dresses-id_00005825-02_7_additional.jpg,sleeveless,three-point,NA,no,no,no,yes,no,round,no,yes,cotton,cotton,NA,3,0,3,floral,floral,NA,
+WOMEN-Sweatshirts_Hoodies-id_00005844-02_1_front.jpg,long-sleeve,three-point,NA,yes,no,no,yes,hidden,round,no,yes,cotton,cotton,NA,6,0,3,graphic,lattice,NA,
+WOMEN-Dresses-id_00005768-15_2_side.jpg,sleeveless,three-point,NA,no,no,no,no,no,NA,NA,yes,cotton,cotton,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00003475-01_1_front.jpg,sleeveless,NA,NA,no,no,no,no,hidden,suspenders,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Cardigans-id_00002337-02_1_front.jpg,long-sleeve,NA,NA,no,yes,no,yes,hidden,round,no,yes,cotton,denim,knitted,8,1,3,pure color,pure color,graphic,
+WOMEN-Blouses_Shirts-id_00005893-06_7_additional.jpg,sleeveless,three-quarter,no,no,yes,no,yes,hidden,round,no,yes,chiffon,denim,NA,3,0,3,pure color,pure color,NA,"top,pants,footwear"
+WOMEN-Dresses-id_00003892-01_1_front.jpg,medium-sleeve,three-point,NA,no,no,no,no,no,round,no,yes,cotton,cotton,NA,5,0,5,striped,striped,NA,
+WOMEN-Blouses_Shirts-id_00000623-03_2_side.jpg,short-sleeve,three-point,NA,no,NA,no,yes,hidden,lapel,NA,NA,chiffon,cotton,NA,4,0,2,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00006847-03_2_side.jpg,sleeveless,three-point,NA,no,yes,yes,yes,hidden,NA,NA,yes,cotton,denim,NA,3,0,1,floral,pure color,NA,
+WOMEN-Tees_Tanks-id_00005258-03_1_front.jpg,short-sleeve,three-point,NA,no,no,yes,yes,no,round,no,no,cotton,denim,NA,4,0,4,striped,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004243-03_3_back.jpg,sleeveless,three-point,NA,no,NA,no,yes,hidden,NA,NA,NA,chiffon,leather,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00001079-04_1_front.jpg,medium-sleeve,NA,NA,no,yes,yes,NA,hidden,round,no,yes,cotton,denim,NA,5,0,5,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00003732-62_1_front.jpg,sleeveless,NA,NA,no,no,no,no,no,suspenders,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00003900-04_2_side.jpg,sleeveless,NA,NA,no,yes,yes,yes,NA,suspenders,no,yes,chiffon,denim,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Dresses-id_00007378-02_7_additional.jpg,sleeveless,NA,NA,no,no,NA,NA,no,NA,NA,NA,cotton,cotton,NA,3,0,0,graphic,graphic,NA,
+WOMEN-Tees_Tanks-id_00006060-04_7_additional.jpg,long-sleeve,NA,NA,no,no,no,NA,hidden,NA,NA,NA,cotton,cotton,NA,6,0,0,pure color,pure color,NA,
+MEN-Sweatshirts_Hoodies-id_00007246-01_3_back.jpg,long-sleeve,NA,NA,no,NA,no,no,hidden,NA,NA,NA,cotton,cotton,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00005610-03_1_front.jpg,sleeveless,three-point,NA,no,yes,no,no,hidden,suspenders,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00005638-01_1_front.jpg,long-sleeve,three-point,NA,no,yes,no,NA,hidden,NA,no,yes,cotton,leather,NA,6,0,1,pure color,pure color,NA,
+MEN-Tees_Tanks-id_00006532-07_7_additional.jpg,sleeveless,NA,NA,no,no,no,no,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00006641-03_3_back.jpg,short-sleeve,NA,NA,NA,yes,yes,NA,no,NA,NA,NA,cotton,denim,NA,4,0,2,graphic,pure color,NA,
+MEN-Tees_Tanks-id_00000527-01_2_side.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,round,no,yes,cotton,cotton,NA,4,0,5,pure color,graphic,NA,
+WOMEN-Cardigans-id_00003091-01_7_additional.jpg,long-sleeve,NA,NA,no,NA,yes,yes,hidden,NA,NA,NA,cotton,leather,knitted,8,1,0,pure color,pure color,other,
+WOMEN-Tees_Tanks-id_00004975-03_3_back.jpg,sleeveless,three-point,NA,no,NA,yes,no,no,NA,no,yes,cotton,cotton,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Dresses-id_00007785-06_7_additional.jpg,sleeveless,three-point,no,no,yes,no,yes,clothing,suspenders,no,yes,cotton,cotton,NA,3,0,1,pure color,pure color,NA,"dress,footwear"
+WOMEN-Sweaters-id_00006080-06_7_additional.jpg,long-sleeve,NA,NA,yes,NA,no,yes,hidden,NA,NA,NA,knitted,cotton,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Rompers_Jumpsuits-id_00000584-05_1_front.jpg,sleeveless,long,no,no,yes,yes,yes,no,NA,no,yes,cotton,cotton,NA,3,0,1,pure color,pure color,NA,footwear
+WOMEN-Blouses_Shirts-id_00006947-03_1_front.jpg,long-sleeve,NA,NA,no,yes,NA,yes,hidden,V-shape,no,yes,chiffon,denim,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00005650-01_1_front.jpg,medium-sleeve,three-point,NA,no,no,no,no,no,round,no,yes,cotton,cotton,NA,5,0,5,graphic,pure color,NA,
+WOMEN-Dresses-id_00005415-03_1_front.jpg,sleeveless,three-point,no,yes,yes,no,yes,no,round,no,yes,chiffon,chiffon,NA,3,0,3,pure color,pure color,NA,"dress,footwear"
+WOMEN-Dresses-id_00004005-03_4_full.jpg,sleeveless,three-point,no,no,no,yes,yes,no,V-shape,no,yes,cotton,cotton,NA,3,0,3,pure color,pure color,NA,"dress,footwear"
+WOMEN-Blouses_Shirts-id_00000693-02_4_full.jpg,long-sleeve,medium-short,no,no,NA,no,yes,no,standing,no,yes,cotton,cotton,NA,6,0,1,pure color,pure color,NA,"top,skirt,footwear"
+WOMEN-Dresses-id_00001986-02_1_front.jpg,long-sleeve,three-point,no,no,yes,NA,no,no,lapel,no,yes,cotton,cotton,NA,6,0,1,lattice,lattice,NA,"top,footwear"
+WOMEN-Blouses_Shirts-id_00002143-03_2_side.jpg,sleeveless,NA,NA,no,no,no,NA,no,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00002466-03_7_additional.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00001332-01_4_full.jpg,sleeveless,three-point,no,no,yes,yes,yes,no,suspenders,no,no,cotton,cotton,NA,3,0,0,graphic,graphic,NA,"top,pants,footwear"
+WOMEN-Rompers_Jumpsuits-id_00007379-02_3_back.jpg,sleeveless,three-point,NA,no,yes,no,yes,no,NA,NA,NA,cotton,cotton,NA,3,0,0,graphic,graphic,NA,
+WOMEN-Skirts-id_00004162-01_1_front.jpg,sleeveless,medium-short,no,no,yes,yes,yes,no,round,no,no,cotton,cotton,NA,3,0,2,pure color,floral,NA,"top,skirt,footwear"
+WOMEN-Tees_Tanks-id_00003343-09_3_back.jpg,sleeveless,NA,NA,no,no,no,no,hidden,NA,NA,NA,cotton,denim,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Blouses_Shirts-id_00004810-03_2_side.jpg,medium-sleeve,NA,NA,NA,no,yes,yes,hidden,NA,no,yes,cotton,denim,NA,5,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00004583-01_4_full.jpg,sleeveless,three-point,no,no,no,no,yes,no,round,no,no,cotton,denim,NA,3,0,2,graphic,pure color,NA,"top,pants,footwear"
+WOMEN-Tees_Tanks-id_00004764-04_1_front.jpg,sleeveless,three-point,NA,no,yes,yes,yes,hidden,round,no,yes,cotton,denim,NA,3,0,3,graphic,other,NA,
+WOMEN-Tees_Tanks-id_00002560-03_3_back.jpg,sleeveless,three-point,NA,no,yes,yes,no,hidden,NA,NA,NA,cotton,cotton,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Graphic_Tees-id_00007076-01_3_back.jpg,short-sleeve,medium-short,NA,no,no,yes,yes,hidden,NA,NA,NA,cotton,chiffon,NA,4,0,2,graphic,pure color,NA,
+MEN-Shirts_Polos-id_00000562-02_1_front.jpg,short-sleeve,NA,NA,no,no,no,no,hidden,lapel,no,yes,cotton,cotton,NA,4,0,3,floral,pure color,NA,
+WOMEN-Graphic_Tees-id_00003199-02_1_front.jpg,medium-sleeve,NA,NA,no,yes,no,yes,hidden,round,yes,yes,cotton,cotton,cotton,8,1,5,graphic,graphic,other,
+WOMEN-Sweaters-id_00002853-04_7_additional.jpg,long-sleeve,NA,NA,yes,yes,no,yes,no,round,no,yes,knitted,chiffon,NA,6,0,3,graphic,floral,NA,
+WOMEN-Tees_Tanks-id_00006687-06_4_full.jpg,short-sleeve,three-point,NA,no,no,no,no,hidden,NA,NA,yes,cotton,denim,NA,4,0,3,other,pure color,NA,
+WOMEN-Tees_Tanks-id_00007665-03_1_front.jpg,short-sleeve,NA,NA,no,yes,yes,yes,hidden,round,no,yes,cotton,denim,NA,4,0,5,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00000276-04_2_side.jpg,long-sleeve,NA,NA,no,no,no,yes,no,round,no,no,cotton,denim,NA,6,0,2,graphic,pure color,NA,
+WOMEN-Blouses_Shirts-id_00002052-01_7_additional.jpg,sleeveless,three-point,NA,NA,NA,no,yes,hidden,NA,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+MEN-Tees_Tanks-id_00007723-01_2_side.jpg,long-sleeve,NA,NA,yes,no,no,no,hidden,round,no,yes,cotton,denim,NA,6,0,3,pure color,pure color,NA,
+WOMEN-Dresses-id_00000023-01_1_front.jpg,medium-sleeve,three-point,NA,no,no,yes,yes,no,round,no,yes,cotton,cotton,NA,5,0,5,graphic,graphic,NA,
+WOMEN-Tees_Tanks-id_00005820-02_7_additional.jpg,short-sleeve,long,no,no,no,no,no,no,round,no,yes,cotton,denim,NA,4,0,5,striped,pure color,NA,"top,outer,pants,footwear"
+WOMEN-Tees_Tanks-id_00001724-04_3_back.jpg,long-sleeve,NA,NA,yes,NA,yes,yes,hidden,NA,NA,NA,cotton,denim,NA,6,0,0,pure color,pure color,NA,
+WOMEN-Dresses-id_00003582-05_3_back.jpg,sleeveless,three-point,NA,no,no,yes,yes,no,NA,NA,NA,chiffon,chiffon,NA,3,0,0,pure color,pure color,NA,
+WOMEN-Graphic_Tees-id_00007696-01_1_front.jpg,sleeveless,NA,NA,no,yes,yes,yes,hidden,suspenders,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+WOMEN-Tees_Tanks-id_00001048-02_2_side.jpg,short-sleeve,three-point,leggings,no,no,yes,yes,hidden,NA,NA,yes,cotton,cotton,NA,4,0,3,striped,pure color,NA,
+MEN-Tees_Tanks-id_00004698-09_1_front.jpg,sleeveless,NA,NA,no,no,yes,NA,hidden,round,no,yes,cotton,denim,NA,3,0,3,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00003732-61_1_front.jpg,sleeveless,NA,NA,no,no,no,no,hidden,suspenders,no,yes,cotton,denim,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Dresses-id_00004834-01_2_side.jpg,sleeveless,long,NA,NA,NA,no,yes,no,NA,NA,yes,cotton,cotton,NA,3,0,1,striped,striped,NA,dress
+WOMEN-Dresses-id_00007084-02_1_front.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,V-shape,no,yes,cotton,cotton,NA,3,0,3,striped,striped,NA,
+WOMEN-Dresses-id_00005965-06_2_side.jpg,sleeveless,three-point,NA,no,yes,yes,yes,no,suspenders,no,yes,chiffon,chiffon,NA,3,0,1,pure color,pure color,NA,
+WOMEN-Graphic_Tees-id_00004993-02_2_side.jpg,sleeveless,NA,NA,no,yes,no,no,hidden,NA,no,yes,cotton,denim,NA,3,0,1,graphic,pure color,NA,
+MEN-Pants-id_00000114-06_3_back.jpg,short-sleeve,long,no,NA,NA,yes,NA,hidden,NA,NA,NA,cotton,cotton,NA,4,0,2,pure color,pure color,NA,
+WOMEN-Tees_Tanks-id_00007120-02_1_front.jpg,short-sleeve,medium-short,socks,yes,no,no,no,hidden,round,no,yes,chiffon,cotton,NA,4,0,5,striped,pure color,NA,"top,skirt,footwear"
