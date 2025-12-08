@@ -1,0 +1,90 @@
+--- OUTFIT RECOMMENDATION for Seoul (2025-12-08 19:51:18) ---
+
+--- DETAILED JSON OUTPUT ---
+{
+    "Outfit Type": "Layered",
+    "Weather": {
+        "city": "Seoul",
+        "temp": 1.76,
+        "wind": 2.06,
+        "rain": 0,
+        "desc": "clear sky"
+    },
+    "Required Scores": {
+        "warmth": 5,
+        "impermeability": 1,
+        "layering": 4
+    },
+    "Outerwear": {
+        "image_link": "simulated_wardrobes/Female_Wardrobe/Outers_03_Blazer_freeong_blazzer__jas_kantor_wa_1658494329_01c4f53f_progressive_thumbnail.jpg",
+        "category": "coat",
+        "outer_inner": "outer",
+        "shape": {
+            "sleeve": "long-sleeve",
+            "neckline": "collar",
+            "fit": "regular"
+        },
+        "material": "synthetic (nylon/polyester)",
+        "color": "dark blue",
+        "pattern": "pure color (solid)",
+        "warmth_score": 4,
+        "layering_score": 5,
+        "impermeability_score": 1,
+        "comfort_score": 1,
+        "notes": "A dark blue, double-breasted coat with a collar and long sleeves.",
+        "warmth_fit": 9,
+        "impermeability_fit": 10,
+        "layering_fit": 5,
+        "total_score": 8.5
+    },
+    "Top": {
+        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_09_Polo_50672a01-02ba-4583-8ce1-dda8b1884820.jpg",
+        "category": "button-up shirt",
+        "outer_inner": "inner",
+        "shape": {
+            "sleeve": "short-sleeve",
+            "neckline": "collar",
+            "fit": "regular"
+        },
+        "material": "knit",
+        "color": "dark blue with light blue stripes",
+        "pattern": "striped",
+        "warmth_score": 4,
+        "layering_score": 4,
+        "impermeability_score": 1,
+        "comfort_score": 2,
+        "notes": "A dark blue knit polo shirt with thin light blue horizontal stripes and a pointed collar.",
+        "warmth_fit": 9,
+        "impermeability_fit": 10,
+        "layering_fit": 4,
+        "total_score": 8.3
+    },
+    "Bottom": {
+        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_08_Jeans_celana_panjang_denim_jeans_tom_1689168217_9e02ec90_progressive_thumbnail.jpg",
+        "category": "jeans",
+        "outer_inner": "inner",
+        "shape": {
+            "sleeve": "none",
+            "neckline": "none",
+            "fit": "regular"
+        },
+        "material": "denim",
+        "color": "grey",
+        "pattern": "pure color (solid)",
+        "warmth_score": 3,
+        "layering_score": 4,
+        "impermeability_score": 2,
+        "comfort_score": 1,
+        "notes": "Grey denim jeans with a regular fit.",
+        "warmth_fit": 8,
+        "impermeability_fit": 10,
+        "layering_fit": 4,
+        "total_score": 7.8
+    }
+}
+
+--- READABLE SUMMARY ---
+Outfit Type: Layered
+Outerwear: A dark blue, double-breasted coat with a collar and long sleeves. (Warmth: 4)
+Top:       A dark blue knit polo shirt with thin light blue horizontal stripes and a pointed collar. (Warmth: 4)
+Bottom:    Grey denim jeans with a regular fit. (Warmth: 3)

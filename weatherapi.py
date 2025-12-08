@@ -1,3 +1,4 @@
+from os import name
 import requests
 
 API_KEY = ""
@@ -27,5 +28,4 @@ def get_weather(city="Seoul"):
     print("Wind Speed:", wind, "m/s")
     print("Rain (last 1h):", rain_1h, "mm")
 
-if name == "main":
-    get_weather("Seoul")
+get_weather("Seoul")
