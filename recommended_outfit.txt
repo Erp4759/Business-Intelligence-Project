@@ -1,12 +1,12 @@
---- OUTFIT RECOMMENDATION for Seoul (2025-12-08 19:51:18) ---
+--- OUTFIT RECOMMENDATION for Seoul (2025-12-09 00:48:01) ---
 
 --- DETAILED JSON OUTPUT ---
 {
     "Outfit Type": "Layered",
     "Weather": {
         "city": "Seoul",
-        "temp": 1.76,
-        "wind": 2.06,
+        "temp": -3.24,
+        "wind": 1.03,
         "rain": 0,
         "desc": "clear sky"
     },
