@@ -2,6 +2,10 @@ import streamlit as st
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
+import warnings
+
+# Suppress libjpeg warnings
+warnings.filterwarnings('ignore', message='.*JPEG library version.*')
 
 # Import custom modules
 from data_manager import (

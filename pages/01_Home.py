@@ -1,8 +1,10 @@
 import streamlit as st
 from datetime import datetime
+from pathlib import Path
 from dotenv import load_dotenv
 import sys
 import os
+import base64
 sys.path.append('..')
 
 from ui import inject_css
@@ -12,6 +14,63 @@ from recommendation_engine import RecommendationEngine
 from evaluation import RecommendationEvaluator
 
 load_dotenv()
+
+
+def render_local_image(path: str, width: int = 200, alt_text: str = ""):
+    """Render an image from disk via base64 (supports PNG and JPG)."""
+    try:
+        if not path:
+            st.info(f"📷 {alt_text or 'Image'}")
+            return
+
+        # If the path exists but is an empty/corrupt file, try to find a sibling file
+        # with the same stem (prefer .png or a non-empty file).
+        p = Path(path)
+        if p.exists() and p.stat().st_size == 0:
+            # Try png first
+            png_alt = p.with_suffix('.png')
+            if png_alt.exists() and png_alt.stat().st_size > 0:
+                path = str(png_alt)
+                p = png_alt
+            else:
+                # Look for any file with same stem and non-zero size
+                siblings = list(p.parent.glob(p.stem + '.*'))
+                found = None
+                for s in siblings:
+                    try:
+                        if s.exists() and s.stat().st_size > 0:
+                            found = s
+                            break
+                    except Exception:
+                        continue
+                if found:
+                    path = str(found)
+                    p = found
+                else:
+                    st.info(f"📷 {alt_text or 'Image'}")
+                    return
+        elif not os.path.exists(path):
+            st.info(f"📷 {alt_text or 'Image'}")
+            return
+
+        with open(path, "rb") as f:
+            data = base64.b64encode(f.read()).decode("utf-8")
+
+        ext = os.path.splitext(path)[1].lower()
+        if ext in [".jpg", ".jpeg"]:
+            mime = "image/jpeg"
+        elif ext == ".png":
+            mime = "image/png"
+        else:
+            mime = "image/*"
+
+        # Use max-width and automatic height to preserve aspect ratio
+        style = f"max-width:{width}px;height:auto;border-radius:12px;display:block;margin-bottom:0.5rem;"
+        # Add a CSS class so global rules can control max-height and containment
+        html = f"<img class='vaesta-img' src='data:{mime};base64,{data}' alt='{alt_text}' style='{style}' />"
+        st.markdown(html, unsafe_allow_html=True)
+    except Exception:
+        st.info(f"📷 {alt_text or 'Image'}")
 
 inject_css()
 
@@ -201,33 +260,64 @@ with col2:
                 dress_notes = dress.get('notes', '')
                 dress_warmth = dress.get('warmth_score', 3)
                 dress_match_val = f"{dress.get('total_score', 8):.1f}"
+                dress_img = dress.get('image_link', '')
                 
                 st.success(f"**Perfect Dress: {dress_cat}**")
+                # Display image via base64 to avoid JPEG/lib issues
+                if dress_img:
+                    render_local_image(dress_img, width=300, alt_text=dress_cat)
+                else:
+                    st.info(f"📷 {dress_cat} ({dress.get('color', 'N/A')})")
                 st.write(dress_notes)
                 st.write(f"Warmth: {dress_warmth}/5 | Match: {dress_match_val}/10")
             else:
-                # Layered outfit
-                if recommendation.get('outer'):
-                    outer = recommendation['outer']
-                    outer_cat = outer.get('category', 'Outerwear').title()
-                    outer_color = outer.get('color', '')
-                    outer_warmth = outer.get('warmth_score', 3)
-                    
-                    st.success(f"**Outerwear:** {outer_cat} ({outer_color}) | Warmth: {outer_warmth}/5")
-                top = recommendation['top']
+                # Layered outfit: render three items in a single row so they don't get overlapped
+                outer = recommendation.get('outer') or {}
+                top = recommendation.get('top') or {}
+                bottom = recommendation.get('bottom') or {}
+
+                outer_cat = outer.get('category', 'Outerwear').title()
+                outer_color = outer.get('color', '')
+                outer_warmth = outer.get('warmth_score', 3)
+                outer_img = outer.get('image_link', '')
+
                 top_cat = top.get('category', 'Top').title()
                 top_color = top.get('color', '')
                 top_warmth = top.get('warmth_score', 3)
-                
-                st.success(f"**Top:** {top_cat} ({top_color}) | Warmth: {top_warmth}/5")
-                bottom = recommendation['bottom']
+                top_img = top.get('image_link', '')
+
                 bottom_cat = bottom.get('category', 'Bottom').title()
                 bottom_color = bottom.get('color', '')
                 bottom_warmth = bottom.get('warmth_score', 3)
+                bottom_img = bottom.get('image_link', '')
 
-                st.success(f"**Bottom:** {bottom_cat} ({bottom_color}) | Warmth: {bottom_warmth}/5")
+                # Three columns: each shows image + caption to keep layout predictable
+                img_cols = st.columns([1, 1, 1])
+                with img_cols[0]:
+                    if outer_img:
+                        render_local_image(outer_img, width=140, alt_text=outer_cat)
+                    else:
+                        st.info(f"📷 {outer_cat}")
+                    st.markdown(f"**Outerwear:** {outer_cat} ({outer_color}) | Warmth: {outer_warmth}/5")
+                with img_cols[1]:
+                    if top_img:
+                        render_local_image(top_img, width=140, alt_text=top_cat)
+                    else:
+                        st.info(f"📷 {top_cat}")
+                    st.markdown(f"**Top:** {top_cat} ({top_color}) | Warmth: {top_warmth}/5")
+                with img_cols[2]:
+                    if bottom_img:
+                        render_local_image(bottom_img, width=140, alt_text=bottom_cat)
+                    else:
+                        st.info(f"📷 {bottom_cat}")
+                    st.markdown(f"**Bottom:** {bottom_cat} ({bottom_color}) | Warmth: {bottom_warmth}/5")
+
+                # Small clear spacer to separate images from feedback controls
+                st.markdown("<div style='clear:both;height:0.6rem'></div>", unsafe_allow_html=True)
             
             # User feedback section
+            # Add a small spacer to ensure image area is separated from feedback controls
+            st.markdown("<div class='recommendation-feedback-spacer'></div>", unsafe_allow_html=True)
             st.markdown("---")
             st.markdown("##### Rate This Recommendation")
             col_a, col_b = st.columns(2)
