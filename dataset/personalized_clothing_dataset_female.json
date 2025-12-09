@@ -1,362 +1,362 @@
 [
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_04_Kaos_2e661f7d-0f22-4263-9ce7-de94ee5f5a7c.jpg",
-        "category": "t-shirt",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "crew-neck",
-            "fit": "regular"
-        },
-        "material": "cotton",
-        "color": "green",
-        "pattern": "graphic (logo/text)",
-        "warmth_score": 2,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 2,
-        "notes": "A green t-shirt with a graphic print of a shark and text."
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Tops_01_Kaos_0aa095c3-9d4d-4416-8788-82655af859a8.jpg",
+    "category": "t-shirt",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "short-sleeve",
+      "neckline": "crew-neck",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Outers_03_Blazer_freeong_blazzer__jas_kantor_wa_1658494329_01c4f53f_progressive_thumbnail.jpg",
-        "category": "coat",
-        "outer_inner": "outer",
-        "shape": {
-            "sleeve": "long-sleeve",
-            "neckline": "collar",
-            "fit": "regular"
-        },
-        "material": "synthetic (nylon/polyester)",
-        "color": "dark blue",
-        "pattern": "pure color (solid)",
-        "warmth_score": 4,
-        "layering_score": 5,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A dark blue, double-breasted coat with a collar and long sleeves."
+    "material": "cotton",
+    "color": "green",
+    "pattern": "graphic (logo/text)",
+    "warmth_score": 2,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 2,
+    "notes": "A green t-shirt with a graphic print of a shark and text."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Outers_01_Jaket_Olahraga_jaket_olahraga_brand_the_redfa_1651846880_73737029_progressive_thumbnail.jpg",
+    "category": "coat",
+    "outer_inner": "outer",
+    "shape": {
+      "sleeve": "long-sleeve",
+      "neckline": "collar",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_08_Jeans_celana_panjang_denim_jeans_tom_1689168217_9e02ec90_progressive_thumbnail.jpg",
-        "category": "jeans",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "none",
-            "neckline": "none",
-            "fit": "regular"
-        },
-        "material": "denim",
-        "color": "grey",
-        "pattern": "pure color (solid)",
-        "warmth_score": 3,
-        "layering_score": 4,
-        "impermeability_score": 2,
-        "comfort_score": 1,
-        "notes": "Grey denim jeans with a regular fit."
+    "material": "synthetic (nylon/polyester)",
+    "color": "dark blue",
+    "pattern": "pure color (solid)",
+    "warmth_score": 4,
+    "layering_score": 5,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A dark blue, double-breasted coat with a collar and long sleeves."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Bottoms_01_Celana_Panjang_celana_panjangkantor_tartan_1697091712_232be2bf_progressive_thumbnail.jpg",
+    "category": "jeans",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "none",
+      "neckline": "none",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_07_Rok_3ac953dd-31fb-461f-8bbd-7802397cc392.jpg",
-        "category": "skirt",
-        "outer_inner": "not-applicable",
-        "shape": {
-            "sleeve": "none",
-            "neckline": "none",
-            "fit": "none"
-        },
-        "material": "other",
-        "color": "brown and black",
-        "pattern": "plaid",
-        "warmth_score": 2,
-        "layering_score": 2,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A pleated, knee-length skirt with a plaid pattern."
+    "material": "denim",
+    "color": "grey",
+    "pattern": "pure color (solid)",
+    "warmth_score": 3,
+    "layering_score": 4,
+    "impermeability_score": 2,
+    "comfort_score": 1,
+    "notes": "Grey denim jeans with a regular fit."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Bottoms_02_Celana_Panjang_celana_panjang_southaven_aclu1_1696760584_b4f76042_progressive_thumbnail.jpg",
+    "category": "skirt",
+    "outer_inner": "not-applicable",
+    "shape": {
+      "sleeve": "none",
+      "neckline": "none",
+      "fit": "none"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_04_Celana_Panjang_crinkle_grey_kulot__celana_wan_1696753345_262cc659_progressive_thumbnail.jpg",
-        "category": "trousers",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "none",
-            "neckline": "none",
-            "fit": "regular"
-        },
-        "material": "synthetic (nylon/polyester)",
-        "color": "grey",
-        "pattern": "pure color (solid)",
-        "warmth_score": 2,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "Grey, wide-leg trousers with an elastic waistband and drawstring."
+    "material": "other",
+    "color": "brown and black",
+    "pattern": "plaid",
+    "warmth_score": 2,
+    "layering_score": 2,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A pleated, knee-length skirt with a plaid pattern."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Bottoms_03_Rok_mini_skirt_vintage_mini_skirt_1696966649_56c5dc62_progressive_thumbnail.jpg",
+    "category": "trousers",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "none",
+      "neckline": "none",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Outers_04_Jaket_nike_windbreaker_jacket_1684942652_7fefe608_progressive.jpg",
-        "category": "jacket",
-        "outer_inner": "outer",
-        "shape": {
-            "sleeve": "long-sleeve",
-            "neckline": "collar",
-            "fit": "regular"
-        },
-        "material": "synthetic (nylon/polyester)",
-        "color": "blue and white",
-        "pattern": "pure color (solid)",
-        "warmth_score": 4,
-        "layering_score": 5,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A blue and white zip-up athletic jacket with a stand-up collar."
+    "material": "synthetic (nylon/polyester)",
+    "color": "grey",
+    "pattern": "pure color (solid)",
+    "warmth_score": 2,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "Grey, wide-leg trousers with an elastic waistband and drawstring."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Outers_02_Blazer_blazzer_brand_manequeen_warna__1678677481_4f188eff_progressive_thumbnail.jpg",
+    "category": "jacket",
+    "outer_inner": "outer",
+    "shape": {
+      "sleeve": "long-sleeve",
+      "neckline": "collar",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_06_Rok_jmademoiselle_korea_butik_rok__1696926867_4901381f_progressive_thumbnail.jpg",
-        "category": "skirt",
-        "outer_inner": "not-applicable",
-        "shape": {
-            "sleeve": "none",
-            "neckline": "none",
-            "fit": "none"
-        },
-        "material": "other",
-        "color": "black",
-        "pattern": "none",
-        "warmth_score": 2,
-        "layering_score": 2,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A black tiered skirt with lace overlay and a tulle bottom."
+    "material": "synthetic (nylon/polyester)",
+    "color": "blue and white",
+    "pattern": "pure color (solid)",
+    "warmth_score": 4,
+    "layering_score": 5,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A blue and white zip-up athletic jacket with a stand-up collar."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Bottoms_04_Celana_Panjang_celana_panjang_uniqlo_chino_pa_1697116494_1325ba63_progressive_thumbnail.jpg",
+    "category": "skirt",
+    "outer_inner": "not-applicable",
+    "shape": {
+      "sleeve": "none",
+      "neckline": "none",
+      "fit": "none"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_05_Kaos_4ab46ac8-9031-4a33-8930-c6fdaafb420b.jpg",
-        "category": "t-shirt",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "crew-neck",
-            "fit": "regular"
-        },
-        "material": "synthetic (nylon/polyester)",
-        "color": "bright blue with dark gray panels",
-        "pattern": "pure color (solid)",
-        "warmth_score": 2,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A bright blue short-sleeved t-shirt with dark gray side panels and a small red logo on the chest."
+    "material": "other",
+    "color": "black",
+    "pattern": "none",
+    "warmth_score": 2,
+    "layering_score": 2,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A black tiered skirt with lace overlay and a tulle bottom."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Tops_02_Polo_polo_shirt_lacoste_size_xl_sec_1683861097_e0756a74_progressive_thumbnail.jpg",
+    "category": "t-shirt",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "short-sleeve",
+      "neckline": "crew-neck",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_02_Celana_Panjang_celana_panjang_navy_bisa_forma_1696149425_48aff3ef_progressive_thumbnail.jpg",
-        "category": "trousers",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "none",
-            "neckline": "none",
-            "fit": "regular"
-        },
-        "material": "other",
-        "color": "dark blue",
-        "pattern": "pure color (solid)",
-        "warmth_score": 2,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "Dark blue trousers with a regular fit."
+    "material": "synthetic (nylon/polyester)",
+    "color": "bright blue with dark gray panels",
+    "pattern": "pure color (solid)",
+    "warmth_score": 2,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A bright blue short-sleeved t-shirt with dark gray side panels and a small red logo on the chest."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Bottoms_05_Jeans_celana_panjang_denim_jeans_lev_1689617504_16b7a5dc_progressive_thumbnail.jpg",
+    "category": "trousers",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "none",
+      "neckline": "none",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Dresses_03_Gaun_cuci_gudang_bb_65_tb_160_masuk_1697082973_ccae1295_progressive_thumbnail.jpg",
-        "category": "dress",
-        "outer_inner": "not-applicable",
-        "shape": {
-            "sleeve": "long-sleeve",
-            "neckline": "collar",
-            "fit": "none"
-        },
-        "material": "other",
-        "color": "navy blue",
-        "pattern": "pure color (solid)",
-        "warmth_score": 3,
-        "layering_score": 2,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A navy blue dress with a high neckline and layered cape-like sleeves."
+    "material": "other",
+    "color": "dark blue",
+    "pattern": "pure color (solid)",
+    "warmth_score": 2,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "Dark blue trousers with a regular fit."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Dresses_01_Gaun_37271dcc-d0e5-4f31-81ac-ad4b5974812e.jpg",
+    "category": "dress",
+    "outer_inner": "not-applicable",
+    "shape": {
+      "sleeve": "long-sleeve",
+      "neckline": "collar",
+      "fit": "none"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_05_Jeans_celana_jeans_pria_legend_of_de_1681641648_1a79bb69_progressive_thumbnail.jpg",
-        "category": "jeans",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "none",
-            "neckline": "none",
-            "fit": "regular"
-        },
-        "material": "denim",
-        "color": "light blue",
-        "pattern": "none",
-        "warmth_score": 3,
-        "layering_score": 4,
-        "impermeability_score": 2,
-        "comfort_score": 2,
-        "notes": "Light blue denim jeans with a regular fit."
+    "material": "other",
+    "color": "navy blue",
+    "pattern": "pure color (solid)",
+    "warmth_score": 3,
+    "layering_score": 2,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A navy blue dress with a high neckline and layered cape-like sleeves."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Bottoms_06_Rok_houndstooth_skirt_1696741983_01d85253_progressive_thumbnail.jpg",
+    "category": "jeans",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "none",
+      "neckline": "none",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_07_Kaos_62c6229a-59c1-4c1b-aecf-44c3779129e5.jpg",
-        "category": "t-shirt",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "crew-neck",
-            "fit": "regular"
-        },
-        "material": "synthetic (nylon/polyester)",
-        "color": "dark grey",
-        "pattern": "pure color (solid)",
-        "warmth_score": 2,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A dark grey, short-sleeved t-shirt with a crew neck and a regular fit, featuring Nike branding."
+    "material": "denim",
+    "color": "light blue",
+    "pattern": "none",
+    "warmth_score": 3,
+    "layering_score": 4,
+    "impermeability_score": 2,
+    "comfort_score": 2,
+    "notes": "Light blue denim jeans with a regular fit."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Tops_03_Kemeja_jaket_harrington_casual_bomber_1677290341_beadc3be_progressive_thumbnail.jpg",
+    "category": "t-shirt",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "short-sleeve",
+      "neckline": "crew-neck",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Outers_01_Jaket_Olahraga_jaket_olahraga_lynx_ii_jaket_p_1663252783_91b7bb6d_progressive_thumbnail.jpg",
-        "category": "jacket",
-        "outer_inner": "outer",
-        "shape": {
-            "sleeve": "long-sleeve",
-            "neckline": "collar",
-            "fit": "regular"
-        },
-        "material": "synthetic (nylon/polyester)",
-        "color": "bright green",
-        "pattern": "graphic (logo/text)",
-        "warmth_score": 4,
-        "layering_score": 5,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A bright green, long-sleeved jacket with gray paneling on the sides and a small logo on the chest."
+    "material": "synthetic (nylon/polyester)",
+    "color": "dark grey",
+    "pattern": "pure color (solid)",
+    "warmth_score": 2,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A dark grey, short-sleeved t-shirt with a crew neck and a regular fit, featuring Nike branding."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Outers_03_Blazer_blazzer_army_tebal_full_furing_1678592464_fe08007c_progressive_thumbnail.jpg",
+    "category": "jacket",
+    "outer_inner": "outer",
+    "shape": {
+      "sleeve": "long-sleeve",
+      "neckline": "collar",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_03_Rok_gu_by_uniqlo_highwaist_dark_bl_1697109657_038dd3a9_progressive_thumbnail.jpg",
-        "category": "skirt",
-        "outer_inner": "not-applicable",
-        "shape": {
-            "sleeve": "none",
-            "neckline": "none",
-            "fit": "none"
-        },
-        "material": "denim",
-        "color": "dark blue",
-        "pattern": "pure color (solid)",
-        "warmth_score": 3,
-        "layering_score": 2,
-        "impermeability_score": 2,
-        "comfort_score": 1,
-        "notes": "A dark blue denim midi skirt with a flared A-line silhouette."
+    "material": "synthetic (nylon/polyester)",
+    "color": "bright green",
+    "pattern": "graphic (logo/text)",
+    "warmth_score": 4,
+    "layering_score": 5,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A bright green, long-sleeved jacket with gray paneling on the sides and a small logo on the chest."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Bottoms_07_Rok_denim_skirt_1696309056_8c6c924f_progressive_thumbnail.jpg",
+    "category": "skirt",
+    "outer_inner": "not-applicable",
+    "shape": {
+      "sleeve": "none",
+      "neckline": "none",
+      "fit": "none"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Outers_02_Blazer_red_blazzer_1622779936_6e8aa88d_progressive_thumbnail.jpg",
-        "category": "jacket",
-        "outer_inner": "outer",
-        "shape": {
-            "sleeve": "long-sleeve",
-            "neckline": "collar",
-            "fit": "regular"
-        },
-        "material": "other",
-        "color": "red",
-        "pattern": "pure color (solid)",
-        "warmth_score": 4,
-        "layering_score": 5,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A red, long-sleeved jacket with an open front and a draped collar."
+    "material": "denim",
+    "color": "dark blue",
+    "pattern": "pure color (solid)",
+    "warmth_score": 3,
+    "layering_score": 2,
+    "impermeability_score": 2,
+    "comfort_score": 1,
+    "notes": "A dark blue denim midi skirt with a flared A-line silhouette."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Outers_04_Jaket_jaket_champion_spell_out_secon_1678889183_625a2079_progressive_thumbnail.jpg",
+    "category": "jacket",
+    "outer_inner": "outer",
+    "shape": {
+      "sleeve": "long-sleeve",
+      "neckline": "collar",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Dresses_01_Gaun_dress_sailor_pink_gemini_bangk_1697083847_1be56b00_progressive_thumbnail.jpg",
-        "category": "button-up shirt",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "collar",
-            "fit": "regular"
-        },
-        "material": "other",
-        "color": "light pink",
-        "pattern": "floral",
-        "warmth_score": 2,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A light pink button-up shirt with a large decorative collar and short puff sleeves."
+    "material": "other",
+    "color": "red",
+    "pattern": "pure color (solid)",
+    "warmth_score": 4,
+    "layering_score": 5,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A red, long-sleeved jacket with an open front and a draped collar."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Tops_04_Kaos_51ec2329-7f56-4cec-ae5e-a40b7f79268a.jpg",
+    "category": "button-up shirt",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "short-sleeve",
+      "neckline": "collar",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_09_Polo_50672a01-02ba-4583-8ce1-dda8b1884820.jpg",
-        "category": "button-up shirt",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "collar",
-            "fit": "regular"
-        },
-        "material": "knit",
-        "color": "dark blue with light blue stripes",
-        "pattern": "striped",
-        "warmth_score": 4,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 2,
-        "notes": "A dark blue knit polo shirt with thin light blue horizontal stripes and a pointed collar."
+    "material": "other",
+    "color": "light pink",
+    "pattern": "floral",
+    "warmth_score": 2,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A light pink button-up shirt with a large decorative collar and short puff sleeves."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Tops_05_Kaos_7d7e5eb4-3916-4a69-826a-4facc149497b.jpg",
+    "category": "button-up shirt",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "short-sleeve",
+      "neckline": "collar",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_10_Polo_prelovedthriftsecond_baju_kaos_1678847523_feab6b33_progressive_thumbnail.jpg",
-        "category": "button-up shirt",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "collar",
-            "fit": "regular"
-        },
-        "material": "synthetic (nylon/polyester)",
-        "color": "bright blue",
-        "pattern": "graphic (logo/text)",
-        "warmth_score": 2,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A bright blue polo shirt with a dark blue collar and sleeve trim, featuring a large number '8' and a logo."
+    "material": "knit",
+    "color": "dark blue with light blue stripes",
+    "pattern": "striped",
+    "warmth_score": 4,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 2,
+    "notes": "A dark blue knit polo shirt with thin light blue horizontal stripes and a pointed collar."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Tops_06_Kaos_0090ca2c-e8c8-43f6-b764-e48e0e954006.jpg",
+    "category": "button-up shirt",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "short-sleeve",
+      "neckline": "collar",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_01_Kaos_2ce576f8-cb93-43ee-933b-22d1c6d1678f.jpg",
-        "category": "t-shirt",
-        "outer_inner": "inner",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "crew-neck",
-            "fit": "regular"
-        },
-        "material": "synthetic (nylon/polyester)",
-        "color": "red",
-        "pattern": "graphic (logo/text)",
-        "warmth_score": 2,
-        "layering_score": 4,
-        "impermeability_score": 1,
-        "comfort_score": 1,
-        "notes": "A red t-shirt with a white Adidas logo."
+    "material": "synthetic (nylon/polyester)",
+    "color": "bright blue",
+    "pattern": "graphic (logo/text)",
+    "warmth_score": 2,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A bright blue polo shirt with a dark blue collar and sleeve trim, featuring a large number '8' and a logo."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Tops_07_Kaos_00d9cc6e-2564-4813-9d68-4bc4d562107b.jpg",
+    "category": "t-shirt",
+    "outer_inner": "inner",
+    "shape": {
+      "sleeve": "short-sleeve",
+      "neckline": "crew-neck",
+      "fit": "regular"
     },
-    {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Dresses_02_Gaun_dainty_dress_coquette_pinteres_1697106553_d766ffc1_progressive_thumbnail.jpg",
-        "category": "dress",
-        "outer_inner": "not-applicable",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "crew-neck",
-            "fit": "regular"
-        },
-        "material": "cotton",
-        "color": "black",
-        "pattern": "pure color (solid)",
-        "warmth_score": 3,
-        "layering_score": 2,
-        "impermeability_score": 1,
-        "comfort_score": 2,
-        "notes": "A black, short-sleeved dress with a button-up front and decorative pink bows."
-    }
+    "material": "synthetic (nylon/polyester)",
+    "color": "red",
+    "pattern": "graphic (logo/text)",
+    "warmth_score": 2,
+    "layering_score": 4,
+    "impermeability_score": 1,
+    "comfort_score": 1,
+    "notes": "A red t-shirt with a white Adidas logo."
+  },
+  {
+    "image_link": "dataset/simulated_wardrobes/Female_Wardrobe/Dresses_02_Gaun_fdbc4a3c-4902-45ac-a10e-b641e3ebb0d4.jpg",
+    "category": "dress",
+    "outer_inner": "not-applicable",
+    "shape": {
+      "sleeve": "short-sleeve",
+      "neckline": "crew-neck",
+      "fit": "regular"
+    },
+    "material": "cotton",
+    "color": "black",
+    "pattern": "pure color (solid)",
+    "warmth_score": 3,
+    "layering_score": 2,
+    "impermeability_score": 1,
+    "comfort_score": 2,
+    "notes": "A black, short-sleeved dress with a button-up front and decorative pink bows."
+  }
 ]
