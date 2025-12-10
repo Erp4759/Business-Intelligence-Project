@@ -1,17 +1,17 @@
---- OUTFIT RECOMMENDATION for Seoul (2025-12-09 00:48:01) ---
+--- OUTFIT RECOMMENDATION for Seoul (2025-12-10 18:36:53) ---
 
 --- DETAILED JSON OUTPUT ---
 {
     "Outfit Type": "Layered",
     "Weather": {
         "city": "Seoul",
-        "temp": -3.24,
-        "wind": 1.03,
+        "temp": 7.76,
+        "wind": 3.09,
         "rain": 0,
-        "desc": "clear sky"
+        "desc": "broken clouds"
     },
     "Required Scores": {
-        "warmth": 5,
+        "warmth": 4,
         "impermeability": 1,
         "layering": 4
     },
@@ -32,59 +32,62 @@
         "impermeability_score": 1,
         "comfort_score": 1,
         "notes": "A dark blue, double-breasted coat with a collar and long sleeves.",
-        "warmth_fit": 9,
+        "warmth_fit": 10,
         "impermeability_fit": 10,
         "layering_fit": 5,
-        "total_score": 8.5
+        "diversity_penalty": 0.0,
+        "total_score": 7.25
     },
     "Top": {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_09_Polo_50672a01-02ba-4583-8ce1-dda8b1884820.jpg",
-        "category": "button-up shirt",
+        "image_link": "simulated_wardrobes/Female_Wardrobe/Tops_05_Kaos_4ab46ac8-9031-4a33-8930-c6fdaafb420b.jpg",
+        "category": "t-shirt",
         "outer_inner": "inner",
         "shape": {
             "sleeve": "short-sleeve",
-            "neckline": "collar",
+            "neckline": "crew-neck",
             "fit": "regular"
         },
-        "material": "knit",
-        "color": "dark blue with light blue stripes",
-        "pattern": "striped",
-        "warmth_score": 4,
+        "material": "synthetic (nylon/polyester)",
+        "color": "bright blue with dark gray panels",
+        "pattern": "pure color (solid)",
+        "warmth_score": 2,
         "layering_score": 4,
         "impermeability_score": 1,
-        "comfort_score": 2,
-        "notes": "A dark blue knit polo shirt with thin light blue horizontal stripes and a pointed collar.",
-        "warmth_fit": 9,
+        "comfort_score": 1,
+        "notes": "A bright blue short-sleeved t-shirt with dark gray side panels and a small red logo on the chest.",
+        "warmth_fit": 8,
         "impermeability_fit": 10,
         "layering_fit": 4,
-        "total_score": 8.3
+        "diversity_penalty": 0.0,
+        "total_score": 6.3
     },
     "Bottom": {
-        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_08_Jeans_celana_panjang_denim_jeans_tom_1689168217_9e02ec90_progressive_thumbnail.jpg",
-        "category": "jeans",
+        "image_link": "simulated_wardrobes/Female_Wardrobe/Bottoms_04_Celana_Panjang_crinkle_grey_kulot__celana_wan_1696753345_262cc659_progressive_thumbnail.jpg",
+        "category": "trousers",
         "outer_inner": "inner",
         "shape": {
             "sleeve": "none",
             "neckline": "none",
             "fit": "regular"
         },
-        "material": "denim",
+        "material": "synthetic (nylon/polyester)",
         "color": "grey",
         "pattern": "pure color (solid)",
-        "warmth_score": 3,
+        "warmth_score": 2,
         "layering_score": 4,
-        "impermeability_score": 2,
+        "impermeability_score": 1,
         "comfort_score": 1,
-        "notes": "Grey denim jeans with a regular fit.",
+        "notes": "Grey, wide-leg trousers with an elastic waistband and drawstring.",
         "warmth_fit": 8,
         "impermeability_fit": 10,
         "layering_fit": 4,
-        "total_score": 7.8
+        "diversity_penalty": 0.0,
+        "total_score": 6.3
     }
 }
 
 --- READABLE SUMMARY ---
 Outfit Type: Layered
 Outerwear: A dark blue, double-breasted coat with a collar and long sleeves. (Warmth: 4)
-Top:       A dark blue knit polo shirt with thin light blue horizontal stripes and a pointed collar. (Warmth: 4)
-Bottom:    Grey denim jeans with a regular fit. (Warmth: 3)
+Top:       A bright blue short-sleeved t-shirt with dark gray side panels and a small red logo on the chest. (Warmth: 2)
+Bottom:    Grey, wide-leg trousers with an elastic waistband and drawstring. (Warmth: 2)
