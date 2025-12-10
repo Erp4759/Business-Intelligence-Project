@@ -162,24 +162,6 @@
         "notes": "A white short-sleeve t-shirt with a repeating black text pattern and a tie-front detail."
     },
     {
-        "image_link": "simulated_wardrobes/Male_Wardrobe/Outers_02_Jaket_Olahraga_jaket_olahraga_1685670762_21751e24_progressive_thumbnail.jpg",
-        "category": "dress",
-        "outer_inner": "not-applicable",
-        "shape": {
-            "sleeve": "short-sleeve",
-            "neckline": "hoodie",
-            "fit": "oversized"
-        },
-        "material": "knit",
-        "color": "light beige",
-        "pattern": "pure color (solid)",
-        "warmth_score": 5,
-        "layering_score": 2,
-        "impermeability_score": 1,
-        "comfort_score": 2,
-        "notes": "A loose, light beige hooded short-sleeve dress with side slits."
-    },
-    {
         "image_link": "simulated_wardrobes/Male_Wardrobe/Outers_01_Jaket_Olahraga_jaket_olahraga_1650862706_c339a5ea_progressive_thumbnail.jpg",
         "category": "jacket",
         "outer_inner": "outer",
@@ -376,5 +358,23 @@
         "impermeability_score": 1,
         "comfort_score": 2,
         "notes": "A plain dark grey long-sleeve knit t-shirt with a crew neck."
+    },
+    {
+        "image_link": "simulated_wardrobes/Male_Wardrobe/Outers_05_Jaket_Denim_guess_denim_jacket_original_10_1694606555_4dbb9257_progressive_thumbnail.jpg",
+        "category": "jacket",
+        "outer_inner": "outer",
+        "shape": {
+            "sleeve": "long-sleeve",
+            "neckline": "collar",
+            "fit": "regular"
+        },
+        "material": "denim",
+        "color": "blue",
+        "pattern": "pure color (solid)",
+        "warmth_score": 5,
+        "layering_score": 5,
+        "impermeability_score": 2,
+        "comfort_score": 1,
+        "notes": "A classic washed blue denim jacket with a collar."
     }
 ]
