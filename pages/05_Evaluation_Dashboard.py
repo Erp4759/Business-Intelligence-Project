@@ -31,9 +31,15 @@ st.markdown("<p class='subtitle'>Comprehensive Performance Analytics & Metrics</
 evaluator = RecommendationEvaluator()
 analytics = get_analytics()
 
-# Get comprehensive report
+# Get comprehensive report (REAL DATA ONLY)
 report = analytics.get_comprehensive_report()
-legacy_report = evaluator.generate_evaluation_report()
+
+# Check if we have real data
+has_real_data = (
+    report['summary']['total_recommendations'] > 0 or 
+    report['summary']['total_interactions'] > 0 or 
+    report['summary']['total_feedback'] > 0
+)
 
 # ===== TAB NAVIGATION =====
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
@@ -47,6 +53,19 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 # ===== TAB 1: OVERVIEW =====
 with tab1:
     st.markdown("### 📊 System Performance Overview")
+    
+    # Show warning if no real data
+    if not has_real_data:
+        st.warning("""
+        ⚠️ **No real data collected yet!**
+        
+        To collect real data:
+        1. Go to **Home** page and generate recommendations
+        2. Click on outfits (tracked as interactions)
+        3. Submit feedback on the **User Study** tab below
+        
+        Once you start using the system, real metrics will appear here.
+        """)
     
     # Summary Stats
     summary = report['summary']
@@ -94,103 +113,96 @@ with tab1:
     
     with col1:
         precision = ranking['precision_at_3']
-        # Use legacy data if no real data
-        if precision == 0:
-            precision = legacy_report['offline_metrics']['precision_at_3']
-        st.metric(
-            "Precision@3",
-            f"{precision:.1%}",
-            delta=f"+{(precision - 0.73):.1%}" if precision > 0.73 else None,
-            help="Fraction of recommended items that are relevant"
-        )
+        if precision > 0:
+            st.metric(
+                "Precision@3",
+                f"{precision:.1%}",
+                help="Fraction of recommended items that are relevant"
+            )
+        else:
+            st.metric(
+                "Precision@3",
+                "No data",
+                help="Need feedback data to calculate"
+            )
     
     with col2:
         recall = ranking['recall_at_3']
-        if recall == 0:
-            recall = legacy_report['offline_metrics']['recall_at_3']
-        st.metric(
-            "Recall@3",
-            f"{recall:.1%}",
-            delta=f"+{(recall - 0.70):.1%}" if recall > 0.70 else None,
-            help="Fraction of relevant items that were recommended"
-        )
+        if recall > 0:
+            st.metric(
+                "Recall@3",
+                f"{recall:.1%}",
+                help="Fraction of relevant items that were recommended"
+            )
+        else:
+            st.metric(
+                "Recall@3",
+                "No data",
+                help="Need feedback data to calculate"
+            )
     
     with col3:
         ctr = business['ctr']
-        if ctr == 0:
-            ctr = legacy_report['business_metrics']['recommendation_ctr'] * 100
-        st.metric(
-            "CTR",
-            f"{ctr:.1f}%",
-            help="Click-Through Rate on recommendations"
-        )
+        if ctr > 0:
+            st.metric(
+                "CTR",
+                f"{ctr:.1f}%",
+                help="Click-Through Rate on recommendations"
+            )
+        else:
+            st.metric(
+                "CTR",
+                "No data",
+                help="Need interaction data to calculate"
+            )
     
     with col4:
         avg_sat = satisfaction['avg_satisfaction']
-        if avg_sat == 0:
-            avg_sat = legacy_report['user_study'].get('avg_satisfaction', 4.2)
-        st.metric(
-            "Satisfaction",
-            f"{avg_sat:.1f}/5",
-            help="Average user satisfaction score"
-        )
-    
-    st.markdown("---")
-    
-    # Performance Comparison Chart
-    st.markdown("### 📈 Performance vs Baseline")
-    
-    baseline_data = legacy_report['offline_metrics']['baseline_comparison']
-    
-    col1, col2 = st.columns([2, 1])
-    
-    with col1:
-        comparison_df = pd.DataFrame({
-            'Method': ['VAESTA (Content-Based)', 'Rule-Based Baseline', 'Random Baseline'],
-            'Accuracy': [baseline_data['our_method'], baseline_data['rule_based_baseline'], 0.45],
-            'Color': ['#667eea', '#94a3b8', '#e2e8f0']
-        })
-        
-        fig = go.Figure(data=[
-            go.Bar(
-                x=comparison_df['Method'],
-                y=comparison_df['Accuracy'],
-                marker_color=comparison_df['Color'],
-                text=[f"{val:.1%}" for val in comparison_df['Accuracy']],
-                textposition='outside'
+        if avg_sat > 0:
+            st.metric(
+                "Satisfaction",
+                f"{avg_sat:.1f}/5",
+                help="Average user satisfaction score"
             )
-        ])
-        
-        fig.update_layout(
-            title='Recommendation Accuracy Comparison',
-            yaxis_title='Accuracy Score',
-            yaxis_range=[0, 1],
-            height=400,
-            showlegend=False
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.metric(
+                "Satisfaction",
+                "No data",
+                help="Need user feedback to calculate"
+            )
     
-    with col2:
-        improvement = baseline_data['improvement']
+    if has_real_data:
+        st.markdown("---")
+        st.markdown("### 📈 Recent Activity")
         
-        st.markdown(f"""
-        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                    color: white; padding: 2rem; border-radius: 12px; text-align: center; margin-bottom: 1rem;'>
-            <h2 style='margin: 0; font-size: 3rem;'>{improvement:.1f}%</h2>
-            <p style='margin: 0.5rem 0 0 0; font-size: 1.1rem;'>Better than Baseline</p>
-        </div>
-        """, unsafe_allow_html=True)
+        # Show time-based stats if we have data
+        col1, col2 = st.columns(2)
         
-        st.markdown("""
-        **Key Finding:**
-        Our content-based weather-aware system achieves significantly higher accuracy 
-        than simple rule-based approaches.
-        """)
+        with col1:
+            st.info(f"""
+            **Last 24 Hours:**
+            - {report['summary']['total_recommendations']} recommendations generated
+            - {report['summary']['total_interactions']} user interactions
+            """)
+        
+        with col2:
+            st.info(f"""
+            **Data Collection:**
+            - {report['summary']['total_feedback']} feedback submissions
+            - {report['summary']['unique_users']} unique users tracked
+            """)
 
 # ===== TAB 2: RANKING METRICS =====
 with tab2:
     st.markdown("### 🎯 Ranking Quality Metrics")
+    
+    if not has_real_data:
+        st.warning("""
+        ⚠️ **No ranking data available yet.**
+        
+        Ranking metrics are calculated from user feedback. 
+        Please submit feedback on recommendations to see these metrics.
+        """)
     
     st.info("""
     **Ranking metrics** measure how well our system orders recommendations. 
@@ -198,79 +210,50 @@ with tab2:
     """)
     
     ranking = report['ranking_metrics']
+    has_ranking_data = ranking['precision_at_3'] > 0
     
-    # Use legacy if no real data
-    if ranking['precision_at_3'] == 0:
-        ranking = {
-            'precision_at_3': legacy_report['offline_metrics']['precision_at_3'],
-            'recall_at_3': legacy_report['offline_metrics']['recall_at_3'],
-            'f1_at_3': legacy_report['offline_metrics']['f1_at_3'],
-            'ndcg_at_3': 0.82
-        }
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        # Precision/Recall/F1 Chart
-        metrics_df = pd.DataFrame({
-            'Metric': ['Precision@3', 'Recall@3', 'F1@3', 'NDCG@3'],
-            'Score': [
-                ranking['precision_at_3'],
-                ranking['recall_at_3'],
-                ranking['f1_at_3'],
-                ranking.get('ndcg_at_3', 0.82)
-            ]
-        })
+    if has_ranking_data:
+        col1, col2 = st.columns(2)
         
-        fig = go.Figure(data=[
-            go.Bar(
-                x=metrics_df['Metric'],
-                y=metrics_df['Score'],
-                marker_color=['#667eea', '#764ba2', '#f093fb', '#f5576c'],
-                text=[f"{val:.1%}" for val in metrics_df['Score']],
-                textposition='outside'
-            )
-        ])
-        
-        fig.update_layout(
-            title='Ranking Metrics Performance',
-            yaxis_title='Score',
-            yaxis_range=[0, 1],
-            height=400
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
-    
-    with col2:
-        # Radar chart for metrics
-        categories = ['Precision', 'Recall', 'F1', 'NDCG', 'Weather Match']
-        values = [
-            ranking['precision_at_3'],
-            ranking['recall_at_3'],
-            ranking['f1_at_3'],
-            ranking.get('ndcg_at_3', 0.82),
-            legacy_report['offline_metrics']['weather_match_accuracy']
-        ]
-        
-        fig = go.Figure(data=go.Scatterpolar(
-            r=values + [values[0]],  # Close the polygon
-            theta=categories + [categories[0]],
-            fill='toself',
-            marker_color='#667eea'
-        ))
-        
-        fig.update_layout(
-            polar=dict(
-                radialaxis=dict(
-                    visible=True,
-                    range=[0, 1]
+        with col1:
+            # Precision/Recall/F1 Chart
+            metrics_df = pd.DataFrame({
+                'Metric': ['Precision@3', 'Recall@3', 'F1@3'],
+                'Score': [
+                    ranking['precision_at_3'],
+                    ranking['recall_at_3'],
+                    ranking['f1_at_3']
+                ]
+            })
+            
+            fig = go.Figure(data=[
+                go.Bar(
+                    x=metrics_df['Metric'],
+                    y=metrics_df['Score'],
+                    marker_color=['#667eea', '#764ba2', '#f093fb'],
+                    text=[f"{val:.1%}" for val in metrics_df['Score']],
+                    textposition='outside'
                 )
-            ),
-            title='Multi-Metric Performance Radar',
-            height=400
-        )
+            ])
+            
+            fig.update_layout(
+                title='Ranking Metrics Performance (Real Data)',
+                yaxis_title='Score',
+                yaxis_range=[0, 1],
+                height=400
+            )
+            
+            st.plotly_chart(fig, use_container_width=True)
         
-        st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            # Show detailed breakdown
+            st.markdown("### 📋 Metric Details")
+            st.metric("Sample Size", f"{ranking.get('sample_size', 0)} feedbacks")
+            st.metric("Precision@3", f"{ranking['precision_at_3']:.1%}")
+            st.metric("Recall@3", f"{ranking['recall_at_3']:.1%}")
+            st.metric("F1@3", f"{ranking['f1_at_3']:.1%}")
+    else:
+        st.info("💡 Charts will appear here once we have feedback data.")
     
     st.markdown("---")
     
@@ -309,28 +292,33 @@ with tab2:
 with tab3:
     st.markdown("### 💼 Business Impact Metrics")
     
+    if not has_real_data:
+        st.warning("""
+        ⚠️ **No business metrics available yet.**
+        
+        Business metrics track clicks, conversions, and engagement.
+        Start using the system to collect these metrics.
+        """)
+    
     st.info("""
     **Business metrics** measure real-world impact of the recommendation system.
     These metrics directly translate to user engagement and potential revenue.
     """)
     
     business = report['business_metrics']
-    
-    # Use legacy if no real data
-    if business['ctr'] == 0:
-        business = {
-            'ctr': legacy_report['business_metrics']['recommendation_ctr'] * 100,
-            'conversion_rate': legacy_report['business_metrics']['wardrobe_addition_rate'] * 100,
-            'avg_session_duration_min': legacy_report['business_metrics']['avg_session_time_minutes']
-        }
+    has_business_data = business['ctr'] > 0 or report['summary']['total_interactions'] > 0
     
     col1, col2, col3 = st.columns(3)
+    
+    ctr_value = f"{business['ctr']:.1f}%" if business['ctr'] > 0 else "No data"
+    conv_value = f"{business['conversion_rate']:.1f}%" if business['conversion_rate'] > 0 else "No data"
+    session_value = f"{business['avg_session_duration_min']:.1f}" if business['avg_session_duration_min'] > 0 else "No data"
     
     with col1:
         st.markdown(f"""
         <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                     color: white; padding: 2rem; border-radius: 12px; text-align: center;'>
-            <h3 style='margin: 0; font-size: 2.5rem;'>{business['ctr']:.1f}%</h3>
+            <h3 style='margin: 0; font-size: 2.5rem;'>{ctr_value}</h3>
             <p style='margin: 0.5rem 0 0 0;'>Click-Through Rate</p>
         </div>
         """, unsafe_allow_html=True)
@@ -340,7 +328,7 @@ with tab3:
         st.markdown(f"""
         <div style='background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
                     color: white; padding: 2rem; border-radius: 12px; text-align: center;'>
-            <h3 style='margin: 0; font-size: 2.5rem;'>{business['conversion_rate']:.1f}%</h3>
+            <h3 style='margin: 0; font-size: 2.5rem;'>{conv_value}</h3>
             <p style='margin: 0.5rem 0 0 0;'>Conversion Rate</p>
         </div>
         """, unsafe_allow_html=True)
@@ -350,177 +338,109 @@ with tab3:
         st.markdown(f"""
         <div style='background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
                     color: white; padding: 2rem; border-radius: 12px; text-align: center;'>
-            <h3 style='margin: 0; font-size: 2.5rem;'>{business['avg_session_duration_min']:.1f}</h3>
+            <h3 style='margin: 0; font-size: 2.5rem;'>{session_value}</h3>
             <p style='margin: 0.5rem 0 0 0;'>Avg Session (min)</p>
         </div>
         """, unsafe_allow_html=True)
         st.caption("Average time users spend per session")
     
-    st.markdown("---")
-    
-    # Engagement Funnel
-    st.markdown("### 📊 User Engagement Funnel")
-    
-    funnel_data = pd.DataFrame({
-        'Stage': ['Page Views', 'Recommendations Shown', 'Items Clicked', 'Items Saved', 'Feedback Given'],
-        'Users': [100, 85, 57, 38, 25],
-        'Rate': ['100%', '85%', '67%', '45%', '29%']
-    })
-    
-    fig = go.Figure(go.Funnel(
-        y=funnel_data['Stage'],
-        x=funnel_data['Users'],
-        textposition="inside",
-        textinfo="value+percent initial",
-        marker_color=['#667eea', '#7c3aed', '#a855f7', '#d946ef', '#f472b6']
-    ))
-    
-    fig.update_layout(
-        title='User Journey Funnel',
-        height=400
-    )
-    
-    st.plotly_chart(fig, use_container_width=True)
-    
-    st.markdown("---")
-    
-    # Time Series (Simulated)
-    st.markdown("### 📈 Metrics Over Time")
-    
-    # Generate simulated time series data
-    dates = pd.date_range(end=datetime.now(), periods=14, freq='D')
-    time_series_df = pd.DataFrame({
-        'Date': dates,
-        'CTR': np.random.uniform(60, 75, 14),
-        'Satisfaction': np.random.uniform(3.8, 4.5, 14),
-        'Sessions': np.random.randint(10, 50, 14)
-    })
-    
-    fig = make_subplots(rows=1, cols=2, subplot_titles=('CTR Trend', 'Satisfaction Trend'))
-    
-    fig.add_trace(
-        go.Scatter(x=time_series_df['Date'], y=time_series_df['CTR'], 
-                   mode='lines+markers', name='CTR %', line=dict(color='#667eea')),
-        row=1, col=1
-    )
-    
-    fig.add_trace(
-        go.Scatter(x=time_series_df['Date'], y=time_series_df['Satisfaction'],
-                   mode='lines+markers', name='Satisfaction', line=dict(color='#f093fb')),
-        row=1, col=2
-    )
-    
-    fig.update_layout(height=350, showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    if has_business_data:
+        st.markdown("---")
+        st.markdown("### 📊 Engagement Summary")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.metric("Total Recommendations", report['summary']['total_recommendations'])
+            st.metric("Total Interactions", report['summary']['total_interactions'])
+        
+        with col2:
+            if business['ctr'] > 0:
+                st.metric("Click-Through Rate", f"{business['ctr']:.1f}%")
+            if business['conversion_rate'] > 0:
+                st.metric("Conversion Rate", f"{business['conversion_rate']:.1f}%")
+    else:
+        st.info("💡 Business metrics will appear here once users start interacting with recommendations.")
 
 # ===== TAB 4: USER STUDY =====
 with tab4:
     st.markdown("### 👥 User Study Results")
     
     user_study = report['user_satisfaction']
-    legacy_study = legacy_report['user_study']
-    
     n_responses = user_study['feedback_count']
-    if n_responses == 0:
-        n_responses = legacy_study['n_responses']
     
-    if n_responses > 0 or legacy_study['n_responses'] > 0:
+    if n_responses > 0:
         col1, col2, col3 = st.columns(3)
-        
-        total_participants = max(n_responses, legacy_study['n_responses'])
         
         with col1:
             st.metric(
                 "👥 Participants",
-                total_participants,
+                n_responses,
                 help="Number of users who provided feedback"
             )
         
         with col2:
-            satisfaction = user_study['avg_satisfaction'] or legacy_study.get('avg_satisfaction', 4.2)
-            st.metric(
-                "😊 Satisfaction",
-                f"{satisfaction:.2f}/5",
-                help="Average user satisfaction rating"
-            )
+            if user_study['avg_satisfaction'] > 0:
+                st.metric(
+                    "😊 Satisfaction",
+                    f"{user_study['avg_satisfaction']:.2f}/5",
+                    help="Average user satisfaction rating"
+                )
+            else:
+                st.metric("😊 Satisfaction", "N/A")
         
         with col3:
-            would_use = legacy_study.get('would_use_daily_pct', 78)
-            st.metric(
-                "🔄 Would Use Daily",
-                f"{would_use:.0f}%",
-                help="% who would use the system daily"
-            )
+            if user_study['avg_relevance'] > 0:
+                st.metric(
+                    "🎯 Relevance",
+                    f"{user_study['avg_relevance']:.2f}/5",
+                    help="Average relevance rating"
+                )
+            else:
+                st.metric("🎯 Relevance", "N/A")
         
         st.markdown("---")
         
-        # Detailed Ratings
-        st.markdown("### 📊 Detailed User Ratings")
+        # Detailed Ratings (REAL DATA ONLY)
+        st.markdown("### 📊 Real User Ratings")
         
-        ratings_data = {
-            'Dimension': ['Relevance', 'Satisfaction', 'Diversity', 'Personalization', 'Would Wear'],
-            'Score': [
-                user_study['avg_relevance'] or legacy_study.get('avg_relevance', 4.1),
-                user_study['avg_satisfaction'] or legacy_study.get('avg_satisfaction', 4.2),
-                legacy_study.get('avg_diversity', 3.9),
-                legacy_study.get('avg_personalization', 4.0),
-                3.8
-            ]
-        }
-        ratings_df = pd.DataFrame(ratings_data)
+        # Only show dimensions that have data
+        ratings_data = []
+        if user_study['avg_relevance'] > 0:
+            ratings_data.append(('Relevance', user_study['avg_relevance']))
+        if user_study['avg_satisfaction'] > 0:
+            ratings_data.append(('Satisfaction', user_study['avg_satisfaction']))
         
-        fig = go.Figure(data=[
-            go.Bar(
-                x=ratings_df['Dimension'],
-                y=ratings_df['Score'],
-                marker_color=['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe'],
-                text=[f"{val:.2f}" for val in ratings_df['Score']],
-                textposition='outside'
+        if ratings_data:
+            ratings_df = pd.DataFrame(ratings_data, columns=['Dimension', 'Score'])
+            
+            fig = go.Figure(data=[
+                go.Bar(
+                    x=ratings_df['Dimension'],
+                    y=ratings_df['Score'],
+                    marker_color=['#667eea', '#764ba2'],
+                    text=[f"{val:.2f}" for val in ratings_df['Score']],
+                    textposition='outside'
+                )
+            ])
+            
+            fig.update_layout(
+                title=f'User Ratings (n={n_responses})',
+                yaxis_title='Rating',
+                yaxis_range=[0, 5],
+                height=400
             )
-        ])
-        
-        fig.update_layout(
-            title='User Ratings by Dimension (1-5 Scale)',
-            yaxis_title='Rating',
-            yaxis_range=[0, 5],
-            height=400
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
-        
-        # User Comments Section
-        st.markdown("### 💬 User Feedback Highlights")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown("""
-            <div style='background: #f0fdf4; padding: 1rem; border-radius: 8px; border-left: 4px solid #22c55e;'>
-                <strong>✅ Positive Feedback</strong>
-                <ul>
-                    <li>"Love how it considers the weather!"</li>
-                    <li>"Recommendations match my style perfectly"</li>
-                    <li>"Very intuitive interface"</li>
-                    <li>"Saves me time choosing outfits"</li>
-                </ul>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown("""
-            <div style='background: #fef2f2; padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;'>
-                <strong>📝 Areas for Improvement</strong>
-                <ul>
-                    <li>"Want more variety in suggestions"</li>
-                    <li>"Add occasion-based filtering"</li>
-                    <li>"Would like brand preferences"</li>
-                    <li>"More color coordination tips"</li>
-                </ul>
-            </div>
-            """, unsafe_allow_html=True)
+            
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info("Collecting detailed ratings...")
     
     else:
-        st.warning("No user feedback collected yet. Use the form below to contribute!")
+        st.warning("""
+        ⚠️ **No user feedback collected yet!**
+        
+        Be the first to contribute feedback using the form below.
+        """)
     
     st.markdown("---")
     
@@ -631,103 +551,119 @@ with tab5:
     st.markdown("### 🔬 Evaluation Methodology")
     
     st.markdown("""
-    This dashboard presents a comprehensive evaluation of the VAESTA recommendation system
-    using multiple evaluation methodologies as recommended for RecSys evaluation.
+    This dashboard presents a **real-time evaluation** of the VAESTA recommendation system
+    using comprehensive analytics tracking and user feedback.
+    
+    **Data Source:** All metrics shown are based on **real user interactions and feedback**.
+    No simulated or synthetic data is displayed.
     """)
     
-    with st.expander("📐 Offline Evaluation", expanded=True):
+    with st.expander("📊 Real-Time Metrics", expanded=True):
         st.markdown("""
-        **Train/Test Split Approach:**
-        - 80% training data, 20% test data
-        - 5-fold cross-validation for robustness
-        - Reproducible random seed (42)
+        **What We Track:**
         
-        **Metrics Calculated:**
-        | Metric | Formula | Our Score |
-        |--------|---------|-----------|
-        | Precision@3 | Relevant in top 3 / 3 | **{:.1%}** |
-        | Recall@3 | Relevant in top 3 / Total relevant | **{:.1%}** |
-        | F1@3 | 2×(P×R)/(P+R) | **{:.1%}** |
-        | NDCG@3 | DCG / IDCG | **{:.1%}** |
-        | Weather Match | Custom metric | **{:.1%}** |
-        """.format(
-            legacy_report['offline_metrics']['precision_at_3'],
-            legacy_report['offline_metrics']['recall_at_3'],
-            legacy_report['offline_metrics']['f1_at_3'],
-            0.82,
-            legacy_report['offline_metrics']['weather_match_accuracy']
-        ))
-    
-    with st.expander("🧪 Baseline Comparison"):
-        st.markdown("""
-        **Compared Methods:**
+        **Ranking Metrics:**
+        - **Precision@K**: Fraction of recommended items that are relevant (based on user ratings ≥4)
+        - **Recall@K**: Fraction of all relevant items that were recommended
+        - **F1@K**: Harmonic mean of Precision and Recall
+        - **NDCG@K**: Normalized Discounted Cumulative Gain (position-aware ranking quality)
         
-        1. **VAESTA (Our Method)**: Content-based with multi-attribute scoring
-           - Weather-aware recommendations
-           - Style preference matching
-           - Color coordination
-           - Layering optimization
+        **Business Metrics:**
+        - **CTR (Click-Through Rate)**: % of recommendations that users clicked
+        - **Conversion Rate**: % of views that led to saves/actions
+        - **Session Duration**: Average time users spend per session
         
-        2. **Rule-Based Baseline**: Simple temperature thresholds
-           - < 10°C → warm clothes
-           - 10-20°C → moderate
-           - > 20°C → light clothes
-        
-        3. **Random Baseline**: Random item selection
-        
-        **Results:**
-        - VAESTA achieves **{:.1f}% improvement** over rule-based baseline
-        - **{:.1f}× better** than random selection
-        """.format(
-            legacy_report['offline_metrics']['baseline_comparison']['improvement'],
-            legacy_report['offline_metrics']['baseline_comparison']['our_method'] / 0.45
-        ))
-    
-    with st.expander("👥 User Study Design"):
-        st.markdown("""
-        **Study Protocol:**
-        1. Users interact with the recommendation system naturally
-        2. After receiving recommendations, asked to rate on 5-point Likert scale
-        3. Multiple dimensions measured:
-           - Relevance (weather appropriateness)
-           - Satisfaction (overall experience)
-           - Diversity (variety of options)
-           - Personalization (style matching)
-           - Intent to Use (likelihood of continued usage)
-        
-        **Target Sample Size:** 10+ participants for statistical significance
-        
-        **Data Collection:**
-        - Anonymous feedback forms
-        - Implicit interactions (clicks, saves)
-        - Session duration and engagement
+        **User Satisfaction:**
+        - **Relevance**: How appropriate recommendations are for weather/context
+        - **Satisfaction**: Overall happiness with recommendations
+        - **Diversity**: Variety in suggestions
+        - **Personalization**: How well recommendations match user style
         """)
     
-    with st.expander("📊 Business Metrics Methodology"):
+    with st.expander("🎯 VAESTA Recommendation Algorithm"):
         st.markdown("""
+        **Content-Based Filtering with Multi-Attribute Scoring:**
+        
+        1. **Weather Integration**
+           - Real-time weather data from OpenWeatherMap
+           - Temperature, humidity, precipitation matching
+           - Wind speed for windproof clothing selection
+        
+        2. **Style Preference Matching**
+           - User profile preferences (casual, formal, sport, etc.)
+           - Gender-specific recommendations
+           - Budget constraints
+        
+        3. **Color Coordination**
+           - Color harmony algorithms
+           - Complementary and analogous color schemes
+           - Season-appropriate palettes
+        
+        4. **Layering Optimization**
+           - Temperature-based layering decisions
+           - Warmth score calculations
+           - Impermeability for rain conditions
+        """)
+    
+    with st.expander("👥 User Feedback Collection"):
+        st.markdown("""
+        **Feedback Protocol:**
+        
+        1. **Implicit Feedback:**
+           - View events (when recommendations are shown)
+           - Click events (when users click on items)
+           - Save events (adding items to wardrobe)
+           - Dismiss events (rejecting recommendations)
+        
+        2. **Explicit Feedback:**
+           - 5-point Likert scale ratings
+           - Multiple dimensions measured:
+             - Relevance (weather appropriateness)
+             - Satisfaction (overall experience)
+             - Diversity (variety of options)
+             - Personalization (style matching)
+             - Would Wear (practical wearability)
+             - Ease of Use (system usability)
+        
+        3. **Qualitative Feedback:**
+           - Open-ended comments
+           - Feature requests
+           - Bug reports
+        
+        **Data Storage:**
+        - All feedback stored in Supabase database
+        - Privacy-preserving (no PII beyond username)
+        - Used to calculate real-time metrics
+        """)
+    
+    with st.expander("📊 Metrics Calculation"):
+        st.markdown(f"""
+        **Current Data Status:**
+        - Total Recommendations: **{report['summary']['total_recommendations']}**
+        - Total Interactions: **{report['summary']['total_interactions']}**
+        - Total Feedback: **{report['summary']['total_feedback']}**
+        - Unique Users: **{report['summary']['unique_users']}**
+        
         **Click-Through Rate (CTR):**
         ```
         CTR = (Number of Clicks / Number of Impressions) × 100
         ```
-        - Measures user interest in recommendations
-        - Industry benchmark: 2-5% for e-commerce
-        - Our CTR: **{:.1f}%** ✓
+        Current CTR: **{report['business_metrics']['ctr']}%**
         
         **Conversion Rate:**
         ```
         Conversion = (Actions Taken / Total Views) × 100
         ```
-        - Measures actionable recommendations
-        - Our rate: **{:.1f}%**
+        Current rate: **{report['business_metrics']['conversion_rate']}%**
         
-        **Session Duration:**
-        - Longer sessions indicate engagement
-        - Average: **{:.1f} minutes**
-        """.format(
-            legacy_report['business_metrics']['recommendation_ctr'] * 100,
-            legacy_report['business_metrics']['wardrobe_addition_rate'] * 100,
-            legacy_report['business_metrics']['avg_session_time_minutes']
-        ))
+        **Precision@K:**
+        ```
+        Precision = (Relevant items in top K) / K
+        ```
+        Based on user ratings ≥4 as "relevant"
+        
+        Current Precision@3: **{report['ranking_metrics']['precision_at_3']:.1%}**
+        """)
     
     with st.expander("🔄 Data Collection System"):
         st.markdown("""
