@@ -12,6 +12,7 @@ from data_manager import add_wardrobe_item, remove_wardrobe_item, get_wardrobe, 
 from weather_service import WeatherService
 from recommendation_engine import RecommendationEngine
 from evaluation import RecommendationEvaluator
+from visual_search import VisualSearchService
 
 load_dotenv()
 
@@ -132,6 +133,11 @@ if "evaluator" not in st.session_state:
     st.session_state.evaluator = RecommendationEvaluator()
 evaluator = st.session_state.evaluator
 
+# Initialize visual search service
+if "visual_search" not in st.session_state:
+    st.session_state.visual_search = VisualSearchService()
+visual_search = st.session_state.visual_search
+
 # Sidebar controls
 with st.sidebar:
     st.markdown("### ⚙️ Settings")
@@ -148,6 +154,14 @@ with st.sidebar:
             st.session_state.user_data["city"] = city_clean
             st.success(f"City updated to {city_clean}!")
             st.rerun()
+    
+    # Option to restrict recommendations to items from user's wardrobe
+    use_only_wardrobe = st.checkbox(
+        "Use only my wardrobe items",
+        value=False,
+        key="use_only_wardrobe",
+        help="When checked, recommendations will be limited to items in your wardrobe (UI-only for now)."
+    )
 
     st.markdown("---")
     st.markdown("### 👕 Your Wardrobe")
@@ -411,34 +425,65 @@ with a:
     selected_style = st.selectbox("Choose your style:", styles, index=styles.index(preferences.get("style", "Minimalist Chic")), label_visibility="collapsed")
 with b:
     st.markdown("**Budget Range**")
-    budget = st.select_slider("Budget", options=["$", "$$", "$$$", "$$$$"], value=preferences.get("budget", "$$"), label_visibility="collapsed")
-with c:
-    st.markdown("**Occasion**")
-    occasion = st.selectbox("Occasion", ["Casual", "Work", "Evening", "Sport"], label_visibility="collapsed")
-
 if st.button("🔍 Find Perfect Pieces", use_container_width=True):
     st.markdown("---")
-    st.markdown("**Curated Suggestions:**")
-    temp = weather_service.get_current_weather(st.session_state.user_data.get("city", "London"))['temp']
-    if temp < 10:
-        suggestions = [
-            {"name": "Wool Blend Coat", "price": "$120", "style": "Classic", "match": "95%"},
-            {"name": "Cashmere Sweater", "price": "$85", "style": "Elegant", "match": "92%"},
-            {"name": "Thermal Leggings", "price": "$45", "style": "Comfort", "match": "88%"},
-        ]
-    elif temp < 20:
-        suggestions = [
-            {"name": "Denim Jacket", "price": "$75", "style": "Casual", "match": "93%"},
-            {"name": "Cotton Hoodie", "price": "$55", "style": "Urban", "match": "90%"},
-            {"name": "Leather Ankle Boots", "price": "$145", "style": "Modern", "match": "88%"},
-        ]
+    
+    # Check if we have a recent recommendation to base shopping on
+    if use_advanced and rec_engine.wardrobe_df is not None:
+        with st.spinner("🔍 Finding similar items online..."):
+            # Get the most recent recommendation
+            if 'recommendation' in locals() and 'error' not in recommendation:
+                shopping_results = visual_search.find_similar_from_outfit(recommendation)
+                
+                if shopping_results:
+                    st.markdown("**🛍️ Similar Items Available Online:**")
+                    st.caption("Based on your AI outfit recommendation")
+                    
+                    # Display results for each item type
+                    for item_type, products in shopping_results.items():
+                        if products:
+                            st.markdown(f"##### {item_type.title()}")
+                            cols = st.columns(3)
+                            for i, product in enumerate(products):
+                                with cols[i]:
+                                    st.markdown(f"**{product['name']}**")
+                                    st.markdown(f"💰 {product['price']}")
+                                    if product.get('match'):
+                                        st.caption(f"Match: {product['match']}")
+                                    st.markdown(f"🏪 [{product['source']}]({product['url']})")
+                            st.markdown("---")
+                else:
+                    st.warning("No shopping results found. Try getting a recommendation first!")
+            else:
+                st.info("👆 Get an AI recommendation first, then click here to find similar items to buy!")
     else:
-        suggestions = [
-            {"name": "Linen Shirt", "price": "$65", "style": "Minimalist", "match": "94%"},
-            {"name": "Cotton Shorts", "price": "$40", "style": "Casual", "match": "91%"},
-            {"name": "Canvas Sneakers", "price": "$80", "style": "Sport", "match": "89%"},
-        ]
-    cols = st.columns(3)
+        # Fallback to simple temperature-based suggestions
+        st.markdown("**Curated Suggestions:**")
+        temp = weather_service.get_current_weather(st.session_state.user_data.get("city", "London"))['temp']
+        if temp < 10:
+            suggestions = [
+                {"name": "Wool Blend Coat", "price": "$120", "style": "Classic", "match": "95%"},
+                {"name": "Cashmere Sweater", "price": "$85", "style": "Elegant", "match": "92%"},
+                {"name": "Thermal Leggings", "price": "$45", "style": "Comfort", "match": "88%"},
+            ]
+        elif temp < 20:
+            suggestions = [
+                {"name": "Denim Jacket", "price": "$75", "style": "Casual", "match": "93%"},
+                {"name": "Cotton Hoodie", "price": "$55", "style": "Urban", "match": "90%"},
+                {"name": "Leather Ankle Boots", "price": "$145", "style": "Modern", "match": "88%"},
+            ]
+        else:
+            suggestions = [
+                {"name": "Linen Shirt", "price": "$65", "style": "Minimalist", "match": "94%"},
+                {"name": "Cotton Shorts", "price": "$40", "style": "Casual", "match": "91%"},
+                {"name": "Canvas Sneakers", "price": "$80", "style": "Sport", "match": "89%"},
+            ]
+        cols = st.columns(3)
+        for i, item in enumerate(suggestions):
+            with cols[i]:
+                st.write(f"**{item['name']}**")
+                st.write(f"{item['price']} | {item['style']}")
+                st.write(f"Match: {item['match']}")
     for i, item in enumerate(suggestions):
         with cols[i]:
             st.write(f"**{item['name']}**")
