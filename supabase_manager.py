@@ -71,6 +71,7 @@ def upload_image_to_storage(local_path: str, username: str) -> Optional[str]:
         
         # Upload to storage bucket 'wardrobe-images'
         try:
+            # Try to upload - this will work even if list_buckets() doesn't
             result = client.storage.from_('wardrobe-images').upload(
                 path=unique_filename,
                 file=file_data,
@@ -81,6 +82,7 @@ def upload_image_to_storage(local_path: str, username: str) -> Optional[str]:
             public_url = client.storage.from_('wardrobe-images').get_public_url(unique_filename)
             
             print(f"✅ Image uploaded to Supabase Storage: {unique_filename}")
+            print(f"   Public URL: {public_url}")
             return public_url
             
         except Exception as storage_error:
