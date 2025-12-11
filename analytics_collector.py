@@ -13,7 +13,7 @@ Tracks:
 
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Any
 from pathlib import Path
 import uuid
@@ -92,6 +92,45 @@ class AnalyticsCollector:
                 return json.load(f)
         except:
             return []
+    
+    def _load_from_supabase(self, event_type: str) -> List[Dict]:
+        """Load events from Supabase analytics tables."""
+        client = self._get_supabase()
+        if not client:
+            return []
+        
+        # Map event types to table names
+        table_mapping = {
+            'api_calls': 'analytics_api_calls',
+            'recommendations': 'analytics_recommendations',
+            'interactions': 'analytics_interactions',
+            'feedback': 'analytics_feedback',
+            'sessions': 'analytics_sessions',
+            'ab_tests': 'analytics_ab_tests'
+        }
+        
+        table_name = table_mapping.get(event_type)
+        if not table_name:
+            return []
+        
+        try:
+            result = client.table(table_name).select('*').order('timestamp', desc=True).limit(10000).execute()
+            return result.data if result.data else []
+        except Exception as e:
+            print(f"Error loading from Supabase {table_name}: {e}")
+            return []
+    
+    def _load_events(self, event_type: str) -> List[Dict]:
+        """
+        Load events from Supabase if available, otherwise fall back to local.
+        """
+        # Try Supabase first
+        supabase_data = self._load_from_supabase(event_type)
+        if supabase_data:
+            return supabase_data
+        
+        # Fallback to local JSON
+        return self._load_local(event_type)
     
     # ==========================================
     # API CALL TRACKING
@@ -374,11 +413,11 @@ class AnalyticsCollector:
         
         CTR = (Clicks / Impressions) * 100
         """
-        cutoff = datetime.now() - timedelta(hours=time_window_hours)
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
         
         # Load data
-        recommendations = self._load_local('recommendations')
-        interactions = self._load_local('interactions')
+        recommendations = self._load_events('recommendations')
+        interactions = self._load_events('interactions')
         
         # Filter by time window
         recent_recs = [
@@ -408,9 +447,9 @@ class AnalyticsCollector:
         """
         Calculate Conversion Rate (saves/purchases from recommendations).
         """
-        cutoff = datetime.now() - timedelta(hours=time_window_hours)
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
         
-        interactions = self._load_local('interactions')
+        interactions = self._load_events('interactions')
         
         recent = [
             i for i in interactions 
@@ -433,11 +472,11 @@ class AnalyticsCollector:
         """
         Calculate engagement metrics over time window (default 1 week).
         """
-        cutoff = datetime.now() - timedelta(hours=time_window_hours)
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
         
-        sessions = self._load_local('sessions')
-        feedback = self._load_local('feedback')
-        interactions = self._load_local('interactions')
+        sessions = self._load_events('sessions')
+        feedback = self._load_events('feedback')
+        interactions = self._load_events('interactions')
         
         # Filter by time
         recent_sessions = [
@@ -483,7 +522,7 @@ class AnalyticsCollector:
         """
         Calculate Precision@K and Recall@K from user feedback.
         """
-        feedback = self._load_local('feedback')
+        feedback = self._load_events('feedback')
         
         if not feedback:
             return {
@@ -538,7 +577,7 @@ class AnalyticsCollector:
         """
         import numpy as np
         
-        feedback = self._load_local('feedback')
+        feedback = self._load_events('feedback')
         
         if not feedback:
             return {'ndcg_at_3': 0, 'sample_size': 0}
@@ -579,12 +618,12 @@ class AnalyticsCollector:
         precision_recall = self.calculate_precision_recall()
         ndcg = self.calculate_ndcg()
         
-        # Load raw counts
-        api_calls = self._load_local('api_calls')
-        recommendations = self._load_local('recommendations')
-        interactions = self._load_local('interactions')
-        feedback = self._load_local('feedback')
-        sessions = self._load_local('sessions')
+        # Load raw counts from Supabase (or local fallback)
+        api_calls = self._load_events('api_calls')
+        recommendations = self._load_events('recommendations')
+        interactions = self._load_events('interactions')
+        feedback = self._load_events('feedback')
+        sessions = self._load_events('sessions')
         
         return {
             'summary': {
