@@ -4,19 +4,42 @@ from dotenv import load_dotenv
 import os
 import warnings
 
+# Load environment variables FIRST
+load_dotenv()
+
 # Suppress libjpeg warnings
 warnings.filterwarnings('ignore', message='.*JPEG library version.*')
 
-# Import custom modules
+# Import custom modules (after load_dotenv!)
 from data_manager import (
     create_user, get_user, update_user, add_wardrobe_item,
     remove_wardrobe_item, get_wardrobe, update_preferences,
-    get_measurements, update_measurements
+    get_measurements, update_measurements, authenticate_user,
+    user_exists, email_exists, get_storage_backend
 )
 from weather_service import WeatherService
 
-# Load environment variables
-load_dotenv()
+# Force Supabase connection initialization on startup
+print("\n" + "=" * 60)
+print("🚀 VAESTA STARTING - INITIALIZING DATABASE CONNECTION")
+print("=" * 60)
+
+# Force connection test
+try:
+    from supabase_manager import get_supabase_client
+    print("[INIT] Testing Supabase connection...")
+    client = get_supabase_client()
+    if client:
+        result = client.table('users').select('id').limit(1).execute()
+        print(f"[INIT] ✅ Supabase connected! Found {len(result.data)} users in test query")
+    else:
+        print("[INIT] ⚠️ Using local JSON storage")
+except Exception as e:
+    print(f"[INIT] ❌ Connection error: {e}")
+
+backend = get_storage_backend()
+print(f"[INIT] 📦 Active storage backend: {backend.upper()}")
+print("=" * 60 + "\n")
 
 # Page config
 st.set_page_config(
@@ -128,23 +151,29 @@ def login_page():
         with tab1:
             st.markdown("### Welcome Back!")
             login_username = st.text_input("Username", key="login_user", placeholder="Enter your username")
+            login_password = st.text_input("Password", key="login_pass", type="password", placeholder="Enter your password")
             
             if st.button("Login", use_container_width=True, type="primary"):
-                user = get_user(login_username)
-                if user:
-                    st.session_state.logged_in = True
-                    st.session_state.username = login_username
-                    st.session_state.user_data = user
-                    st.session_state.page = "home"
-                    st.success(f"Welcome back, {login_username}!")
-                    st.rerun()
+                if not login_username or not login_password:
+                    st.error("Please enter both username and password.")
                 else:
-                    st.error("User not found. Please register first.")
+                    user = authenticate_user(login_username, login_password)
+                    if user:
+                        st.session_state.logged_in = True
+                        st.session_state.username = login_username
+                        st.session_state.user_data = user
+                        st.session_state.page = "home"
+                        st.success(f"Welcome back, {login_username}!")
+                        st.rerun()
+                    else:
+                        st.error("Invalid username or password.")
         
         with tab2:
             st.markdown("### Create Your Account")
             reg_username = st.text_input("Username", key="reg_user", placeholder="Choose a username")
             reg_email = st.text_input("Email", key="reg_email", placeholder="your.email@example.com")
+            reg_password = st.text_input("Password", key="reg_pass", type="password", placeholder="Min 6 characters")
+            reg_password_confirm = st.text_input("Confirm Password", key="reg_pass_confirm", type="password", placeholder="Re-enter password")
             reg_city = st.text_input(
                 "City",
                 key="reg_city",
@@ -156,9 +185,20 @@ def login_page():
             reg_budget = st.select_slider("Budget Range", options=["$", "$$", "$$$", "$$$$"], value="$$")
             
             if st.button("Create Account", use_container_width=True, type="primary"):
-                if reg_username and reg_email and reg_city:
+                # Validation
+                if not all([reg_username, reg_email, reg_password, reg_city]):
+                    st.error("Please fill in all fields.")
+                elif len(reg_password) < 6:
+                    st.error("Password must be at least 6 characters.")
+                elif reg_password != reg_password_confirm:
+                    st.error("Passwords do not match.")
+                elif not "@" in reg_email:
+                    st.error("Please enter a valid email address.")
+                else:
                     try:
-                        user_data = create_user(reg_username, reg_email, reg_city)
+                        print(f"Creating user: {reg_username}, {reg_email}, {reg_city}")  # Debug
+                        user_data = create_user(reg_username, reg_email, reg_city, reg_password)
+                        print(f"User created: {user_data}")  # Debug
                         # Update preferences
                         update_preferences(reg_username, {
                             "style": reg_style,
@@ -172,8 +212,9 @@ def login_page():
                         st.rerun()
                     except ValueError as e:
                         st.error(str(e))
-                else:
-                    st.error("Please fill in all fields.")
+                    except Exception as e:
+                        print(f"Error creating user: {type(e).__name__}: {e}")  # Debug
+                        st.error(f"Error: {e}")
         
 
 

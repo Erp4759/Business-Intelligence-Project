@@ -28,7 +28,7 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 def analyze_clothing_image(image_path: str, user_input: dict = None) -> dict:
     """
-    Analyze clothing image using Google Gemini Vision API.
+    Analyze clothing image using OpenAI GPT-4 Vision API.
     If user_input is provided, use those values instead of AI prediction.
     """
     if user_input:
@@ -48,19 +48,35 @@ def analyze_clothing_image(image_path: str, user_input: dict = None) -> dict:
             "notes": user_input.get("notes", ""),
         }
     
-    # AI analysis using Gemini
+    # AI analysis using OpenAI GPT-4 Vision
     try:
-        import google.generativeai as genai
+        from openai import OpenAI
+        import base64
         
-        api_key = os.getenv("GEMINI_API_KEY")
+        # Get API key from secrets or env
+        api_key = None
+        try:
+            import streamlit as st
+            if hasattr(st, 'secrets') and 'OPENAI_API_KEY' in st.secrets:
+                api_key = st.secrets["OPENAI_API_KEY"]
+        except:
+            pass
+        
         if not api_key:
-            raise ValueError("GEMINI_API_KEY not set in .env")
+            api_key = os.getenv("OPENAI_API_KEY")
         
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-2.5-flash')
+        if not api_key:
+            raise ValueError("OPENAI_API_KEY not set")
         
-        # Load and prepare image
-        img = Image.open(image_path)
+        client = OpenAI(api_key=api_key)
+        
+        # Encode image to base64
+        with open(image_path, "rb") as image_file:
+            image_data = base64.b64encode(image_file.read()).decode('utf-8')
+        
+        # Determine image type
+        img_ext = Path(image_path).suffix.lower()
+        mime_type = "image/jpeg" if img_ext in ['.jpg', '.jpeg'] else "image/png"
         
         prompt = """Analyze this clothing item and provide detailed parameters in JSON format.
         
@@ -80,13 +96,30 @@ Return ONLY valid JSON with these exact fields:
 
 Be precise and realistic. For warmth: t-shirt=1, hoodie=3, winter coat=5."""
 
-        response = model.generate_content([prompt, img])
+        response = client.chat.completions.create(
+            model="gpt-4o",  # or gpt-4-vision-preview
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:{mime_type};base64,{image_data}"
+                            }
+                        }
+                    ]
+                }
+            ],
+            max_tokens=500
+        )
         
         # Parse JSON from response
         import json
         import re
         
-        text = response.text
+        text = response.choices[0].message.content
         # Extract JSON from markdown code blocks if present
         json_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', text, re.DOTALL)
         if json_match:
@@ -99,7 +132,7 @@ Be precise and realistic. For warmth: t-shirt=1, hoodie=3, winter coat=5."""
             "black": "#000000", "white": "#FFFFFF", "gray": "#808080", "grey": "#808080",
             "red": "#FF0000", "blue": "#0000FF", "green": "#00FF00", "yellow": "#FFFF00",
             "orange": "#FFA500", "purple": "#800080", "pink": "#FFC0CB", "brown": "#8B4513",
-            "navy": "#000080", "beige": "#F5F5DC", "khaki": "#F0E68C"
+            "navy": "#000080", "beige": "#F5F5DC", "khaki": "#F0E68C", "tan": "#D2B48C"
         }
         color_name = data.get("color", "gray").lower()
         hex_color = color_map.get(color_name, "#667eea")
@@ -115,12 +148,12 @@ Be precise and realistic. For warmth: t-shirt=1, hoodie=3, winter coat=5."""
             "waterproof": bool(data.get("waterproof", False)),
             "windproof": bool(data.get("windproof", False)),
             "ai_analyzed": True,
-            "confidence": 0.85,
-            "notes": f"AI: {data.get('description', 'Analyzed by Gemini')}",
+            "confidence": 0.9,
+            "notes": f"AI: {data.get('description', 'Analyzed by GPT-4 Vision')}",
         }
         
     except Exception as e:
-        print(f"Gemini API Error: {e}")
+        print(f"OpenAI API Error: {e}")
         # Fallback to placeholder
         return {
             "type": "shirt",
@@ -175,7 +208,7 @@ with col_params:
     
     # Store AI analysis results in session
     if use_ai and st.session_state.get("temp_image_path") and st.button("🤖 Analyze with AI", use_container_width=True, type="primary"):
-        with st.spinner("🔍 Analyzing image with Gemini..."):
+        with st.spinner("🔍 Analyzing image with GPT-4 Vision..."):
             try:
                 ai_result = analyze_clothing_image(st.session_state.temp_image_path, user_input=None)
                 st.session_state.ai_analysis = ai_result
