@@ -18,6 +18,7 @@ from data_manager import (
     user_exists, email_exists, get_storage_backend
 )
 from weather_service import WeatherService
+from analytics_collector import get_analytics
 
 # Force Supabase connection initialization on startup
 print("\n" + "=" * 60)
@@ -132,6 +133,11 @@ if 'user_data' not in st.session_state:
     st.session_state.user_data = None
 if 'page' not in st.session_state:
     st.session_state.page = "login"
+if 'analytics_session_id' not in st.session_state:
+    st.session_state.analytics_session_id = None
+
+# Initialize analytics
+analytics = get_analytics()
 
 # Initialize weather service
 weather_service = WeatherService()
@@ -163,6 +169,14 @@ def login_page():
                         st.session_state.username = login_username
                         st.session_state.user_data = user
                         st.session_state.page = "home"
+                        
+                        # Start analytics session
+                        session_id = analytics.start_session(
+                            username=login_username,
+                            device_info={'platform': 'web', 'browser': 'streamlit'}
+                        )
+                        st.session_state.analytics_session_id = session_id
+                        
                         st.success(f"Welcome back, {login_username}!")
                         st.rerun()
                     else:
@@ -208,6 +222,14 @@ def login_page():
                         st.session_state.username = reg_username
                         st.session_state.user_data = get_user(reg_username)
                         st.session_state.page = "home"
+                        
+                        # Start analytics session
+                        session_id = analytics.start_session(
+                            username=reg_username,
+                            device_info={'platform': 'web', 'browser': 'streamlit'}
+                        )
+                        st.session_state.analytics_session_id = session_id
+                        
                         st.success(f"Account created! Welcome, {reg_username}!")
                         st.rerun()
                     except ValueError as e:
@@ -229,10 +251,15 @@ def home_page():
         st.markdown("<div style='text-align: right; padding-top: 2rem;'>", unsafe_allow_html=True)
         st.markdown(f"**👤 {st.session_state.username}**")
         if st.button("Logout", key="logout_btn"):
+            # End analytics session
+            if st.session_state.get('analytics_session_id'):
+                analytics.end_session(st.session_state.analytics_session_id)
+            
             st.session_state.logged_in = False
             st.session_state.username = None
             st.session_state.user_data = None
             st.session_state.page = "login"
+            st.session_state.analytics_session_id = None
             st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -260,9 +287,19 @@ def home_page():
         # Profile link
         if st.button("👤 My Profile", use_container_width=True):
             st.session_state.page = "profile"
+            # Update session with page visit
+            if st.session_state.get('analytics_session_id'):
+                analytics.update_session(st.session_state.analytics_session_id, {
+                    'pages_visited': st.session_state.get('pages_visited', []) + ['profile']
+                })
             st.rerun()
         if st.button("🧍 Fit & Measurements", use_container_width=True):
             st.session_state.page = "fit"
+            # Update session with page visit
+            if st.session_state.get('analytics_session_id'):
+                analytics.update_session(st.session_state.analytics_session_id, {
+                    'pages_visited': st.session_state.get('pages_visited', []) + ['fit']
+                })
             st.rerun()
         
         st.markdown("---")
