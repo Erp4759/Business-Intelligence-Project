@@ -90,6 +90,16 @@ def upload_image_to_storage(local_path: str, username: str) -> Optional[str]:
             error_str = str(storage_error).lower()
             error_msg = str(storage_error)
             
+            # Print full error for debugging
+            print(f"❌ Storage Error Details:")
+            print(f"   Type: {type(storage_error).__name__}")
+            print(f"   Message: {error_msg}")
+            
+            if hasattr(storage_error, 'message'):
+                print(f"   Error.message: {storage_error.message}")
+            if hasattr(storage_error, 'status_code'):
+                print(f"   Status Code: {storage_error.status_code}")
+            
             if "not found" in error_str or "404" in error_str or "bucket" in error_str:
                 print("⚠️ Storage bucket 'wardrobe-images' NOT FOUND!")
                 print("   📝 Please create it in Supabase Dashboard:")
@@ -101,12 +111,16 @@ def upload_image_to_storage(local_path: str, username: str) -> Optional[str]:
                 print("   4. Click 'Create bucket'")
                 print("   5. Refresh this page and try again")
             elif "permission" in error_str or "403" in error_str or "unauthorized" in error_str:
-                print("⚠️ Permission denied! Check your Supabase API key permissions.")
+                print("⚠️ Permission denied!")
+                print("   Possible causes:")
+                print("   - Bucket exists but is NOT public")
+                print("   - API key doesn't have storage permissions")
+                print("   - RLS policies blocking upload")
             elif "file too large" in error_str or "413" in error_str:
                 print(f"⚠️ File too large! Error: {error_msg}")
             else:
-                print(f"❌ Storage upload error: {error_msg}")
-                print(f"   Full error: {storage_error}")
+                print(f"❌ Unknown storage error: {error_msg}")
+            
             # Don't raise - return None so app can fallback to local storage
             return None
             
