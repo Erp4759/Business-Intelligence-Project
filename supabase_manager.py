@@ -61,15 +61,22 @@ def get_supabase_client():
     supabase_url = None
     supabase_key = None
     
-    # Method 1: Streamlit secrets
+    # Method 1: Streamlit secrets (PRIORITY for Streamlit Cloud)
     try:
         import streamlit as st
-        if hasattr(st, 'secrets') and 'SUPABASE_URL' in st.secrets:
-            supabase_url = str(st.secrets["SUPABASE_URL"])
-            supabase_key = str(st.secrets["SUPABASE_KEY"])
-            print("[DEBUG] Using Streamlit secrets")
+        # Check if we're in Streamlit context and secrets are available
+        if hasattr(st, 'secrets'):
+            try:
+                # Try to access secrets - this will work on Streamlit Cloud
+                supabase_url = str(st.secrets["SUPABASE_URL"])
+                supabase_key = str(st.secrets["SUPABASE_KEY"])
+                print("[DEBUG] ✅ Using Streamlit secrets (Cloud)")
+            except (KeyError, FileNotFoundError) as e:
+                print(f"[DEBUG] ⚠️ Streamlit secrets not found: {e}")
+    except ImportError:
+        print("[DEBUG] Streamlit not available")
     except Exception as e:
-        print(f"[DEBUG] Streamlit secrets failed: {e}")
+        print(f"[DEBUG] Streamlit secrets error: {e}")
     
     # Method 2: Environment variables
     if not supabase_url:
@@ -78,7 +85,7 @@ def get_supabase_client():
         if supabase_url:
             print("[DEBUG] Using environment variables")
     
-    # Method 3: Direct file read as fallback
+    # Method 3: Direct file read as fallback (local development only)
     if not supabase_url:
         try:
             import toml
@@ -87,7 +94,7 @@ def get_supabase_client():
                 secrets = toml.load(secrets_path)
                 supabase_url = secrets.get('SUPABASE_URL')
                 supabase_key = secrets.get('SUPABASE_KEY')
-                print("[DEBUG] Using secrets.toml file directly")
+                print("[DEBUG] Using secrets.toml file directly (local)")
         except Exception as e:
             print(f"[DEBUG] Direct file read failed: {e}")
     
