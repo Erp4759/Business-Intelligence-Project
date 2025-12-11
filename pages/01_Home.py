@@ -9,7 +9,7 @@ import pandas as pd
 sys.path.append('..')
 
 from ui import inject_css
-from data_manager import add_wardrobe_item, remove_wardrobe_item, get_wardrobe, get_user, update_user
+from data_manager import add_wardrobe_item, remove_wardrobe_item, get_wardrobe, get_ai_wardrobe, get_user, update_user
 from weather_service import WeatherService
 from recommendation_engine import RecommendationEngine
 from evaluation import RecommendationEvaluator
@@ -298,46 +298,126 @@ with col2:
         use_only_wardrobe = st.session_state.get('use_only_wardrobe', False)
         
         if use_only_wardrobe:
-            # Get user's wardrobe and convert to DataFrame format
+            # Get user's wardrobe (both regular and AI) and convert to DataFrame format
             username = st.session_state.username
-            user_wardrobe = get_wardrobe(username)
+            user_wardrobe = get_wardrobe(username) or []
+            ai_wardrobe = get_ai_wardrobe(username) or []
             
-            if user_wardrobe and len(user_wardrobe) > 0:
-                # Convert user wardrobe to recommendation engine format
+            # Combine both wardrobes
+            all_wardrobe_items = list(user_wardrobe) + list(ai_wardrobe)
+            
+            # Debug info (temporary)
+            with st.expander("🔍 Debug Info", expanded=False):
+                st.write(f"**Username:** {username}")
+                st.write(f"**Regular wardrobe:** {len(user_wardrobe)} items")
+                st.write(f"**AI wardrobe:** {len(ai_wardrobe)} items")
+                st.write(f"**Total items:** {len(all_wardrobe_items)}")
+                if all_wardrobe_items:
+                    st.write("**Items found:**")
+                    for idx, item in enumerate(all_wardrobe_items):
+                        item_name = item.get('name') or item.get('type', 'Unknown')
+                        item_type = item.get('type', 'Unknown')
+                        st.write(f"  {idx+1}. {item_name} ({item_type})")
+            
+            if len(all_wardrobe_items) > 0:
+                # Convert user wardrobe (regular + AI) to recommendation engine format
                 wardrobe_items = []
-                for item in user_wardrobe:
-                    # Map user wardrobe format to engine format
-                    item_type = item.get('type', 'Top')
-                    category = item.get('name', 'Item').lower()
+                
+                # Category mapping based on item type (must match recommendation_engine.CATEGORY_MAP)
+                # Valid categories: jacket, coat, hoodie, t-shirt, button-up shirt, sweater, polo, 
+                # blouse, tank top, jeans, trousers, shorts, skirt, leggings, dress
+                TYPE_TO_CATEGORY = {
+                    'Outerwear': 'jacket',  # Maps to "Outer" component
+                    'jacket': 'jacket',  # AI wardrobe uses 'jacket' directly
+                    'coat': 'coat',
+                    'Top': 't-shirt',  # Maps to "Top" component  
+                    'shirt': 'button-up shirt',
+                    't-shirt': 't-shirt',
+                    'sweater': 'sweater',
+                    'polo': 'polo',
+                    'Bottom': 'jeans',  # Maps to "Bottom" component
+                    'pants': 'trousers',
+                    'shorts': 'shorts',
+                    'jeans': 'jeans',
+                    'skirt': 'skirt',
+                    'leggings': 'leggings',
+                    'dress': 'dress'
+                }
+                
+                for item in all_wardrobe_items:
+                    # Handle both regular wardrobe format and AI wardrobe format
+                    # Regular: {'type': 'Top', 'name': '...', 'color': '...', 'season': [...]}
+                    # AI: {'type': 'jacket', 'warmth_level': 3, 'color': '...', 'season': [...], ...}
                     
-                    # Estimate scores based on type and season
-                    warmth_score = 3  # Default moderate
-                    if item_type == 'Outerwear' or 'winter' in str(item.get('season', [])).lower():
-                        warmth_score = 4
-                    elif 'summer' in str(item.get('season', [])).lower():
-                        warmth_score = 2
+                    # Get item type (AI wardrobe uses 'type' directly like 'jacket', 'sweater', etc.)
+                    item_type = item.get('type', 'Top')
+                    item_name = item.get('name') or item_type.title()  # AI items might not have 'name'
+                    
+                    # Map item_type to category (must be a key in CATEGORY_MAP)
+                    # AI wardrobe already uses correct category names (jacket, sweater, shorts, etc.)
+                    # Regular wardrobe uses generic types (Outerwear, Top, Bottom)
+                    item_type_lower = item_type.lower()
+                    
+                    # Check if it's already a valid category name
+                    if item_type_lower in TYPE_TO_CATEGORY.values():
+                        category = item_type_lower  # Already correct (jacket, sweater, shorts, etc.)
+                    else:
+                        # Map generic type to category
+                        category = TYPE_TO_CATEGORY.get(item_type, 't-shirt')
+                    
+                    # Map item_type to outer_inner (required by recommendation engine)
+                    if item_type_lower in ['outerwear', 'jacket', 'coat', 'hoodie']:
+                        outer_inner = 'outer'
+                    else:
+                        outer_inner = 'inner'  # Top, Bottom, etc.
+                    
+                    # Get warmth_score (AI wardrobe has 'warmth_level', regular has estimated)
+                    if 'warmth_level' in item:
+                        # From AI wardrobe - convert to warmth_score (same scale 1-5)
+                        warmth_score = item.get('warmth_level', 3)
+                    else:
+                        # From regular wardrobe - estimate based on type and season
+                        warmth_score = 3  # Default moderate
+                        if item_type == 'Outerwear' or 'winter' in str(item.get('season', [])).lower():
+                            warmth_score = 4
+                        elif 'summer' in str(item.get('season', [])).lower():
+                            warmth_score = 2
+                    
+                    # Get impermeability_score (AI wardrobe has this, regular estimates)
+                    impermeability_score = item.get('impermeability_score')
+                    if impermeability_score is None:
+                        # Estimate: waterproof items have higher score
+                        impermeability_score = 4 if item.get('waterproof', False) else 2
+                    
+                    # Get layering_score
+                    layering_score = item.get('layering_score')
+                    if layering_score is None:
+                        layering_score = 1 if outer_inner == 'outer' else 3
                     
                     wardrobe_items.append({
-                        'category': category,
+                        'category': category,  # Must be a key in CATEGORY_MAP
                         'color': item.get('color', '#667eea'),
                         'warmth_score': warmth_score,
-                        'impermeability_score': 2,  # Default
-                        'layering_score': 1 if item_type == 'Outerwear' else 3,
-                        'thickness': 'medium',
-                        'image_link': '',
-                        'notes': f"From your wardrobe: {item.get('name')}"
+                        'impermeability_score': impermeability_score,
+                        'layering_score': layering_score,
+                        'thickness': item.get('thickness', 'medium'),
+                        'image_link': item.get('image_path', ''),
+                        'outer_inner': outer_inner,  # REQUIRED: 'outer' or 'inner'
+                        'notes': f"From your wardrobe: {item_name}"
                     })
                 
                 if wardrobe_items:
                     custom_wardrobe_df = pd.DataFrame(wardrobe_items)
-                    st.info(f"✅ Using {len(wardrobe_items)} items from your wardrobe")
+                    st.info(f"✅ Using {len(wardrobe_items)} items from your wardrobe ({len(user_wardrobe)} regular + {len(ai_wardrobe)} AI)")
                 else:
-                    st.warning("⚠️ Your wardrobe is empty. Add items in the sidebar!")
+                    st.warning("⚠️ Your wardrobe is empty. Add items in the sidebar or AI Wardrobe!")
                     custom_wardrobe_df = None
             else:
                 # Checkbox is enabled but wardrobe is empty
                 st.warning("⚠️ Your wardrobe is empty. Add items in the sidebar to use this feature!")
                 custom_wardrobe_df = None
+                # Don't generate recommendation if wardrobe is required but empty
+                st.stop()
         
         recommendation = rec_engine.recommend_outfit(city, custom_wardrobe=custom_wardrobe_df)
         
@@ -392,9 +472,12 @@ with col2:
                 dress_img = dress.get('image_link', '')
                 
                 st.success(f"**Perfect Dress: {dress_cat}**")
-                # Display image via base64 to avoid JPEG/lib issues
+                # Display image - support both URLs (Supabase Storage) and local paths
                 if dress_img:
-                    render_local_image(dress_img, width=300, alt_text=dress_cat)
+                    if dress_img.startswith('http://') or dress_img.startswith('https://'):
+                        st.image(dress_img, width=300, use_container_width=False)
+                    else:
+                        render_local_image(dress_img, width=300, alt_text=dress_cat)
                 else:
                     st.info(f"📷 {dress_cat} ({dress.get('color', 'N/A')})")
                 st.write(dress_notes)
@@ -409,34 +492,55 @@ with col2:
                 outer_color = outer.get('color', '')
                 outer_warmth = outer.get('warmth_score', 3)
                 outer_img = outer.get('image_link', '')
+                # Debug: check what we got
+                if not outer_img and use_only_wardrobe:
+                    st.write(f"🔍 DEBUG outer: {list(outer.keys())}, image_link={outer.get('image_link')}")
 
                 top_cat = top.get('category', 'Top').title()
                 top_color = top.get('color', '')
                 top_warmth = top.get('warmth_score', 3)
                 top_img = top.get('image_link', '')
+                # Debug: check what we got
+                if not top_img and use_only_wardrobe:
+                    st.write(f"🔍 DEBUG top: {list(top.keys())}, image_link={top.get('image_link')}")
 
                 bottom_cat = bottom.get('category', 'Bottom').title()
                 bottom_color = bottom.get('color', '')
                 bottom_warmth = bottom.get('warmth_score', 3)
                 bottom_img = bottom.get('image_link', '')
+                # Debug: check what we got
+                if not bottom_img and use_only_wardrobe:
+                    st.write(f"🔍 DEBUG bottom: {list(bottom.keys())}, image_link={bottom.get('image_link')}")
 
                 # Three columns: each shows image + caption to keep layout predictable
                 img_cols = st.columns([1, 1, 1])
                 with img_cols[0]:
                     if outer_img:
-                        render_local_image(outer_img, width=140, alt_text=outer_cat)
+                        # Support both URLs (Supabase Storage) and local paths
+                        if outer_img.startswith('http://') or outer_img.startswith('https://'):
+                            st.image(outer_img, width=140, use_container_width=False)
+                        else:
+                            render_local_image(outer_img, width=140, alt_text=outer_cat)
                     else:
                         st.info(f"📷 {outer_cat}")
                     st.markdown(f"**Outerwear:** {outer_cat} ({outer_color}) | Warmth: {outer_warmth}/5")
                 with img_cols[1]:
                     if top_img:
-                        render_local_image(top_img, width=140, alt_text=top_cat)
+                        # Support both URLs (Supabase Storage) and local paths
+                        if top_img.startswith('http://') or top_img.startswith('https://'):
+                            st.image(top_img, width=140, use_container_width=False)
+                        else:
+                            render_local_image(top_img, width=140, alt_text=top_cat)
                     else:
                         st.info(f"📷 {top_cat}")
                     st.markdown(f"**Top:** {top_cat} ({top_color}) | Warmth: {top_warmth}/5")
                 with img_cols[2]:
                     if bottom_img:
-                        render_local_image(bottom_img, width=140, alt_text=bottom_cat)
+                        # Support both URLs (Supabase Storage) and local paths
+                        if bottom_img.startswith('http://') or bottom_img.startswith('https://'):
+                            st.image(bottom_img, width=140, use_container_width=False)
+                        else:
+                            render_local_image(bottom_img, width=140, alt_text=bottom_cat)
                     else:
                         st.info(f"📷 {bottom_cat}")
                     st.markdown(f"**Bottom:** {bottom_cat} ({bottom_color}) | Warmth: {bottom_warmth}/5")
