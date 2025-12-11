@@ -211,6 +211,26 @@ with col_upload:
                     st.success(f"✅ Image uploaded to cloud storage")
                 else:
                     st.warning("⚠️ Cloud upload failed, using local storage")
+                    with st.expander("ℹ️ How to enable cloud storage", expanded=False):
+                        st.markdown("""
+                        **To enable cloud storage for images:**
+                        
+                        1. Go to your Supabase dashboard:
+                           👉 https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets
+                        
+                        2. Click **"New bucket"** or **"Create bucket"**
+                        
+                        3. Fill in:
+                           - **Name:** `wardrobe-images`
+                           - **Public bucket:** ✅ **YES** (important!)
+                           - **File size limit:** 10MB (optional)
+                        
+                        4. Click **"Create bucket"**
+                        
+                        5. Refresh this page and try uploading again!
+                        
+                        **Why?** Cloud storage ensures your images persist across app restarts.
+                        """)
         
         # Store both paths in session
         st.session_state.temp_image_path = str(save_path)
