@@ -117,42 +117,60 @@ class VisualSearchService:
             max_results: Number of results
             
         Returns:
-            List of mock product results
+            List of mock product results with actual image URLs
         """
         category = item_description.get('category', 'clothing').title()
         color = item_description.get('color', 'Classic')
         
-        # Generate realistic mock products
+        # Generate realistic mock products with actual placeholder images
         base_products = {
             'jacket': [
-                {'name': 'Premium Denim Jacket', 'price': '$89', 'store': 'Zara'},
-                {'name': 'Classic Bomber Jacket', 'price': '$125', 'store': 'H&M'},
-                {'name': 'Lightweight Spring Jacket', 'price': '$75', 'store': 'Uniqlo'}
+                {'name': 'Premium Denim Jacket', 'price': '$89', 'store': 'Zara', 
+                 'image': 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=400&fit=crop'},
+                {'name': 'Classic Bomber Jacket', 'price': '$125', 'store': 'H&M',
+                 'image': 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=300&h=400&fit=crop'},
+                {'name': 'Lightweight Spring Jacket', 'price': '$75', 'store': 'Uniqlo',
+                 'image': 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=300&h=400&fit=crop'}
             ],
             'coat': [
-                {'name': 'Wool Blend Overcoat', 'price': '$180', 'store': 'Mango'},
-                {'name': 'Trench Coat Classic', 'price': '$145', 'store': 'Gap'},
-                {'name': 'Winter Long Coat', 'price': '$210', 'store': 'Zara'}
+                {'name': 'Wool Blend Overcoat', 'price': '$180', 'store': 'Mango',
+                 'image': 'https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=300&h=400&fit=crop'},
+                {'name': 'Trench Coat Classic', 'price': '$145', 'store': 'Gap',
+                 'image': 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=300&h=400&fit=crop'},
+                {'name': 'Winter Long Coat', 'price': '$210', 'store': 'Zara',
+                 'image': 'https://images.unsplash.com/photo-1544923246-77307d119b12?w=300&h=400&fit=crop'}
             ],
             't-shirt': [
-                {'name': 'Cotton Basic Tee', 'price': '$25', 'store': 'Uniqlo'},
-                {'name': 'Premium T-Shirt', 'price': '$35', 'store': 'Everlane'},
-                {'name': 'Organic Cotton Tee', 'price': '$30', 'store': 'H&M'}
+                {'name': 'Cotton Basic Tee', 'price': '$25', 'store': 'Uniqlo',
+                 'image': 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=400&fit=crop'},
+                {'name': 'Premium T-Shirt', 'price': '$35', 'store': 'Everlane',
+                 'image': 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=300&h=400&fit=crop'},
+                {'name': 'Organic Cotton Tee', 'price': '$30', 'store': 'H&M',
+                 'image': 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300&h=400&fit=crop'}
             ],
             'sweater': [
-                {'name': 'Cashmere Blend Sweater', 'price': '$95', 'store': 'J.Crew'},
-                {'name': 'Wool Pullover', 'price': '$78', 'store': 'Gap'},
-                {'name': 'Knit Cardigan', 'price': '$65', 'store': 'Uniqlo'}
+                {'name': 'Cashmere Blend Sweater', 'price': '$95', 'store': 'J.Crew',
+                 'image': 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=300&h=400&fit=crop'},
+                {'name': 'Wool Pullover', 'price': '$78', 'store': 'Gap',
+                 'image': 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=300&h=400&fit=crop'},
+                {'name': 'Knit Cardigan', 'price': '$65', 'store': 'Uniqlo',
+                 'image': 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=300&h=400&fit=crop'}
             ],
             'jeans': [
-                {'name': 'Slim Fit Jeans', 'price': '$68', 'store': "Levi's"},
-                {'name': 'High-Rise Denim', 'price': '$85', 'store': 'Madewell'},
-                {'name': 'Straight Leg Jeans', 'price': '$75', 'store': 'Gap'}
+                {'name': 'Slim Fit Jeans', 'price': '$68', 'store': "Levi's",
+                 'image': 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=400&fit=crop'},
+                {'name': 'High-Rise Denim', 'price': '$85', 'store': 'Madewell',
+                 'image': 'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=400&fit=crop'},
+                {'name': 'Straight Leg Jeans', 'price': '$75', 'store': 'Gap',
+                 'image': 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300&h=400&fit=crop'}
             ],
             'dress': [
-                {'name': 'Midi Dress', 'price': '$95', 'store': 'Zara'},
-                {'name': 'Casual Day Dress', 'price': '$65', 'store': 'H&M'},
-                {'name': 'Evening Dress', 'price': '$140', 'store': 'Mango'}
+                {'name': 'Midi Dress', 'price': '$95', 'store': 'Zara',
+                 'image': 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=300&h=400&fit=crop'},
+                {'name': 'Casual Day Dress', 'price': '$65', 'store': 'H&M',
+                 'image': 'https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?w=300&h=400&fit=crop'},
+                {'name': 'Evening Dress', 'price': '$140', 'store': 'Mango',
+                 'image': 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=300&h=400&fit=crop'}
             ]
         }
         
@@ -173,7 +191,7 @@ class VisualSearchService:
                 'name': f"{color_prefix}{product['name']}",
                 'price': product['price'],
                 'url': f"https://www.google.com/search?q={quote(product['name'])}+{quote(product['store'])}",
-                'image': '',
+                'image': product['image'],
                 'source': product['store'],
                 'match': f"{95 - i * 3}%"
             })

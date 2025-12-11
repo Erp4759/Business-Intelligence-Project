@@ -443,14 +443,21 @@ if st.button("🔍 Find Perfect Pieces", use_container_width=True):
                     for item_type, products in shopping_results.items():
                         if products:
                             st.markdown(f"##### {item_type.title()}")
+                            
                             cols = st.columns(3)
                             for i, product in enumerate(products):
                                 with cols[i]:
+                                    # Display product image
+                                    if product.get('image'):
+                                        st.image(product['image'], use_container_width=True)
+                                    else:
+                                        st.markdown(f"<div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 200px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;'><span style='font-size: 3rem;'>🛍️</span></div>", unsafe_allow_html=True)
+                                    
                                     st.markdown(f"**{product['name']}**")
                                     st.markdown(f"💰 {product['price']}")
                                     if product.get('match'):
                                         st.caption(f"Match: {product['match']}")
-                                    st.markdown(f"🏪 [{product['source']}]({product['url']})")
+                                    st.markdown(f"[🏪 Shop at {product['source']}]({product['url']})")
                             st.markdown("---")
                 else:
                     st.warning("No shopping results found. Try getting a recommendation first!")
@@ -484,10 +491,5 @@ if st.button("🔍 Find Perfect Pieces", use_container_width=True):
                 st.write(f"**{item['name']}**")
                 st.write(f"{item['price']} | {item['style']}")
                 st.write(f"Match: {item['match']}")
-    for i, item in enumerate(suggestions):
-        with cols[i]:
-            st.write(f"**{item['name']}**")
-            st.write(f"{item['price']} | {item['style']}")
-            st.write(f"Match: {item['match']}")
 
 st.markdown("---")
