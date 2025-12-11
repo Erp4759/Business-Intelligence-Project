@@ -23,40 +23,66 @@ def render_local_image(path: str, width: int = 200, alt_text: str = ""):
             st.info(f"📷 {alt_text or 'Image'}")
             return
 
+        # Build list of candidate paths to try
+        candidates = []
+        p = Path(path)
+        
+        # If it's already an absolute path and exists, use it
+        if p.is_absolute() and p.exists():
+            candidates.append(p)
+        else:
+            # Path relative to repository root (one level up from pages folder)
+            try:
+                repo_root = Path(__file__).resolve().parent.parent
+                candidates.append(repo_root / path)
+                # Also try within the dataset folder
+                candidates.append(repo_root / 'dataset' / path)
+            except Exception:
+                pass
+
+            # Also consider current working directory
+            try:
+                candidates.append(Path.cwd() / path)
+                candidates.append(Path.cwd() / 'dataset' / path)
+            except Exception:
+                pass
+        
+        # Find the first candidate that exists and has non-zero size
+        found_path = None
+        for cand in candidates:
+            try:
+                if cand.exists() and cand.stat().st_size > 0:
+                    found_path = cand
+                    break
+            except Exception:
+                continue
+        
         # If the path exists but is an empty/corrupt file, try to find a sibling file
         # with the same stem (prefer .png or a non-empty file).
-        p = Path(path)
-        if p.exists() and p.stat().st_size == 0:
+        if found_path and found_path.stat().st_size == 0:
             # Try png first
-            png_alt = p.with_suffix('.png')
+            png_alt = found_path.with_suffix('.png')
             if png_alt.exists() and png_alt.stat().st_size > 0:
-                path = str(png_alt)
-                p = png_alt
+                found_path = png_alt
             else:
                 # Look for any file with same stem and non-zero size
-                siblings = list(p.parent.glob(p.stem + '.*'))
-                found = None
+                siblings = list(found_path.parent.glob(found_path.stem + '.*'))
                 for s in siblings:
                     try:
                         if s.exists() and s.stat().st_size > 0:
-                            found = s
+                            found_path = s
                             break
                     except Exception:
                         continue
-                if found:
-                    path = str(found)
-                    p = found
-                else:
-                    st.info(f"📷 {alt_text or 'Image'}")
-                    return
-        elif not os.path.exists(path):
+        
+        if not found_path or not found_path.exists():
             st.info(f"📷 {alt_text or 'Image'}")
             return
 
-        with open(path, "rb") as f:
+        with open(found_path, "rb") as f:
             data = base64.b64encode(f.read()).decode("utf-8")
 
-        ext = os.path.splitext(path)[1].lower()
+        ext = os.path.splitext(str(found_path))[1].lower()
         if ext in [".jpg", ".jpeg"]:
             mime = "image/jpeg"
         elif ext == ".png":
@@ -69,7 +95,9 @@ def render_local_image(path: str, width: int = 200, alt_text: str = ""):
         # Add a CSS class so global rules can control max-height and containment
         html = f"<img class='vaesta-img' src='data:{mime};base64,{data}' alt='{alt_text}' style='{style}' />"
         st.markdown(html, unsafe_allow_html=True)
-    except Exception:
+    except Exception as e:
+        # Debug: uncomment to see errors
+        # st.error(f"Image load error: {e}")
         st.info(f"📷 {alt_text or 'Image'}")
 
 inject_css()
@@ -86,11 +114,16 @@ if "weather_service" not in st.session_state:
     st.session_state.weather_service = WeatherService()
 weather_service = st.session_state.weather_service
 
-# Initialize recommendation engine
-if "recommendation_engine" not in st.session_state:
-    dataset_path = os.path.join(os.path.dirname(__file__), '../dataset/personalized_clothing_dataset_female.json')
+# Initialize recommendation engine with gender-specific dataset
+user_gender = st.session_state.user_data.get("gender", "Female")
+gender_suffix = "female" if user_gender == "Female" else "male"
+expected_dataset = f"../dataset/personalized_clothing_dataset_{gender_suffix}.json"
+
+if "recommendation_engine" not in st.session_state or st.session_state.get("current_dataset") != expected_dataset:
+    dataset_path = os.path.join(os.path.dirname(__file__), expected_dataset)
     api_key = os.getenv("OPENWEATHER_API_KEY", "")
     st.session_state.recommendation_engine = RecommendationEngine(dataset_path, api_key)
+    st.session_state.current_dataset = expected_dataset
 
 rec_engine = st.session_state.recommendation_engine
 

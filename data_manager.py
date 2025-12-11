@@ -47,6 +47,7 @@ def create_user(username: str, email: str, city: str) -> Dict:
     user_data = {
         "email": email,
         "city": city,
+        "gender": "Female",  # Default gender
         "created_at": datetime.now().isoformat(),
         "wardrobe": [],
         "preferences": {
