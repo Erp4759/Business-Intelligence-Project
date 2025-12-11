@@ -299,9 +299,18 @@ with col2:
         
         if use_only_wardrobe:
             # Get user's wardrobe and convert to DataFrame format
-            user_wardrobe = get_wardrobe(st.session_state.username)
+            username = st.session_state.username
+            user_wardrobe = get_wardrobe(username)
             
-            if user_wardrobe:
+            # Show debug info
+            with st.expander("🔍 Debug Info", expanded=False):
+                st.write(f"Current user: **{username}**")
+                st.write(f"Wardrobe items found: **{len(user_wardrobe)}**")
+                if user_wardrobe:
+                    for item in user_wardrobe:
+                        st.write(f"  - {item.get('name')} ({item.get('type')})")
+            
+            if user_wardrobe and len(user_wardrobe) > 0:
                 # Convert user wardrobe to recommendation engine format
                 wardrobe_items = []
                 for item in user_wardrobe:
