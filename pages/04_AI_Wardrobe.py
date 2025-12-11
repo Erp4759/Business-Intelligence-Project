@@ -27,6 +27,25 @@ if not st.session_state.get("logged_in"):
 st.markdown("<h1>🤖 AI Wardrobe</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>Upload clothing photos and let AI analyze them</p>", unsafe_allow_html=True)
 
+# Check if storage bucket exists
+if STORAGE_AVAILABLE:
+    try:
+        from supabase_manager import get_supabase_client
+        client = get_supabase_client()
+        if client:
+            buckets = client.storage.list_buckets()
+            bucket_exists = any(b.name == 'wardrobe-images' for b in buckets)
+            
+            if not bucket_exists:
+                st.warning("""
+                ⚠️ **Storage bucket not configured!** 
+                
+                Images will be saved locally and may be lost on app restart.
+                [Create the bucket now](https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets)
+                """)
+    except:
+        pass  # Ignore errors in check
+
 # Ensure upload directory exists
 UPLOAD_DIR = Path("data/uploads")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
@@ -210,27 +229,28 @@ with col_upload:
                 if storage_url:
                     st.success(f"✅ Image uploaded to cloud storage")
                 else:
-                    st.warning("⚠️ Cloud upload failed, using local storage")
-                    with st.expander("ℹ️ How to enable cloud storage", expanded=False):
-                        st.markdown("""
-                        **To enable cloud storage for images:**
-                        
-                        1. Go to your Supabase dashboard:
-                           👉 https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets
-                        
-                        2. Click **"New bucket"** or **"Create bucket"**
-                        
-                        3. Fill in:
-                           - **Name:** `wardrobe-images`
-                           - **Public bucket:** ✅ **YES** (important!)
-                           - **File size limit:** 10MB (optional)
-                        
-                        4. Click **"Create bucket"**
-                        
-                        5. Refresh this page and try uploading again!
-                        
-                        **Why?** Cloud storage ensures your images persist across app restarts.
-                        """)
+                    st.error("⚠️ **Cloud upload failed!** Using local storage (images will be lost on restart)")
+                    
+                    st.markdown("""
+                    <div style='background: #fef3c7; padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 1rem 0;'>
+                        <h4 style='margin-top: 0; color: #92400e;'>📦 Storage Bucket Not Created</h4>
+                        <p style='margin-bottom: 0.5rem;'><strong>To fix this:</strong></p>
+                        <ol style='margin: 0.5rem 0; padding-left: 1.5rem;'>
+                            <li>Go to <a href='https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets' target='_blank'><strong>Supabase Storage Dashboard</strong></a></li>
+                            <li>Click <strong>"New bucket"</strong> or <strong>"Create bucket"</strong></li>
+                            <li>Fill in:
+                                <ul>
+                                    <li><strong>Name:</strong> <code>wardrobe-images</code> (exactly!)</li>
+                                    <li><strong>Public bucket:</strong> ✅ <strong>YES</strong> (very important!)</li>
+                                    <li><strong>File size limit:</strong> 10MB (optional)</li>
+                                </ul>
+                            </li>
+                            <li>Click <strong>"Create bucket"</strong></li>
+                            <li><strong>Refresh this page</strong> and try uploading again!</li>
+                        </ol>
+                        <p style='margin-top: 0.5rem; margin-bottom: 0;'><small>💡 <strong>Why?</strong> Cloud storage ensures your images persist across app restarts.</small></p>
+                    </div>
+                    """, unsafe_allow_html=True)
         
         # Store both paths in session
         st.session_state.temp_image_path = str(save_path)

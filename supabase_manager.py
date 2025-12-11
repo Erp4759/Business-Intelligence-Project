@@ -84,16 +84,29 @@ def upload_image_to_storage(local_path: str, username: str) -> Optional[str]:
             return public_url
             
         except Exception as storage_error:
-            # If bucket doesn't exist, provide helpful error message
+            # Provide detailed error message
             error_str = str(storage_error).lower()
+            error_msg = str(storage_error)
+            
             if "not found" in error_str or "404" in error_str or "bucket" in error_str:
-                print("⚠️ Storage bucket 'wardrobe-images' not found!")
+                print("⚠️ Storage bucket 'wardrobe-images' NOT FOUND!")
                 print("   📝 Please create it in Supabase Dashboard:")
                 print("   👉 https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets")
-                print("   Settings: Name='wardrobe-images', Public=Yes")
+                print("   Steps:")
+                print("   1. Click 'New bucket' or 'Create bucket'")
+                print("   2. Name: 'wardrobe-images' (exactly!)")
+                print("   3. Public bucket: ✅ YES (important!)")
+                print("   4. Click 'Create bucket'")
+                print("   5. Refresh this page and try again")
+            elif "permission" in error_str or "403" in error_str or "unauthorized" in error_str:
+                print("⚠️ Permission denied! Check your Supabase API key permissions.")
+            elif "file too large" in error_str or "413" in error_str:
+                print(f"⚠️ File too large! Error: {error_msg}")
             else:
-                print(f"❌ Storage upload error: {storage_error}")
-            raise storage_error
+                print(f"❌ Storage upload error: {error_msg}")
+                print(f"   Full error: {storage_error}")
+            # Don't raise - return None so app can fallback to local storage
+            return None
             
     except Exception as e:
         print(f"❌ Error uploading to Supabase Storage: {e}")
