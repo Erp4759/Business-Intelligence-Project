@@ -13,8 +13,13 @@ from weather_service import WeatherService
 from recommendation_engine import RecommendationEngine
 from evaluation import RecommendationEvaluator
 from visual_search import VisualSearchService
+from analytics_collector import get_analytics
+import uuid
 
 load_dotenv()
+
+# Initialize analytics
+analytics = get_analytics()
 
 
 def render_local_image(path: str, width: int = 200, alt_text: str = ""):
@@ -288,7 +293,36 @@ with col2:
         # Get advanced recommendation from dataset
         recommendation = rec_engine.recommend_outfit(city)
         
+        # Generate unique recommendation ID for tracking
+        rec_id = f"rec_{datetime.now().strftime('%Y%m%d%H%M%S')}_{uuid.uuid4().hex[:8]}"
+        
         if "error" not in recommendation:
+            # Track recommendation generation
+            rec_items = []
+            if recommendation['outfit_type'] == 'Dress':
+                rec_items.append(recommendation.get('dress', {}))
+            else:
+                rec_items.extend([
+                    recommendation.get('outer', {}),
+                    recommendation.get('top', {}),
+                    recommendation.get('bottom', {})
+                ])
+            
+            analytics.track_recommendation(
+                username=st.session_state.username,
+                recommendation_id=rec_id,
+                recommendation_type='outfit',
+                items=rec_items,
+                context={
+                    'temp': recommendation['weather']['temp'],
+                    'condition': recommendation['weather']['desc'],
+                    'style': st.session_state.user_data.get('preferences', {}).get('style', 'casual'),
+                    'city': city
+                }
+            )
+            
+            # Store rec_id in session for feedback tracking
+            st.session_state['current_rec_id'] = rec_id
             weather_info = recommendation['weather']
             required = recommendation['required_scores']
             
@@ -376,6 +410,9 @@ with col2:
                                        help="Overall satisfaction")
             
             if st.button("📝 Submit Feedback", use_container_width=True):
+                # Track feedback with analytics
+                current_rec_id = st.session_state.get('current_rec_id', rec_id)
+                
                 feedback = {
                     'username': st.session_state.username,
                     'city': city,
@@ -386,8 +423,37 @@ with col2:
                     'diversity': 4,  # Default
                     'timestamp': datetime.now().isoformat()
                 }
+                
+                # Save to legacy evaluator
                 evaluator.save_user_feedback(feedback)
-                st.success("Thank you for your feedback!")
+                
+                # Save to analytics collector (Huawei-style)
+                analytics.track_feedback(
+                    username=st.session_state.username,
+                    recommendation_id=current_rec_id,
+                    feedback_type='explicit',
+                    ratings={
+                        'relevance': relevance,
+                        'satisfaction': satisfaction,
+                        'diversity': 4
+                    },
+                    context={
+                        'city': city,
+                        'temperature': weather_info['temp'],
+                        'outfit_type': recommendation['outfit_type']
+                    }
+                )
+                
+                # Track interaction
+                analytics.track_interaction(
+                    username=st.session_state.username,
+                    interaction_type='feedback',
+                    item_id=current_rec_id,
+                    recommendation_id=current_rec_id,
+                    metadata={'relevance': relevance, 'satisfaction': satisfaction}
+                )
+                
+                st.success("Thank you for your feedback! It helps us improve recommendations.")
         else:
             st.error(recommendation['error'])
     else:
