@@ -7,6 +7,8 @@ import bcrypt
 from datetime import datetime
 from typing import Dict, List, Optional
 from pathlib import Path
+import mimetypes
+import uuid
 
 # Load environment variables (load from project root)
 from dotenv import load_dotenv
@@ -31,6 +33,96 @@ def verify_password(password: str, hashed: str) -> bool:
         return bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8'))
     except Exception:
         return False
+
+
+# ============================================
+# SUPABASE STORAGE UTILITIES
+# ============================================
+
+def upload_image_to_storage(local_path: str, username: str) -> Optional[str]:
+    """
+    Upload image to Supabase Storage and return public URL
+    
+    Args:
+        local_path: Local file path
+        username: User's username for folder organization
+        
+    Returns:
+        Public URL of uploaded image or None on failure
+    """
+    try:
+        client = get_supabase_client()
+        if not client:
+            print("❌ Supabase client not available for storage upload")
+            return None
+        
+        # Generate unique filename
+        file_ext = Path(local_path).suffix
+        unique_filename = f"{username}/{uuid.uuid4()}{file_ext}"
+        
+        # Read file
+        with open(local_path, 'rb') as f:
+            file_data = f.read()
+        
+        # Detect MIME type
+        mime_type, _ = mimetypes.guess_type(local_path)
+        if not mime_type:
+            mime_type = 'image/jpeg'  # Default
+        
+        # Upload to storage bucket 'wardrobe-images'
+        try:
+            result = client.storage.from_('wardrobe-images').upload(
+                path=unique_filename,
+                file=file_data,
+                file_options={"content-type": mime_type}
+            )
+            
+            # Get public URL
+            public_url = client.storage.from_('wardrobe-images').get_public_url(unique_filename)
+            
+            print(f"✅ Image uploaded to Supabase Storage: {unique_filename}")
+            return public_url
+            
+        except Exception as storage_error:
+            # If bucket doesn't exist, try to create it
+            if "not found" in str(storage_error).lower():
+                print("⚠️ Storage bucket not found. Please create 'wardrobe-images' bucket in Supabase.")
+                print("   Go to: Storage > Create Bucket > Name: 'wardrobe-images' > Public: Yes")
+            raise storage_error
+            
+    except Exception as e:
+        print(f"❌ Error uploading to Supabase Storage: {e}")
+        return None
+
+
+def delete_image_from_storage(image_url: str) -> bool:
+    """
+    Delete image from Supabase Storage
+    
+    Args:
+        image_url: Public URL or path of the image
+        
+    Returns:
+        True if deleted successfully
+    """
+    try:
+        client = get_supabase_client()
+        if not client:
+            return False
+        
+        # Extract path from URL
+        # URL format: https://.../storage/v1/object/public/wardrobe-images/username/uuid.jpg
+        if '/wardrobe-images/' in image_url:
+            path = image_url.split('/wardrobe-images/')[-1]
+            client.storage.from_('wardrobe-images').remove([path])
+            print(f"✅ Deleted image from storage: {path}")
+            return True
+        return False
+        
+    except Exception as e:
+        print(f"❌ Error deleting from storage: {e}")
+        return False
+
 
 # Supabase client initialization
 _supabase_client = None

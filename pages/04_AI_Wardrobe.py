@@ -8,6 +8,12 @@ from PIL import Image
 
 from ui import inject_css
 from data_manager import add_ai_item, get_ai_wardrobe, update_ai_item, remove_ai_item
+try:
+    from supabase_manager import upload_image_to_storage, delete_image_from_storage
+    STORAGE_AVAILABLE = True
+except ImportError:
+    STORAGE_AVAILABLE = False
+    print("⚠️ Supabase Storage functions not available")
 
 load_dotenv()
 
@@ -196,10 +202,19 @@ with col_upload:
         with open(save_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         
-        st.success(f"Image saved: {filename}")
+        # Upload to Supabase Storage if available
+        storage_url = None
+        if STORAGE_AVAILABLE:
+            with st.spinner("☁️ Uploading to cloud storage..."):
+                storage_url = upload_image_to_storage(str(save_path), st.session_state.username)
+                if storage_url:
+                    st.success(f"✅ Image uploaded to cloud storage")
+                else:
+                    st.warning("⚠️ Cloud upload failed, using local storage")
         
-        # Store path in session for form
+        # Store both paths in session
         st.session_state.temp_image_path = str(save_path)
+        st.session_state.temp_storage_url = storage_url
 
 with col_params:
     st.markdown("### 🔧 Item Parameters")
@@ -303,9 +318,12 @@ with col_params:
                 **user_params
             }
             
+            # Use cloud URL if available, otherwise local path
+            image_location = st.session_state.get('temp_storage_url') or st.session_state.temp_image_path
+            
             item = {
                 "id": item_id,
-                "image_path": st.session_state.temp_image_path,
+                "image_path": image_location,
                 "added_at": datetime.now().isoformat(),
                 **analysis
             }
@@ -317,6 +335,8 @@ with col_params:
             # Clear temp data
             if "temp_image_path" in st.session_state:
                 del st.session_state.temp_image_path
+            if "temp_storage_url" in st.session_state:
+                del st.session_state.temp_storage_url
             if "ai_analysis" in st.session_state:
                 del st.session_state.ai_analysis
             
@@ -345,9 +365,15 @@ else:
             item = wardrobe[idx]
             
             with col:
-                # Show image
-                if os.path.exists(item["image_path"]):
-                    img = Image.open(item["image_path"])
+                # Show image (from URL or local path)
+                image_path = item["image_path"]
+                
+                if image_path.startswith('http'):
+                    # It's a cloud URL
+                    st.image(image_path, use_container_width=True)
+                elif os.path.exists(image_path):
+                    # It's a local path
+                    img = Image.open(image_path)
                     st.image(img, use_container_width=True)
                 else:
                     st.warning("Image not found")
@@ -370,6 +396,10 @@ else:
                         st.rerun()
                 with col_del:
                     if st.button("🗑️", key=f"del_{item['id']}", use_container_width=True):
+                        # Delete from cloud storage if it's a cloud URL
+                        if STORAGE_AVAILABLE and item["image_path"].startswith('http'):
+                            delete_image_from_storage(item["image_path"])
+                        
                         remove_ai_item(st.session_state.username, item["id"])
                         st.success("Item deleted")
                         st.rerun()
