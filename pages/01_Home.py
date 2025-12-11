@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import sys
 import os
 import base64
+import pandas as pd
 sys.path.append('..')
 
 from ui import inject_css
@@ -291,7 +292,51 @@ with col2:
     
     if use_advanced and rec_engine.wardrobe_df is not None:
         # Get advanced recommendation from dataset
-        recommendation = rec_engine.recommend_outfit(city)
+        custom_wardrobe_df = None
+        
+        # Check if user wants to use only their wardrobe items
+        use_only_wardrobe = st.session_state.get('use_only_wardrobe', False)
+        
+        if use_only_wardrobe:
+            # Get user's wardrobe and convert to DataFrame format
+            user_wardrobe = get_wardrobe(st.session_state.username)
+            
+            if user_wardrobe:
+                # Convert user wardrobe to recommendation engine format
+                wardrobe_items = []
+                for item in user_wardrobe:
+                    # Map user wardrobe format to engine format
+                    item_type = item.get('type', 'Top')
+                    category = item.get('name', 'Item').lower()
+                    
+                    # Estimate scores based on type and season
+                    warmth_score = 3  # Default moderate
+                    if item_type == 'Outerwear' or 'winter' in str(item.get('season', [])).lower():
+                        warmth_score = 4
+                    elif 'summer' in str(item.get('season', [])).lower():
+                        warmth_score = 2
+                    
+                    wardrobe_items.append({
+                        'category': category,
+                        'color': item.get('color', '#667eea'),
+                        'warmth_score': warmth_score,
+                        'impermeability_score': 2,  # Default
+                        'layering_score': 1 if item_type == 'Outerwear' else 3,
+                        'thickness': 'medium',
+                        'image_link': '',
+                        'notes': f"From your wardrobe: {item.get('name')}"
+                    })
+                
+                if wardrobe_items:
+                    custom_wardrobe_df = pd.DataFrame(wardrobe_items)
+                    st.info(f"🔍 Using {len(wardrobe_items)} items from your wardrobe")
+                else:
+                    st.warning("Your wardrobe is empty. Add items in the sidebar!")
+                    custom_wardrobe_df = None
+            else:
+                st.warning("Your wardrobe is empty. Showing recommendations from full catalog.")
+        
+        recommendation = rec_engine.recommend_outfit(city, custom_wardrobe=custom_wardrobe_df)
         
         # Generate unique recommendation ID for tracking
         rec_id = f"rec_{datetime.now().strftime('%Y%m%d%H%M%S')}_{uuid.uuid4().hex[:8]}"
