@@ -302,14 +302,6 @@ with col2:
             username = st.session_state.username
             user_wardrobe = get_wardrobe(username)
             
-            # Show debug info
-            with st.expander("🔍 Debug Info", expanded=False):
-                st.write(f"Current user: **{username}**")
-                st.write(f"Wardrobe items found: **{len(user_wardrobe)}**")
-                if user_wardrobe:
-                    for item in user_wardrobe:
-                        st.write(f"  - {item.get('name')} ({item.get('type')})")
-            
             if user_wardrobe and len(user_wardrobe) > 0:
                 # Convert user wardrobe to recommendation engine format
                 wardrobe_items = []
@@ -338,12 +330,14 @@ with col2:
                 
                 if wardrobe_items:
                     custom_wardrobe_df = pd.DataFrame(wardrobe_items)
-                    st.info(f"🔍 Using {len(wardrobe_items)} items from your wardrobe")
+                    st.info(f"✅ Using {len(wardrobe_items)} items from your wardrobe")
                 else:
-                    st.warning("Your wardrobe is empty. Add items in the sidebar!")
+                    st.warning("⚠️ Your wardrobe is empty. Add items in the sidebar!")
                     custom_wardrobe_df = None
             else:
-                st.warning("Your wardrobe is empty. Showing recommendations from full catalog.")
+                # Checkbox is enabled but wardrobe is empty
+                st.warning("⚠️ Your wardrobe is empty. Add items in the sidebar to use this feature!")
+                custom_wardrobe_df = None
         
         recommendation = rec_engine.recommend_outfit(city, custom_wardrobe=custom_wardrobe_df)
         
