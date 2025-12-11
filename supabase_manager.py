@@ -84,10 +84,15 @@ def upload_image_to_storage(local_path: str, username: str) -> Optional[str]:
             return public_url
             
         except Exception as storage_error:
-            # If bucket doesn't exist, try to create it
-            if "not found" in str(storage_error).lower():
-                print("⚠️ Storage bucket not found. Please create 'wardrobe-images' bucket in Supabase.")
-                print("   Go to: Storage > Create Bucket > Name: 'wardrobe-images' > Public: Yes")
+            # If bucket doesn't exist, provide helpful error message
+            error_str = str(storage_error).lower()
+            if "not found" in error_str or "404" in error_str or "bucket" in error_str:
+                print("⚠️ Storage bucket 'wardrobe-images' not found!")
+                print("   📝 Please create it in Supabase Dashboard:")
+                print("   👉 https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets")
+                print("   Settings: Name='wardrobe-images', Public=Yes")
+            else:
+                print(f"❌ Storage upload error: {storage_error}")
             raise storage_error
             
     except Exception as e:
