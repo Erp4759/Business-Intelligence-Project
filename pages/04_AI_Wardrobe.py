@@ -213,38 +213,39 @@ with col_upload:
                 if storage_url:
                     st.success(f"✅ Image uploaded to cloud storage")
                 else:
-                    st.error("⚠️ **Cloud upload failed!** Using local storage (images will be lost on restart)")
-                    
-                    # Show error details in expander
-                    with st.expander("🔍 View Error Details", expanded=True):
-                        st.code("""
-Check the browser console (F12) or terminal for detailed error messages.
-
-Common issues:
-1. Bucket 'wardrobe-images' doesn't exist
-2. Bucket exists but is NOT public
-3. API key permissions issue
-4. File too large (>10MB)
-                        """)
+                    st.error("⚠️ **Permission Denied!** Storage policies not configured")
                     
                     st.markdown("""
-                    <div style='background: #fef3c7; padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 1rem 0;'>
-                        <h4 style='margin-top: 0; color: #92400e;'>📦 Storage Bucket Not Created</h4>
-                        <p style='margin-bottom: 0.5rem;'><strong>To fix this:</strong></p>
-                        <ol style='margin: 0.5rem 0; padding-left: 1.5rem;'>
-                            <li>Go to <a href='https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets' target='_blank'><strong>Supabase Storage Dashboard</strong></a></li>
-                            <li>Click <strong>"New bucket"</strong> or <strong>"Create bucket"</strong></li>
-                            <li>Fill in:
-                                <ul>
-                                    <li><strong>Name:</strong> <code>wardrobe-images</code> (exactly!)</li>
-                                    <li><strong>Public bucket:</strong> ✅ <strong>YES</strong> (very important!)</li>
-                                    <li><strong>File size limit:</strong> 10MB (optional)</li>
-                                </ul>
-                            </li>
-                            <li>Click <strong>"Create bucket"</strong></li>
-                            <li><strong>Refresh this page</strong> and try uploading again!</li>
+                    <div style='background: #fee2e2; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ef4444; margin: 1rem 0;'>
+                        <h4 style='margin-top: 0; color: #991b1b;'>🔒 Fix: Add Storage Policies</h4>
+                        <p><strong>Error:</strong> "new row violates row-level security policy"</p>
+                        <p style='margin-top: 1rem;'><strong>Solution:</strong> Run this SQL in Supabase:</p>
+                        
+                        <ol style='margin: 1rem 0; padding-left: 1.5rem;'>
+                            <li>Open <a href='https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/sql/new' target='_blank'><strong>SQL Editor</strong></a></li>
+                            <li>Paste this code:</li>
                         </ol>
-                        <p style='margin-top: 0.5rem; margin-bottom: 0;'><small>💡 <strong>Why?</strong> Cloud storage ensures your images persist across app restarts.</small></p>
+                        
+                        <pre style='background: #1f2937; color: #10b981; padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1rem 0; font-size: 0.9rem;'><code>-- Allow public uploads
+CREATE POLICY "Allow public uploads to wardrobe-images"
+ON storage.objects FOR INSERT
+TO public
+WITH CHECK (bucket_id = 'wardrobe-images');
+
+-- Allow public viewing  
+CREATE POLICY "Public images are viewable"
+ON storage.objects FOR SELECT
+TO public
+USING (bucket_id = 'wardrobe-images');</code></pre>
+                        
+                        <ol start='3' style='margin: 1rem 0; padding-left: 1.5rem;'>
+                            <li>Click <strong>"Run"</strong> button</li>
+                            <li><strong>Refresh this page</strong> and upload again!</li>
+                        </ol>
+                        
+                        <p style='margin-top: 1rem; margin-bottom: 0; padding-top: 1rem; border-top: 1px solid #fca5a5;'>
+                            <small>💡 <strong>Also check:</strong> Bucket must be <strong>Public</strong> in <a href='https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets/wardrobe-images' target='_blank'>bucket settings</a></small>
+                        </p>
                     </div>
                     """, unsafe_allow_html=True)
         
