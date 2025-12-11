@@ -110,12 +110,10 @@ def upload_image_to_storage(local_path: str, username: str) -> Optional[str]:
                 print("   3. Public bucket: ✅ YES (important!)")
                 print("   4. Click 'Create bucket'")
                 print("   5. Refresh this page and try again")
-            elif "permission" in error_str or "403" in error_str or "unauthorized" in error_str:
-                print("⚠️ Permission denied!")
-                print("   Possible causes:")
-                print("   - Bucket exists but is NOT public")
-                print("   - API key doesn't have storage permissions")
-                print("   - RLS policies blocking upload")
+            elif "permission" in error_str or "403" in error_str or "unauthorized" in error_str or "row-level security" in error_str or "violates" in error_str:
+                print("⚠️ Permission denied - RLS policy blocking upload!")
+                print("   Fix: Add storage policies in Supabase SQL Editor")
+                print("   See: sql/storage_policy_fix.sql or error message in UI")
             elif "file too large" in error_str or "413" in error_str:
                 print(f"⚠️ File too large! Error: {error_msg}")
             else:
