@@ -215,6 +215,18 @@ with col_upload:
                 else:
                     st.error("⚠️ **Cloud upload failed!** Using local storage (images will be lost on restart)")
                     
+                    # Show error details in expander
+                    with st.expander("🔍 View Error Details", expanded=True):
+                        st.code("""
+Check the browser console (F12) or terminal for detailed error messages.
+
+Common issues:
+1. Bucket 'wardrobe-images' doesn't exist
+2. Bucket exists but is NOT public
+3. API key permissions issue
+4. File too large (>10MB)
+                        """)
+                    
                     st.markdown("""
                     <div style='background: #fef3c7; padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 1rem 0;'>
                         <h4 style='margin-top: 0; color: #92400e;'>📦 Storage Bucket Not Created</h4>
