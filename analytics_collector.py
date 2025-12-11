@@ -407,32 +407,43 @@ class AnalyticsCollector:
     # ANALYTICS CALCULATIONS
     # ==========================================
     
-    def calculate_ctr(self, time_window_hours: int = 24) -> Dict:
+    def calculate_ctr(self, time_window_hours: int = None) -> Dict:
         """
         Calculate Click-Through Rate for recommendations.
         
         CTR = (Clicks / Impressions) * 100
-        """
-        cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
         
+        If time_window_hours is None, calculates over all time.
+        """
         # Load data
         recommendations = self._load_events('recommendations')
         interactions = self._load_events('interactions')
         
-        # Filter by time window
-        recent_recs = [
-            r for r in recommendations 
-            if datetime.fromisoformat(r['timestamp']) > cutoff
-        ]
+        # Filter by time window if specified
+        if time_window_hours:
+            cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
+            
+            recent_recs = [
+                r for r in recommendations 
+                if self._parse_timestamp(r['timestamp']) > cutoff
+            ]
+            
+            recent_interactions = [
+                i for i in interactions 
+                if self._parse_timestamp(i['timestamp']) > cutoff
+            ]
+        else:
+            # All time
+            recent_recs = recommendations
+            recent_interactions = interactions
         
-        recent_clicks = [
-            i for i in interactions 
-            if datetime.fromisoformat(i['timestamp']) > cutoff
-            and i['interaction_type'] == 'click'
-        ]
+        # Count clicks (any interaction except 'view' counts as engagement)
+        clicks = len([
+            i for i in recent_interactions 
+            if i.get('interaction_type') in ['click', 'save', 'feedback', 'like']
+        ])
         
         impressions = len(recent_recs)
-        clicks = len(recent_clicks)
         
         ctr = (clicks / impressions * 100) if impressions > 0 else 0
         
@@ -440,24 +451,67 @@ class AnalyticsCollector:
             'ctr': round(ctr, 2),
             'impressions': impressions,
             'clicks': clicks,
-            'time_window_hours': time_window_hours
+            'time_window_hours': time_window_hours or 'all_time'
         }
     
-    def calculate_conversion_rate(self, time_window_hours: int = 24) -> Dict:
+    def _parse_timestamp(self, ts_str: str) -> datetime:
+        """Parse timestamp string to datetime, handling various formats."""
+        try:
+            # Try ISO format with timezone
+            if 'Z' in ts_str:
+                ts_str = ts_str.replace('Z', '+00:00')
+            return datetime.fromisoformat(ts_str.replace('Z', '+00:00'))
+        except:
+            # Fallback
+            return datetime.fromisoformat(ts_str)
+    
+    def calculate_conversion_rate(self, time_window_hours: int = None) -> Dict:
         """
         Calculate Conversion Rate (saves/purchases from recommendations).
+        
+        Conversion = (Positive Engagements / Total Views) * 100
+        
+        If time_window_hours is None, calculates over all time.
         """
-        cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
-        
         interactions = self._load_events('interactions')
+        feedback = self._load_events('feedback')
         
-        recent = [
-            i for i in interactions 
-            if datetime.fromisoformat(i['timestamp']) > cutoff
-        ]
+        # Filter by time window if specified
+        if time_window_hours:
+            cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
+            recent_interactions = [
+                i for i in interactions 
+                if self._parse_timestamp(i['timestamp']) > cutoff
+            ]
+            recent_feedback = [
+                f for f in feedback
+                if self._parse_timestamp(f['timestamp']) > cutoff
+            ]
+        else:
+            recent_interactions = interactions
+            recent_feedback = feedback
         
-        views = len([i for i in recent if i['interaction_type'] == 'view'])
-        saves = len([i for i in recent if i['interaction_type'] == 'save'])
+        # Count views (any interaction or feedback submission counts as view)
+        views = len(recent_interactions) + len(recent_feedback)
+        
+        # Count conversions:
+        # - Explicit saves from interactions
+        # - Feedback with satisfaction >= 4 (positive engagement)
+        # - Feedback with would_wear >= 4 (intent to use)
+        saves = len([
+            i for i in recent_interactions 
+            if i.get('interaction_type') in ['save', 'add_to_wardrobe']
+        ])
+        
+        # Add positive feedback as conversions
+        positive_feedback = len([
+            f for f in recent_feedback
+            if (f.get('ratings', {}).get('satisfaction', 0) >= 4 or
+                f.get('ratings', {}).get('would_wear', 0) >= 4 or
+                f.get('ratings', {}).get('relevance', 0) >= 4)
+        ])
+        
+        saves += positive_feedback
         
         conversion = (saves / views * 100) if views > 0 else 0
         
@@ -465,7 +519,7 @@ class AnalyticsCollector:
             'conversion_rate': round(conversion, 2),
             'views': views,
             'saves': saves,
-            'time_window_hours': time_window_hours
+            'time_window_hours': time_window_hours or 'all_time'
         }
     
     def calculate_engagement_metrics(self, time_window_hours: int = 168) -> Dict:
@@ -612,9 +666,10 @@ class AnalyticsCollector:
         """
         Generate comprehensive analytics report for evaluation dashboard.
         """
-        ctr = self.calculate_ctr(time_window_hours=168)  # 1 week
-        conversion = self.calculate_conversion_rate(time_window_hours=168)
-        engagement = self.calculate_engagement_metrics(time_window_hours=168)
+        # Calculate metrics (all time for now, since we have limited data)
+        ctr = self.calculate_ctr(time_window_hours=None)  # All time
+        conversion = self.calculate_conversion_rate(time_window_hours=None)  # All time
+        engagement = self.calculate_engagement_metrics(time_window_hours=168)  # 1 week
         precision_recall = self.calculate_precision_recall()
         ndcg = self.calculate_ndcg()
         
