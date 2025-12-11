@@ -27,7 +27,28 @@ This guide will help you set up Supabase as the database backend for VAESTA.
    - **Project URL** → This is your `SUPABASE_URL`
    - **anon/public key** → This is your `SUPABASE_KEY`
 
-### Step 4: Create Database Tables
+### Step 4: Create Storage Bucket for Images
+
+**Why:** All clothing images need cloud storage to persist across Streamlit Cloud restarts.
+
+1. In your Supabase dashboard, go to **Storage** (left sidebar)
+
+2. Click **"Create a new bucket"** or **"New bucket"**
+
+3. Fill in the details:
+   - **Name:** `wardrobe-images`
+   - **Public bucket:** ✅ **YES** (Enable public access so images can be displayed)
+   - **File size limit:** 10MB (optional)
+   - **Allowed MIME types:** `image/jpeg,image/png,image/jpg` (optional)
+
+4. Click **"Create bucket"**
+
+**Direct link to your Storage:**
+👉 https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets
+
+---
+
+### Step 5: Create Database Tables
 http://supabase.com/dashboard/project/xgvawonuusadqscxkuhu
 
 1. Go to **SQL Editor** (left sidebar)
@@ -315,6 +336,50 @@ Try creating a new account - if it works, you're connected to Supabase! 🎉
 2. **Use environment variables in production** (Streamlit Cloud, Heroku, etc.)
 3. **Consider using Row Level Security (RLS)** for multi-tenant apps
 4. **Rotate your API keys** if you suspect they've been compromised
+
+---
+
+## 📦 Storage Architecture
+
+### Image Storage with Supabase
+
+**All clothing images** are now stored in **Supabase Storage** (bucket: `wardrobe-images`)
+
+### Why Supabase Storage?
+
+- ✅ **Persistent:** Images survive Streamlit Cloud restarts
+- ✅ **Backed up:** Included in database backups
+- ✅ **Fast:** CDN-powered delivery worldwide
+- ✅ **Scalable:** No local disk dependency
+
+### How it works:
+
+1. **User uploads image** → Temporarily saved to `data/uploads/`
+2. **Upload to cloud** → Image sent to Supabase Storage bucket
+3. **Get public URL** → `https://...supabase.co/storage/v1/object/public/wardrobe-images/username/uuid.jpg`
+4. **Store URL in database** → Only the URL is saved in `ai_wardrobe` table
+5. **Display image** → Load directly from cloud URL
+
+### File Organization:
+
+```
+wardrobe-images/
+├── username1/
+│   ├── uuid1.jpg
+│   ├── uuid2.png
+│   └── uuid3.jpg
+├── username2/
+│   ├── uuid4.jpg
+│   └── uuid5.jpg
+```
+
+### Storage Limits (Supabase Free Tier):
+
+- **Storage:** 1 GB total
+- **Bandwidth:** 2 GB/month
+- **File uploads:** 50 MB max per file
+
+For most users, this is more than enough! (~200-500 clothing images)
 
 ---
 
