@@ -27,24 +27,8 @@ if not st.session_state.get("logged_in"):
 st.markdown("<h1>🤖 AI Wardrobe</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>Upload clothing photos and let AI analyze them</p>", unsafe_allow_html=True)
 
-# Check if storage bucket exists
-if STORAGE_AVAILABLE:
-    try:
-        from supabase_manager import get_supabase_client
-        client = get_supabase_client()
-        if client:
-            buckets = client.storage.list_buckets()
-            bucket_exists = any(b.name == 'wardrobe-images' for b in buckets)
-            
-            if not bucket_exists:
-                st.warning("""
-                ⚠️ **Storage bucket not configured!** 
-                
-                Images will be saved locally and may be lost on app restart.
-                [Create the bucket now](https://supabase.com/dashboard/project/xgvawonuusadqscxkuhu/storage/buckets)
-                """)
-    except:
-        pass  # Ignore errors in check
+# Note: We can't reliably check bucket existence via API with publishable key
+# The upload will fail gracefully if bucket doesn't exist
 
 # Ensure upload directory exists
 UPLOAD_DIR = Path("data/uploads")
