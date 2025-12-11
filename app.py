@@ -136,6 +136,28 @@ if 'page' not in st.session_state:
 if 'analytics_session_id' not in st.session_state:
     st.session_state.analytics_session_id = None
 
+# Try to restore session from query params (for page refresh)
+query_params = st.query_params
+if not st.session_state.logged_in and 'username' in query_params:
+    saved_username = query_params['username']
+    # Try to restore user data (without password check for convenience)
+    try:
+        user = get_user(saved_username)
+        if user:
+            st.session_state.logged_in = True
+            st.session_state.username = saved_username
+            st.session_state.user_data = user
+            st.session_state.page = "home"
+            
+            # Restart analytics session
+            session_id = analytics.start_session(
+                username=saved_username,
+                device_info={'platform': 'web', 'browser': 'streamlit'}
+            )
+            st.session_state.analytics_session_id = session_id
+    except:
+        pass  # User doesn't exist, ignore
+
 # Initialize analytics
 analytics = get_analytics()
 
@@ -169,6 +191,9 @@ def login_page():
                         st.session_state.username = login_username
                         st.session_state.user_data = user
                         st.session_state.page = "home"
+                        
+                        # Save username in URL for session persistence
+                        st.query_params["username"] = login_username
                         
                         # Start analytics session
                         session_id = analytics.start_session(
@@ -223,6 +248,9 @@ def login_page():
                         st.session_state.user_data = get_user(reg_username)
                         st.session_state.page = "home"
                         
+                        # Save username in URL for session persistence
+                        st.query_params["username"] = reg_username
+                        
                         # Start analytics session
                         session_id = analytics.start_session(
                             username=reg_username,
@@ -260,6 +288,11 @@ def home_page():
             st.session_state.user_data = None
             st.session_state.page = "login"
             st.session_state.analytics_session_id = None
+            
+            # Clear username from URL
+            if 'username' in st.query_params:
+                del st.query_params['username']
+            
             st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
 
