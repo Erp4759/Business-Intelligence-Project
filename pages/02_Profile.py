@@ -27,6 +27,16 @@ with col1:
     st.markdown(f"**Email:** {user_data.get('email', 'Not set')}")
     st.markdown(f"**Member since:** {datetime.fromisoformat(user_data.get('created_at', datetime.now().isoformat())).strftime('%B %d, %Y')}")
     st.markdown("---")
+    st.markdown("### 👤 Gender")
+    current_gender = user_data.get("gender", "Female")
+    new_gender = st.selectbox("Gender", ["Female", "Male"], index=["Female", "Male"].index(current_gender))
+    if new_gender != current_gender:
+        if st.button("Update Gender"):
+            update_user(st.session_state.username, {"gender": new_gender})
+            st.session_state.user_data["gender"] = new_gender
+            st.success("Gender updated! Recommendations will be refreshed.")
+            st.rerun()
+    st.markdown("---")
     st.markdown("### 📍 Location")
     new_city = st.text_input("City", value=user_data.get("city", ""))
     if st.button("Update City"):
