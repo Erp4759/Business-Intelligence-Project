@@ -802,9 +802,19 @@ else:
         st.markdown("<div style='text-align: right; padding-top: 1rem;'>", unsafe_allow_html=True)
         st.markdown(f"**👤 {st.session_state.username}**")
         if st.button("Logout"):
+            # End analytics session
+            if st.session_state.get('analytics_session_id'):
+                analytics.end_session(st.session_state.analytics_session_id)
+            
             st.session_state.logged_in = False
             st.session_state.username = None
             st.session_state.user_data = None
+            st.session_state.analytics_session_id = None
+            
+            # Clear username from URL
+            if 'username' in st.query_params:
+                del st.query_params['username']
+            
             st.success("Logged out.")
             st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
