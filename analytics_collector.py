@@ -114,7 +114,11 @@ class AnalyticsCollector:
             return []
         
         try:
-            result = client.table(table_name).select('*').order('timestamp', desc=True).limit(10000).execute()
+            # Sessions table uses 'start_time' instead of 'timestamp'
+            if event_type == 'sessions':
+                result = client.table(table_name).select('*').order('start_time', desc=True).limit(10000).execute()
+            else:
+                result = client.table(table_name).select('*').order('timestamp', desc=True).limit(10000).execute()
             return result.data if result.data else []
         except Exception as e:
             print(f"Error loading from Supabase {table_name}: {e}")
@@ -347,7 +351,7 @@ class AnalyticsCollector:
         event = {
             'session_id': session_id,
             'username': username,
-            'start_time': datetime.now().isoformat(),
+            'start_time': datetime.now(timezone.utc).isoformat(),
             'end_time': None,
             'duration_seconds': None,
             'device_info': device_info or {},
@@ -389,11 +393,32 @@ class AnalyticsCollector:
     
     def end_session(self, session_id: str):
         """End a session and calculate duration."""
+        # Try to get session from Supabase first
+        client = self._get_supabase()
+        if client:
+            try:
+                result = client.table('analytics_sessions').select('start_time').eq('session_id', session_id).execute()
+                if result.data and len(result.data) > 0:
+                    start_str = result.data[0]['start_time']
+                    start = self._parse_timestamp(start_str)
+                    end = datetime.now(timezone.utc)
+                    duration = (end - start).total_seconds()
+                    
+                    updates = {
+                        'end_time': end.isoformat(),
+                        'duration_seconds': duration
+                    }
+                    self.update_session(session_id, updates)
+                    return
+            except Exception as e:
+                print(f"Error ending session in Supabase: {e}")
+        
+        # Fallback to local
         sessions = self._load_local('sessions')
         for session in sessions:
             if session.get('session_id') == session_id:
-                start = datetime.fromisoformat(session['start_time'])
-                end = datetime.now()
+                start = self._parse_timestamp(session['start_time'])
+                end = datetime.now(timezone.utc)
                 duration = (end - start).total_seconds()
                 
                 updates = {
@@ -522,26 +547,29 @@ class AnalyticsCollector:
             'time_window_hours': time_window_hours or 'all_time'
         }
     
-    def calculate_engagement_metrics(self, time_window_hours: int = 168) -> Dict:
+    def calculate_engagement_metrics(self, time_window_hours: int = None) -> Dict:
         """
-        Calculate engagement metrics over time window (default 1 week).
+        Calculate engagement metrics over time window.
+        If time_window_hours is None, calculates over all time.
         """
-        cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
-        
         sessions = self._load_events('sessions')
         feedback = self._load_events('feedback')
         interactions = self._load_events('interactions')
         
-        # Filter by time
-        recent_sessions = [
-            s for s in sessions 
-            if datetime.fromisoformat(s['start_time']) > cutoff
-        ]
-        
-        recent_feedback = [
-            f for f in feedback 
-            if datetime.fromisoformat(f['timestamp']) > cutoff
-        ]
+        # Filter by time if specified
+        if time_window_hours:
+            cutoff = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
+            recent_sessions = [
+                s for s in sessions 
+                if self._parse_timestamp(s['start_time']) > cutoff
+            ]
+            recent_feedback = [
+                f for f in feedback 
+                if self._parse_timestamp(f['timestamp']) > cutoff
+            ]
+        else:
+            recent_sessions = sessions
+            recent_feedback = feedback
         
         # Calculate metrics
         total_sessions = len(recent_sessions)
@@ -669,7 +697,7 @@ class AnalyticsCollector:
         # Calculate metrics (all time for now, since we have limited data)
         ctr = self.calculate_ctr(time_window_hours=None)  # All time
         conversion = self.calculate_conversion_rate(time_window_hours=None)  # All time
-        engagement = self.calculate_engagement_metrics(time_window_hours=168)  # 1 week
+        engagement = self.calculate_engagement_metrics(time_window_hours=None)  # All time
         precision_recall = self.calculate_precision_recall()
         ndcg = self.calculate_ndcg()
         
