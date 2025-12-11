@@ -492,25 +492,16 @@ with col2:
                 outer_color = outer.get('color', '')
                 outer_warmth = outer.get('warmth_score', 3)
                 outer_img = outer.get('image_link', '')
-                # Debug: check what we got
-                if not outer_img and use_only_wardrobe:
-                    st.write(f"🔍 DEBUG outer: {list(outer.keys())}, image_link={outer.get('image_link')}")
 
                 top_cat = top.get('category', 'Top').title()
                 top_color = top.get('color', '')
                 top_warmth = top.get('warmth_score', 3)
                 top_img = top.get('image_link', '')
-                # Debug: check what we got
-                if not top_img and use_only_wardrobe:
-                    st.write(f"🔍 DEBUG top: {list(top.keys())}, image_link={top.get('image_link')}")
 
                 bottom_cat = bottom.get('category', 'Bottom').title()
                 bottom_color = bottom.get('color', '')
                 bottom_warmth = bottom.get('warmth_score', 3)
                 bottom_img = bottom.get('image_link', '')
-                # Debug: check what we got
-                if not bottom_img and use_only_wardrobe:
-                    st.write(f"🔍 DEBUG bottom: {list(bottom.keys())}, image_link={bottom.get('image_link')}")
 
                 # Three columns: each shows image + caption to keep layout predictable
                 img_cols = st.columns([1, 1, 1])
