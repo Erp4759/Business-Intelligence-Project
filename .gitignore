@@ -5,3 +5,9 @@ pages/__pycache__/
 
 # Streamlit secrets
 .streamlit/secrets.toml
+
+# Gemini API key files (sensitive)
+geminikey.txt
+dataset/geminikey.txt
+*.key.txt
+*key*.txt
