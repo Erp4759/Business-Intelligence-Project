@@ -243,6 +243,28 @@ def get_user(username: str) -> Optional[Dict]:
     return users.get(username)
 
 
+def get_all_users() -> List[Dict]:
+    """Get all users from storage
+    
+    Uses Supabase if available, otherwise falls back to local JSON.
+    Returns list of user dictionaries.
+    """
+    if _use_supabase():
+        try:
+            from supabase_manager import get_supabase_client, _format_user_data
+            client = get_supabase_client()
+            if client:
+                result = client.table("users").select("*").execute()
+                if result.data:
+                    return [_format_user_data(row, client) for row in result.data]
+        except Exception as e:
+            print(f"Error getting all users from Supabase: {e}")
+    
+    # Fallback to local JSON
+    users = load_users()
+    return list(users.values())
+
+
 def update_user(username: str, updates: Dict):
     """Update user profile
     
