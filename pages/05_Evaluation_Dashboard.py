@@ -248,7 +248,36 @@ with tab2:
         with col2:
             # Show detailed breakdown
             st.markdown("### 📋 Metric Details")
-            st.metric("Sample Size", f"{ranking.get('sample_size', 0)} feedbacks")
+            sample_size = ranking.get('sample_size', 0)
+            st.metric("Sample Size", f"{sample_size} feedbacks")
+            
+            # Show calculation explanation
+            with st.expander("📊 How these metrics are calculated", expanded=True):
+                st.markdown("""
+                **Precision@3 Calculation:**
+                - Uses **item-specific feedback** when available (outer, top, bottom ratings)
+                - Falls back to overall relevance rating if item-specific data unavailable
+                - Counts items with **rating ≥ 4** as "relevant"
+                - Formula: `(Relevant items) / (Total recommended items)`
+                
+                **Example:** If you rated 3 items (outer=5, top=2, bottom=4):
+                - Relevant items: 2 (outer=5, bottom=4)
+                - Total items: 3
+                - Precision@3 = 2/3 = 66.7%
+                
+                **Recall@3 Calculation:**
+                - Estimates total relevant items as **5 per feedback context**
+                - Formula: `(Relevant items found) / (Total relevant items estimated)`
+                
+                **F1@3 Calculation:**
+                - Harmonic mean of Precision and Recall
+                - Formula: `2 × (Precision × Recall) / (Precision + Recall)`
+                - Balances both precision and recall metrics
+                
+                **Note:** The system now uses individual item ratings (outer, top, bottom, dress) 
+                for more accurate metrics than overall ratings.
+                """)
+            
             st.metric("Precision@3", f"{ranking['precision_at_3']:.1%}")
             st.metric("Recall@3", f"{ranking['recall_at_3']:.1%}")
             st.metric("F1@3", f"{ranking['f1_at_3']:.1%}")

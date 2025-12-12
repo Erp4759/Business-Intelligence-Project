@@ -603,6 +603,7 @@ class AnalyticsCollector:
     def calculate_precision_recall(self) -> Dict:
         """
         Calculate Precision@K and Recall@K from user feedback.
+        Now uses item-specific feedback when available for more accurate metrics.
         """
         feedback = self._load_events('feedback')
         
@@ -614,32 +615,46 @@ class AnalyticsCollector:
                 'sample_size': 0
             }
         
-        # Use relevance ratings as proxy for "relevant" items
-        # Item is "relevant" if rating >= 4
+        # Track relevant items using item-specific feedback when available
         relevant_counts = []
         total_recommended = []
         
         for f in feedback:
-            ratings = f.get('ratings', {})
-            relevance = ratings.get('relevance', 0)
+            context = f.get('context', {})
+            item_ratings = context.get('item_ratings', {})
             
-            # Assume 3 items recommended per batch
-            k = 3
-            
-            # If relevance >= 4, consider the recommendation batch as "relevant"
-            if relevance >= 4:
-                relevant_counts.append(k)  # All 3 items considered relevant
-            elif relevance >= 3:
-                relevant_counts.append(2)  # 2 out of 3 relevant
+            # If we have item-specific ratings, use those (more accurate)
+            if item_ratings:
+                # Count items with rating >= 4 as relevant
+                relevant_items = sum(1 for rating in item_ratings.values() if rating >= 4)
+                total_items = len(item_ratings)
+                
+                if total_items > 0:
+                    relevant_counts.append(relevant_items)
+                    total_recommended.append(total_items)
             else:
-                relevant_counts.append(1)  # 1 out of 3 relevant
-            
-            total_recommended.append(k)
+                # Fallback to overall relevance rating (legacy format)
+                ratings = f.get('ratings', {})
+                relevance = ratings.get('relevance', 0)
+                
+                # Assume 3 items recommended per batch
+                k = 3
+                
+                # If relevance >= 4, consider the recommendation batch as "relevant"
+                if relevance >= 4:
+                    relevant_counts.append(k)  # All 3 items considered relevant
+                elif relevance >= 3:
+                    relevant_counts.append(2)  # 2 out of 3 relevant
+                else:
+                    relevant_counts.append(1)  # 1 out of 3 relevant
+                
+                total_recommended.append(k)
         
         # Calculate precision (relevant / recommended)
         precision = sum(relevant_counts) / sum(total_recommended) if total_recommended else 0
         
         # For recall, assume total relevant items = 5 per context
+        # This is an estimate since we don't know the full universe of relevant items
         total_relevant = len(feedback) * 5
         recall = sum(relevant_counts) / total_relevant if total_relevant > 0 else 0
         
@@ -724,7 +739,8 @@ class AnalyticsCollector:
                 'precision_at_3': precision_recall['precision_at_3'],
                 'recall_at_3': precision_recall['recall_at_3'],
                 'f1_at_3': precision_recall['f1_at_3'],
-                'ndcg_at_3': ndcg['ndcg_at_3']
+                'ndcg_at_3': ndcg['ndcg_at_3'],
+                'sample_size': precision_recall.get('sample_size', 0)
             },
             'business_metrics': {
                 'ctr': ctr['ctr'],
