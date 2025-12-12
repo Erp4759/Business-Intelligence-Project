@@ -262,8 +262,114 @@ class RecommendationEngine:
         
         return 0.0
     
+    def _calculate_feedback_penalty(self, item: Dict, component_type: str, username: Optional[str] = None) -> float:
+        """
+        Calculate penalty based on user's feedback on similar items.
+        Applies penalties to items that match patterns from low-rated items (rating 1-3).
+        
+        Args:
+            item: Garment item dictionary
+            component_type: "Outer", "Top", "Bottom", or "Dress"
+            username: Username to load feedback for (optional)
+            
+        Returns:
+            Penalty value (negative for items similar to low-rated ones)
+        """
+        if not username:
+            return 0.0
+        
+        try:
+            from data_manager import get_low_rated_item_patterns
+            patterns = get_low_rated_item_patterns(username)
+        except ImportError:
+            return 0.0
+        
+        if not patterns or not patterns.get('low_rated_items'):
+            return 0.0
+        
+        # Map component_type to item_type
+        item_type_map = {
+            'Outer': 'outer',
+            'Top': 'top',
+            'Bottom': 'bottom',
+            'Dress': 'dress'
+        }
+        target_item_type = item_type_map.get(component_type, '')
+        
+        if not target_item_type:
+            return 0.0
+        
+        # Get item attributes
+        item_category = item.get('category', '').lower()
+        item_color = item.get('color', '').lower()
+        item_warmth = item.get('warmth_score', 3)
+        
+        penalty = 0.0
+        
+        # Check against low-rated items of the same type
+        for low_rated in patterns['low_rated_items']:
+            if low_rated.get('item_type') != target_item_type:
+                continue
+            
+            rating = low_rated.get('rating', 3)
+            low_category = low_rated.get('category', '').lower()
+            low_color = low_rated.get('color', '').lower()
+            low_warmth = low_rated.get('warmth_score', 3)
+            
+            # Base penalty for same item type (even without exact match)
+            # This ensures that if user dislikes a top, ALL tops get some penalty
+            base_type_penalty = {1: -15.0, 2: -10.0, 3: -6.0}.get(rating, 0.0)
+            penalty += base_type_penalty * 0.3  # 30% base penalty just for same type
+            
+            # Calculate additional similarity penalty
+            similarity_multiplier = 0.0
+            
+            # Category match (strong penalty - exact match)
+            if low_category == item_category:
+                similarity_multiplier += 0.5  # 50% additional penalty for exact category match
+            # Partial category match (e.g., both are shirts)
+            elif low_category and item_category:
+                # Check if categories are similar (e.g., 't-shirt' and 'button-up shirt' both have 'shirt')
+                category_words = set(low_category.split()) & set(item_category.split())
+                if category_words:
+                    similarity_multiplier += 0.2  # 20% for partial category match
+            
+            # Color match (moderate penalty)
+            if low_color and item_color:
+                # Exact color match
+                if low_color == item_color or low_color in item_color or item_color in low_color:
+                    similarity_multiplier += 0.3  # 30% for color match
+                else:
+                    # Check for color family matches
+                    color_families = {
+                        'red': ['red', 'pink', 'coral', 'maroon', 'rose'],
+                        'blue': ['blue', 'navy', 'cyan', 'teal', 'azure'],
+                        'green': ['green', 'olive', 'mint', 'lime', 'emerald'],
+                        'black': ['black', 'dark', 'charcoal', 'ebony'],
+                        'white': ['white', 'cream', 'beige', 'ivory', 'off-white'],
+                        'grey': ['grey', 'gray', 'silver', 'charcoal'],
+                        'brown': ['brown', 'tan', 'khaki', 'beige', 'camel']
+                    }
+                    for family, colors in color_families.items():
+                        if any(c in low_color for c in colors) and any(c in item_color for c in colors):
+                            similarity_multiplier += 0.15  # 15% for color family match
+                            break
+            
+            # Warmth score match (small penalty)
+            if abs(low_warmth - item_warmth) <= 1:
+                similarity_multiplier += 0.1  # 10% for similar warmth
+            
+            # Apply the similarity multiplier to base penalty
+            if similarity_multiplier > 0:
+                additional_penalty = base_type_penalty * similarity_multiplier
+                penalty += additional_penalty
+        
+        # Ensure penalty is significant enough to affect rankings
+        # Total penalty can range from -15 (rating 1, same type) to -30+ (rating 1, exact match)
+        return penalty
+    
     def rank_garments(self, garments_df: pd.DataFrame, required_scores: Dict, 
-                     component_type: str) -> List[Dict]:
+                     component_type: str, username: Optional[str] = None) -> List[Dict]:
         """
         Rank garments based on fitness to required weather scores.
         
@@ -271,6 +377,7 @@ class RecommendationEngine:
             garments_df: DataFrame of available garments
             required_scores: Required attribute scores from weather
             component_type: "Outer", "Top", "Bottom", or "Dress"
+            username: Optional username for feedback-based penalties
             
         Returns:
             List of top-ranked garments with fitness scores
@@ -315,13 +422,28 @@ class RecommendationEngine:
             axis=1
         )
         
-        # Weighted total score (Layer 1 + Layer 3)
+        # Feedback-based penalty (for low-rated items)
+        df_filtered['feedback_penalty'] = df_filtered.apply(
+            lambda row: self._calculate_feedback_penalty(row.to_dict(), component_type, username), 
+            axis=1
+        )
+        
+        # Weighted total score (Layer 1 + Layer 3 + Feedback)
+        # Feedback penalty is applied directly (not weighted) to ensure strong impact
         df_filtered['total_score'] = (
             df_filtered['warmth_fit'] * 0.40 + 
             df_filtered['impermeability_fit'] * 0.25 + 
             df_filtered['layering_fit'] * 0.15 + 
-            df_filtered['diversity_penalty']
+            df_filtered['diversity_penalty'] +
+            df_filtered['feedback_penalty']  # Direct penalty - can significantly lower score
         )
+        
+        # Debug: Show penalty impact (can be removed later)
+        if username and df_filtered['feedback_penalty'].abs().max() > 0:
+            max_penalty = df_filtered['feedback_penalty'].abs().max()
+            items_with_penalty = (df_filtered['feedback_penalty'] < 0).sum()
+            if items_with_penalty > 0:
+                print(f"[FEEDBACK] User {username}: {items_with_penalty} items penalized, max penalty: {max_penalty:.2f}")
         
         # Return top 3 for variety
         return df_filtered.sort_values(
@@ -329,13 +451,15 @@ class RecommendationEngine:
         ).head(3).to_dict('records')
     
     def recommend_outfit(self, city: str, 
-                        custom_wardrobe: Optional[pd.DataFrame] = None) -> Dict:
+                        custom_wardrobe: Optional[pd.DataFrame] = None,
+                        username: Optional[str] = None) -> Dict:
         """
         Generate complete outfit recommendation for given city weather.
         
         Args:
             city: City name for weather lookup
             custom_wardrobe: Optional custom wardrobe DataFrame (uses default if None)
+            username: Optional username for feedback-based personalization
             
         Returns:
             Dictionary with complete outfit recommendation
@@ -355,7 +479,7 @@ class RecommendationEngine:
         
         # Check for dress option first (if not too cold)
         if required_scores['warmth'] <= 3:
-            dress_ranks = self.rank_garments(wardrobe, required_scores, "Dress")
+            dress_ranks = self.rank_garments(wardrobe, required_scores, "Dress", username)
             if dress_ranks:
                 best_dress = dress_ranks[0]
                 
@@ -374,9 +498,9 @@ class RecommendationEngine:
                 }
         
         # Build layered outfit with greedy strategy + Layer 4 color matching
-        top_ranks = self.rank_garments(wardrobe, required_scores, "Top")
-        bottom_ranks = self.rank_garments(wardrobe, required_scores, "Bottom")
-        outer_ranks = self.rank_garments(wardrobe, required_scores, "Outer")
+        top_ranks = self.rank_garments(wardrobe, required_scores, "Top", username)
+        bottom_ranks = self.rank_garments(wardrobe, required_scores, "Bottom", username)
+        outer_ranks = self.rank_garments(wardrobe, required_scores, "Outer", username)
         
         if not top_ranks or not bottom_ranks:
             return {"error": "Insufficient wardrobe items for recommendation"}
