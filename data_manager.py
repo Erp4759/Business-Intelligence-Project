@@ -483,6 +483,153 @@ def remove_ai_item(username: str, item_id: str) -> bool:
 
 
 # ============================================
+# ITEM FEEDBACK FUNCTIONS
+# ============================================
+
+def save_item_feedback(username: str, recommendation_id: str, item_feedback: List[Dict], context: Dict = None):
+    """
+    Save item-specific feedback for recommendations.
+    
+    Args:
+        username: User providing feedback
+        recommendation_id: ID of the recommendation
+        item_feedback: List of feedback for each item with:
+            - item_type: 'outer', 'top', 'bottom', 'dress'
+            - category: item category (e.g., 'jacket', 't-shirt')
+            - color: item color
+            - warmth_score: warmth level (1-5)
+            - rating: user rating (1-5)
+            - image_link: item image identifier
+        context: Additional context (weather, etc.)
+    """
+    feedback_file = DATA_DIR / "item_feedback.json"
+    init_data_storage()
+    
+    # Load existing feedback
+    feedback_data = {}
+    if feedback_file.exists():
+        try:
+            with open(feedback_file, 'r') as f:
+                feedback_data = json.load(f)
+        except (json.JSONDecodeError, FileNotFoundError):
+            feedback_data = {}
+    
+    # Initialize user's feedback list if needed
+    if username not in feedback_data:
+        feedback_data[username] = []
+    
+    # Create feedback entry
+    feedback_entry = {
+        'recommendation_id': recommendation_id,
+        'timestamp': datetime.now().isoformat(),
+        'items': item_feedback,
+        'context': context or {}
+    }
+    
+    feedback_data[username].append(feedback_entry)
+    
+    # Keep only last 100 feedback entries per user to prevent file from growing too large
+    if len(feedback_data[username]) > 100:
+        feedback_data[username] = feedback_data[username][-100:]
+    
+    # Save to file
+    with open(feedback_file, 'w') as f:
+        json.dump(feedback_data, f, indent=2)
+
+
+def get_item_feedback(username: str) -> List[Dict]:
+    """
+    Get all item feedback for a user.
+    
+    Returns:
+        List of feedback entries, each containing:
+        - recommendation_id
+        - timestamp
+        - items: list of item feedback
+        - context: context information
+    """
+    feedback_file = DATA_DIR / "item_feedback.json"
+    init_data_storage()
+    
+    if not feedback_file.exists():
+        return []
+    
+    try:
+        with open(feedback_file, 'r') as f:
+            feedback_data = json.load(f)
+        return feedback_data.get(username, [])
+    except (json.JSONDecodeError, FileNotFoundError):
+        return []
+
+
+def get_low_rated_item_patterns(username: str) -> Dict:
+    """
+    Get patterns from items that received low ratings (1-3).
+    Used by recommendation engine to avoid similar items.
+    
+    Returns:
+        Dictionary with patterns to avoid:
+        - by_item_type: {item_type: [patterns]}
+        - by_category: {category: count of low ratings}
+        - by_color: {color: count of low ratings}
+        - by_warmth: {warmth_score: count of low ratings}
+    """
+    feedback_list = get_item_feedback(username)
+    
+    patterns = {
+        'by_item_type': {},
+        'by_category': {},
+        'by_color': {},
+        'by_warmth': {},
+        'low_rated_items': []
+    }
+    
+    for feedback_entry in feedback_list:
+        for item in feedback_entry.get('items', []):
+            rating = item.get('rating', 5)
+            
+            # Only consider low ratings (1-3)
+            if rating <= 3:
+                item_type = item.get('item_type', '')
+                category = item.get('category', '')
+                color = item.get('color', '')
+                warmth_score = item.get('warmth_score', 3)
+                
+                # Track patterns
+                if item_type:
+                    if item_type not in patterns['by_item_type']:
+                        patterns['by_item_type'][item_type] = []
+                    patterns['by_item_type'][item_type].append({
+                        'category': category,
+                        'color': color,
+                        'warmth_score': warmth_score,
+                        'rating': rating
+                    })
+                
+                # Count occurrences
+                if category:
+                    patterns['by_category'][category] = patterns['by_category'].get(category, 0) + 1
+                
+                if color:
+                    patterns['by_color'][color] = patterns['by_color'].get(color, 0) + 1
+                
+                if warmth_score:
+                    patterns['by_warmth'][warmth_score] = patterns['by_warmth'].get(warmth_score, 0) + 1
+                
+                # Store full item info
+                patterns['low_rated_items'].append({
+                    'item_type': item_type,
+                    'category': category,
+                    'color': color,
+                    'warmth_score': warmth_score,
+                    'rating': rating,
+                    'timestamp': feedback_entry.get('timestamp', '')
+                })
+    
+    return patterns
+
+
+# ============================================
 # UTILITY FUNCTIONS
 # ============================================
 

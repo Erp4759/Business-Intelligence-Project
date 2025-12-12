@@ -5,6 +5,8 @@ Finds similar clothing items online based on recommended outfit images
 
 import requests
 import os
+import random
+import hashlib
 from typing import List, Dict, Optional
 from urllib.parse import quote
 
@@ -26,13 +28,15 @@ class VisualSearchService:
         self.google_api_key = google_api_key or os.getenv("GOOGLE_API_KEY", "")
         self.google_cse_id = google_cse_id or os.getenv("GOOGLE_CSE_ID", "")
     
-    def search_by_description(self, item_description: Dict, max_results: int = 3) -> List[Dict]:
+    def search_by_description(self, item_description: Dict, max_results: int = 3, gender: Optional[str] = None, recommended_item: Optional[Dict] = None) -> List[Dict]:
         """
         Search for similar products using item description (fallback method).
         
         Args:
             item_description: Dictionary with category, color, pattern info
             max_results: Maximum number of results to return
+            gender: User's gender ("Male" or "Female") for gender-specific results
+            recommended_item: The actual recommended item (to use its image)
             
         Returns:
             List of product dictionaries with name, price, url, image
@@ -42,9 +46,14 @@ class VisualSearchService:
         color = item_description.get('color', '')
         pattern = item_description.get('pattern', '')
         
-        # Create search terms
+        # Normalize category name (handle variations)
+        category = str(category).lower().strip()
+        
+        # Add gender to search terms if provided
         search_terms = [category]
-        if color and color not in ['not specified', 'various']:
+        if gender:
+            search_terms.append(gender.lower())
+        if color and color not in ['not specified', 'various', '']:
             search_terms.append(color)
         if pattern and 'pure color' not in pattern.lower():
             search_terms.append(pattern.split('(')[0].strip())
@@ -56,7 +65,12 @@ class VisualSearchService:
             return self._google_shopping_search(query, max_results)
         else:
             # Return mock results for demonstration
-            return self._generate_mock_results(item_description, max_results)
+            # Pass normalized category, gender, and recommended item to ensure proper matching
+            item_description_normalized = item_description.copy()
+            item_description_normalized['category'] = category
+            item_description_normalized['gender'] = gender
+            item_description_normalized['recommended_item'] = recommended_item
+            return self._generate_mock_results(item_description_normalized, max_results)
     
     def _google_shopping_search(self, query: str, max_results: int) -> List[Dict]:
         """
@@ -113,16 +127,27 @@ class VisualSearchService:
         Generate mock shopping results based on item description.
         
         Args:
-            item_description: Item attributes
+            item_description: Item attributes with category, color, gender, etc.
             max_results: Number of results
             
         Returns:
             List of mock product results with actual image URLs
         """
-        category = item_description.get('category', 'clothing').title()
-        color = item_description.get('color', 'Classic')
+        # Get category and normalize it (keep lowercase for matching)
+        category_raw = item_description.get('category', 'clothing')
+        category_lower = str(category_raw).lower().strip()
+        color = item_description.get('color', '')
+        gender = item_description.get('gender', '')
+        
+        # Create a seed based on category, color, and gender for consistent but varied results
+        # This ensures same items get same results, but different items get different results
+        seed_string = f"{category_lower}_{color}_{gender}_{item_description.get('warmth_score', 3)}"
+        seed = int(hashlib.md5(seed_string.encode()).hexdigest()[:8], 16)
+        random.seed(seed)
         
         # Generate realistic mock products with actual placeholder images
+        # Products are organized by exact category match
+        # Note: Images are from Unsplash and may not match exact colors, but names will be accurate
         base_products = {
             'jacket': [
                 {'name': 'Premium Denim Jacket', 'price': '$89', 'store': 'Zara', 
@@ -139,6 +164,14 @@ class VisualSearchService:
                  'image': 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=300&h=400&fit=crop'},
                 {'name': 'Winter Long Coat', 'price': '$210', 'store': 'Zara',
                  'image': 'https://images.unsplash.com/photo-1544923246-77307d119b12?w=300&h=400&fit=crop'}
+            ],
+            'hoodie': [
+                {'name': 'Classic Hoodie', 'price': '$65', 'store': 'Uniqlo',
+                 'image': 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300&h=400&fit=crop'},
+                {'name': 'Premium Zip Hoodie', 'price': '$85', 'store': 'H&M',
+                 'image': 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=300&h=400&fit=crop'},
+                {'name': 'Oversized Hoodie', 'price': '$75', 'store': 'Zara',
+                 'image': 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=300&h=400&fit=crop'}
             ],
             't-shirt': [
                 {'name': 'Cotton Basic Tee', 'price': '$25', 'store': 'Uniqlo',
@@ -164,6 +197,22 @@ class VisualSearchService:
                 {'name': 'Straight Leg Jeans', 'price': '$75', 'store': 'Gap',
                  'image': 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300&h=400&fit=crop'}
             ],
+            'trousers': [
+                {'name': 'Classic Chinos', 'price': '$60', 'store': 'Gap',
+                 'image': 'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=300&h=400&fit=crop'},
+                {'name': 'Tailored Trousers', 'price': '$85', 'store': 'Zara',
+                 'image': 'https://images.unsplash.com/photo-1594938291221-94f313391970?w=300&h=400&fit=crop'},
+                {'name': 'Smart Pants', 'price': '$70', 'store': 'H&M',
+                 'image': 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=400&fit=crop'}
+            ],
+            'shorts': [
+                {'name': 'Cargo Shorts', 'price': '$45', 'store': 'Uniqlo',
+                 'image': 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=300&h=400&fit=crop'},
+                {'name': 'Athletic Shorts', 'price': '$35', 'store': 'Nike',
+                 'image': 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=300&h=400&fit=crop'},
+                {'name': 'Casual Shorts', 'price': '$40', 'store': 'H&M',
+                 'image': 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=300&h=400&fit=crop'}
+            ],
             'dress': [
                 {'name': 'Midi Dress', 'price': '$95', 'store': 'Zara',
                  'image': 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=300&h=400&fit=crop'},
@@ -174,36 +223,121 @@ class VisualSearchService:
             ]
         }
         
-        # Find matching category or use default
-        cat_key = category.lower()
-        for key in base_products:
-            if key in cat_key or cat_key in key:
-                products = base_products[key]
-                break
-        else:
-            products = base_products['t-shirt']
+        # Find matching category - prioritize exact matches
+        # Use the normalized lowercase category
+        cat_key = category_lower
+        matching_products = None
         
-        # Add color information to product names
+        # First, try exact category match
+        if cat_key in base_products:
+            matching_products = base_products[cat_key]
+        else:
+            # Try partial matches (e.g., "button-up shirt" -> "t-shirt")
+            for key in base_products:
+                if key in cat_key or cat_key in key:
+                    matching_products = base_products[key]
+                    break
+        
+        # Fallback to similar categories
+        if not matching_products:
+            if 'shirt' in cat_key or 'blouse' in cat_key or 'polo' in cat_key:
+                matching_products = base_products.get('t-shirt', base_products['t-shirt'])
+            elif 'sweater' in cat_key or 'pullover' in cat_key or 'cardigan' in cat_key:
+                matching_products = base_products.get('sweater', base_products['sweater'])
+            elif 'jacket' in cat_key:
+                matching_products = base_products.get('jacket', base_products['jacket'])
+            elif 'coat' in cat_key or 'overcoat' in cat_key:
+                matching_products = base_products.get('coat', base_products['coat'])
+            elif 'hoodie' in cat_key:
+                matching_products = base_products.get('hoodie', base_products['hoodie'])
+            elif 'jean' in cat_key or 'denim' in cat_key:
+                matching_products = base_products.get('jeans', base_products['jeans'])
+            elif 'trouser' in cat_key or 'pant' in cat_key or 'chino' in cat_key:
+                matching_products = base_products.get('trousers', base_products.get('jeans', base_products['jeans']))
+            elif 'short' in cat_key:
+                matching_products = base_products.get('shorts', base_products.get('jeans', base_products['jeans']))
+            elif 'dress' in cat_key:
+                matching_products = base_products.get('dress', base_products['dress'])
+            else:
+                matching_products = base_products['t-shirt']
+        
+        # Shuffle products to add variety (but keep seed-based consistency)
+        products = matching_products.copy()
+        random.shuffle(products)
+        
+        # Clean and format color name
+        color_clean = ""
+        if color and color not in ['not specified', 'various', '', 'none']:
+            color_clean = color.strip().title()
+        
+        # Get the recommended item's image if available (for first result)
+        recommended_item = item_description.get('recommended_item', {})
+        recommended_image = recommended_item.get('image_link', '') if recommended_item else ''
+        
+        # Generate results with proper color and gender matching
         results = []
         for i, product in enumerate(products[:max_results]):
-            color_prefix = f"{color.title()} " if color and i == 0 else ""
+            # Build product name with color and gender context
+            product_name_parts = []
+            
+            # Always include color in product name to match recommendation (if available)
+            if color_clean:
+                product_name_parts.append(color_clean)
+            
+            # Add gender-specific descriptor if gender is provided
+            if gender:
+                gender_lower = str(gender).lower().strip()
+                if gender_lower == 'male':
+                    # For male items, we can add "Men's" prefix for clarity
+                    if i == 0:  # Only for first result to avoid repetition
+                        product_name_parts.append("Men's")
+                elif gender_lower == 'female':
+                    if i == 0:  # Only for first result to avoid repetition
+                        product_name_parts.append("Women's")
+            
+            # Add the base product name
+            product_name_parts.append(product['name'])
+            
+            # Combine into final product name
+            product_name = ' '.join(product_name_parts)
+            
+            # Use recommended item's image for first result if available
+            # This ensures the image matches the actual recommendation
+            product_image = product['image']
+            if i == 0 and recommended_image:
+                # Use the actual recommended item's image
+                product_image = recommended_image
+                # Note: This might be a local path, so we'll handle it in the display code
+            
+            # Vary match percentage slightly
+            base_match = 95 - i * 3
+            match_variation = random.randint(-2, 2)
+            match_score = max(85, min(98, base_match + match_variation))
+            
+            # Build search query with gender for better results
+            search_query = product_name
+            if gender:
+                search_query += f" {gender.lower()}"
+            
             results.append({
-                'name': f"{color_prefix}{product['name']}",
+                'name': product_name,
                 'price': product['price'],
-                'url': f"https://www.google.com/search?q={quote(product['name'])}+{quote(product['store'])}",
-                'image': product['image'],
+                'url': f"https://www.google.com/search?q={quote(search_query)}+{quote(product['store'])}",
+                'image': product_image,
                 'source': product['store'],
-                'match': f"{95 - i * 3}%"
+                'match': f"{match_score}%",
+                'is_recommended_image': (i == 0 and recommended_image != '')  # Flag for first image
             })
         
         return results
     
-    def find_similar_from_outfit(self, recommendation: Dict) -> Dict[str, List[Dict]]:
+    def find_similar_from_outfit(self, recommendation: Dict, gender: Optional[str] = None) -> Dict[str, List[Dict]]:
         """
         Find similar products for each item in the recommended outfit.
         
         Args:
             recommendation: Outfit recommendation dictionary
+            gender: User's gender ("Male" or "Female") for gender-specific results
             
         Returns:
             Dictionary mapping item type to list of similar products
@@ -212,18 +346,28 @@ class VisualSearchService:
         
         if recommendation.get('outfit_type') == 'Dress':
             dress = recommendation.get('dress', {})
-            results['dress'] = self.search_by_description(dress, max_results=3)
+            # Pass the actual recommended item so we can use its image
+            results['dress'] = self.search_by_description(dress, max_results=3, gender=gender, recommended_item=dress)
         
         elif recommendation.get('outfit_type') == 'Layered':
             # Search for each layer
             if recommendation.get('outer'):
-                results['outer'] = self.search_by_description(recommendation['outer'], max_results=3)
+                results['outer'] = self.search_by_description(
+                    recommendation['outer'], max_results=3, gender=gender, 
+                    recommended_item=recommendation['outer']
+                )
             
             if recommendation.get('top'):
-                results['top'] = self.search_by_description(recommendation['top'], max_results=3)
+                results['top'] = self.search_by_description(
+                    recommendation['top'], max_results=3, gender=gender,
+                    recommended_item=recommendation['top']
+                )
             
             if recommendation.get('bottom'):
-                results['bottom'] = self.search_by_description(recommendation['bottom'], max_results=3)
+                results['bottom'] = self.search_by_description(
+                    recommendation['bottom'], max_results=3, gender=gender,
+                    recommended_item=recommendation['bottom']
+                )
         
         return results
 
