@@ -11,3 +11,6 @@ geminikey.txt
 dataset/geminikey.txt
 *.key.txt
 *key*.txt
+
+# Notebooks with API keys
+dataset/personalized_dataset_maker.ipynb
