@@ -14,3 +14,6 @@ dataset/geminikey.txt
 
 # Notebooks with API keys
 dataset/personalized_dataset_maker.ipynb
+
+# Debug files with secrets
+STREAMLIT_CLOUD_DEBUG.md
