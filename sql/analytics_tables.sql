@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS analytics_sessions (
     end_time TIMESTAMP WITH TIME ZONE,
     duration_seconds NUMERIC,
     device_info JSONB DEFAULT '{}',
+    ip_address TEXT,
     pages_visited TEXT[] DEFAULT '{}',
     recommendations_viewed INTEGER DEFAULT 0,
     interactions_count INTEGER DEFAULT 0,

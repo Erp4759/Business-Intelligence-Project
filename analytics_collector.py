@@ -344,9 +344,27 @@ class AnalyticsCollector:
     # SESSION TRACKING
     # ==========================================
     
-    def start_session(self, username: str, device_info: Dict = None) -> str:
-        """Start a new user session and return session ID."""
+    def start_session(self, username: str, device_info: Dict = None, ip_address: str = None) -> str:
+        """Start a new user session and return session ID.
+        
+        Args:
+            username: User starting the session
+            device_info: Device/browser information
+            ip_address: Optional IP address (may not be available in all environments)
+        """
         session_id = str(uuid.uuid4())
+        
+        # Try to get IP address if not provided
+        if ip_address is None:
+            try:
+                import streamlit as st
+                # Try to get from request headers (may not work in all Streamlit deployments)
+                if hasattr(st, 'request') and hasattr(st.request, 'headers'):
+                    ip_address = st.request.headers.get('X-Forwarded-For', '').split(',')[0].strip()
+                    if not ip_address:
+                        ip_address = st.request.headers.get('X-Real-Ip', '')
+            except:
+                pass
         
         event = {
             'session_id': session_id,
@@ -355,6 +373,7 @@ class AnalyticsCollector:
             'end_time': None,
             'duration_seconds': None,
             'device_info': device_info or {},
+            'ip_address': ip_address or 'unknown',
             'pages_visited': [],
             'recommendations_viewed': 0,
             'interactions_count': 0,

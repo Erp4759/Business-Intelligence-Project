@@ -42,11 +42,12 @@ has_real_data = (
 )
 
 # ===== TAB NAVIGATION =====
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "📈 Overview", 
     "🎯 Ranking Metrics", 
     "💼 Business Metrics",
     "👥 User Study",
+    "🌍 Demographics & Location",
     "🔬 Methodology"
 ])
 
@@ -575,8 +576,222 @@ with tab4:
             st.success("✅ Thank you for your feedback! It helps us improve the system.")
             st.balloons()
 
-# ===== TAB 5: METHODOLOGY =====
+# ===== TAB 5: DEMOGRAPHICS & LOCATION =====
 with tab5:
+    st.markdown("### 🌍 User Demographics & Location Analytics")
+    
+    # Get data from analytics
+    recommendations = analytics._load_events('recommendations')
+    sessions = analytics._load_events('sessions')
+    feedback = analytics._load_events('feedback')
+    
+    # Import get_all_users
+    from data_manager import get_all_users
+    
+    # Get all users for gender distribution
+    all_users = get_all_users()
+    
+    # Extract cities from recommendations context
+    cities = []
+    for rec in recommendations:
+        context = rec.get('context', {})
+        city = context.get('city')
+        if city:
+            cities.append(city)
+    
+    # Extract cities from feedback context
+    for fb in feedback:
+        context = fb.get('context', {})
+        city = context.get('city')
+        if city:
+            cities.append(city)
+    
+    # Calculate gender distribution
+    gender_counts = {'Male': 0, 'Female': 0, 'Other': 0, 'Unknown': 0}
+    for user in all_users:
+        gender = str(user.get('gender', 'Unknown')).strip()
+        if gender == 'Male':
+            gender_counts['Male'] += 1
+        elif gender == 'Female':
+            gender_counts['Female'] += 1
+        elif gender:
+            gender_counts['Other'] += 1
+        else:
+            gender_counts['Unknown'] += 1
+    
+    # Extract IP addresses from sessions
+    ip_addresses = []
+    for session in sessions:
+        ip = session.get('ip_address')
+        if ip and ip != 'unknown':
+            ip_addresses.append(ip)
+    
+    # Display metrics
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        unique_cities = len(set(cities)) if cities else 0
+        st.metric("📍 Cities Used", unique_cities, help="Number of unique cities for recommendations")
+    
+    with col2:
+        total_recommendations_by_city = len(cities)
+        st.metric("🌆 Total City Queries", total_recommendations_by_city, help="Total recommendations requested by city")
+    
+    with col3:
+        unique_ips = len(set(ip_addresses)) if ip_addresses else 0
+        st.metric("🌐 Unique IP Addresses", unique_ips, help="Number of unique IP addresses tracked")
+    
+    with col4:
+        total_users = len(all_users)
+        st.metric("👥 Total Users", total_users, help="Total registered users in system")
+    
+    st.markdown("---")
+    
+    # City distribution
+    if cities:
+        st.markdown("### 📍 City Distribution")
+        city_counts = pd.Series(cities).value_counts()
+        city_df = pd.DataFrame({
+            'City': city_counts.index,
+            'Count': city_counts.values,
+            'Percentage': (city_counts.values / len(cities) * 100).round(1)
+        })
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            # Bar chart
+            fig = px.bar(
+                city_df.head(10),  # Top 10 cities
+                x='City',
+                y='Count',
+                title='Top 10 Cities by Recommendation Requests',
+                labels={'Count': 'Number of Requests', 'City': 'City Name'},
+                color='Count',
+                color_continuous_scale='Blues'
+            )
+            fig.update_layout(height=400, showlegend=False)
+            st.plotly_chart(fig, use_container_width=True)
+        
+        with col2:
+            # Table
+            st.markdown("#### City Statistics")
+            st.dataframe(
+                city_df.head(15),
+                use_container_width=True,
+                hide_index=True
+            )
+    else:
+        st.info("📍 No city data available yet. Cities will appear here once users request recommendations.")
+    
+    st.markdown("---")
+    
+    # Gender distribution
+    st.markdown("### 👥 Gender Distribution")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        # Pie chart
+        gender_data = {k: v for k, v in gender_counts.items() if v > 0}
+        if gender_data:
+            fig = px.pie(
+                values=list(gender_data.values()),
+                names=list(gender_data.keys()),
+                title='User Gender Distribution',
+                color_discrete_map={
+                    'Male': '#3498db',
+                    'Female': '#e91e63',
+                    'Other': '#9b59b6',
+                    'Unknown': '#95a5a6'
+                }
+            )
+            fig.update_layout(height=400)
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info("No gender data available")
+    
+    with col2:
+        # Statistics
+        st.markdown("#### Gender Statistics")
+        total_with_gender = sum(v for k, v in gender_counts.items() if k != 'Unknown')
+        
+        for gender, count in gender_counts.items():
+            if count > 0:
+                percentage = (count / total_users * 100) if total_users > 0 else 0
+                st.metric(
+                    gender,
+                    f"{count} users",
+                    f"{percentage:.1f}%"
+                )
+        
+        if total_users > 0:
+            st.markdown(f"**Total Users:** {total_users}")
+            st.markdown(f"**Users with Gender Info:** {total_with_gender}")
+    
+    st.markdown("---")
+    
+    # IP Address information
+    st.markdown("### 🌐 IP Address & Location Information")
+    
+    if ip_addresses:
+        unique_ips_list = list(set(ip_addresses))
+        st.info(f"**Note:** IP addresses are tracked for analytics purposes. Privacy is maintained - only IP addresses are stored, not full location data.")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("#### IP Address Statistics")
+            st.metric("Total IP Addresses Tracked", len(ip_addresses))
+            st.metric("Unique IP Addresses", len(unique_ips_list))
+            
+            # Show sample IPs (first 10, masked for privacy)
+            if unique_ips_list:
+                st.markdown("#### Sample IP Addresses (First 10)")
+                sample_ips = unique_ips_list[:10]
+                for ip in sample_ips:
+                    # Mask last octet for privacy
+                    ip_parts = ip.split('.')
+                    if len(ip_parts) == 4:
+                        masked_ip = '.'.join(ip_parts[:3]) + '.xxx'
+                    else:
+                        masked_ip = ip
+                    st.text(masked_ip)
+        
+        with col2:
+            st.markdown("#### IP Address Distribution")
+            ip_counts = pd.Series(ip_addresses).value_counts()
+            ip_df = pd.DataFrame({
+                'IP Address (Masked)': ['.'.join(ip.split('.')[:3]) + '.xxx' if len(ip.split('.')) == 4 else ip for ip in ip_counts.index[:10]],
+                'Sessions': ip_counts.values[:10]
+            })
+            st.dataframe(ip_df, use_container_width=True, hide_index=True)
+    else:
+        st.info("🌐 No IP address data available. IP addresses are tracked when sessions are created (may not be available in all deployment environments).")
+    
+    st.markdown("---")
+    
+    # Data source information
+    with st.expander("ℹ️ About This Data", expanded=False):
+        st.markdown("""
+        **Data Sources:**
+        - **Cities:** Extracted from recommendation context and feedback context
+        - **Gender:** From user profile data in database
+        - **IP Addresses:** Tracked in session data (may not be available in all Streamlit deployment environments)
+        
+        **Privacy:**
+        - IP addresses are masked in display (last octet hidden)
+        - Only aggregated statistics are shown
+        - No personally identifiable information beyond username is displayed
+        
+        **Data Collection:**
+        - Cities are tracked when users request recommendations
+        - Gender is collected during user registration
+        - IP addresses are captured during session creation (when available)
+        """)
+
+# ===== TAB 6: METHODOLOGY =====
+with tab6:
     st.markdown("### 🔬 Evaluation Methodology")
     
     st.markdown("""
