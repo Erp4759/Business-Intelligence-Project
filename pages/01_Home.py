@@ -490,7 +490,14 @@ with col2:
                 # Don't generate recommendation if wardrobe is required but empty
                 st.stop()
         
-        recommendation = rec_engine.recommend_outfit(city, custom_wardrobe=custom_wardrobe_df, username=st.session_state.username)
+        # Get username safely and pass to recommendation engine
+        username = st.session_state.get('username', None)
+        try:
+            # Try with username parameter (new version)
+            recommendation = rec_engine.recommend_outfit(city, custom_wardrobe=custom_wardrobe_df, username=username)
+        except TypeError:
+            # Fallback for older version without username parameter
+            recommendation = rec_engine.recommend_outfit(city, custom_wardrobe=custom_wardrobe_df)
         
         # Store recommendation in session state for shopping suggestions
         st.session_state['last_recommendation'] = recommendation
